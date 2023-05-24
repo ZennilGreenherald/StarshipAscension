@@ -1,0 +1,9 @@
+{
+	"recommendations": [
+		"ms-vscode.cpptools",
+		"formulahendry.code-runner",
+		"ms-vscode.cmake-tools",
+		"jeff-hykin.better-cpp-syntax",
+		"xaver.clang-format"
+	]
+}

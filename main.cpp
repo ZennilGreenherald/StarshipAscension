@@ -50,20 +50,68 @@ void display_menu()
 	cin.get();
 }
 
+const char PLAYING_FIELD_STARBASE = 'B';
+const char PLAYING_FIELD_MOON = 'M';
+const char PLAYING_FIELD_ENEMY_SHIP = 'E';
+
 void initialize_playing_field()
 {
-	// Initialize the playing field with stars
+	// Initialize the playing field with empty spaces
 	for (int i = 0; i < PLAYING_FIELD_HEIGHT; i++)
 	{
 		for (int j = 0; j < PLAYING_FIELD_WIDTH; j++)
 		{
-			playingField[i][j] = PLAYING_FIELD_STAR;
+			if (i == 0 || i == PLAYING_FIELD_HEIGHT - 1 || j == 0 || j == PLAYING_FIELD_WIDTH - 1)
+			{
+				playingField[i][j] = PLAYING_FIELD_BORDER;
+			}
+			else
+			{
+				playingField[i][j] = PLAYING_FIELD_EMPTY;
+			}
 		}
 	}
 
 	// Add a ship and a planet to the playing field
-	playingField[10][10] = PLAYING_FIELD_SHIP;
-	playingField[15][20] = PLAYING_FIELD_PLANET;
+	playingField[PLAYING_FIELD_HEIGHT / 2][PLAYING_FIELD_WIDTH / 2] = PLAYING_FIELD_SHIP;
+	playingField[PLAYING_FIELD_HEIGHT / 4][PLAYING_FIELD_WIDTH / 4] = PLAYING_FIELD_PLANET;
+
+	// Add starbases, moons, and enemy ships to the playing field
+	for (int i = 0; i < NUM_STARBASES; i++)
+	{
+		int x, y;
+		do
+		{
+			x = rand() % PLAYING_FIELD_WIDTH;
+			y = rand() % PLAYING_FIELD_HEIGHT;
+		} while (playingField[y][x] != PLAYING_FIELD_EMPTY);
+
+		playingField[y][x] = PLAYING_FIELD_STARBASE;
+	}
+
+	for (int i = 0; i < NUM_MOONS; i++)
+	{
+		int x, y;
+		do
+		{
+			x = rand() % PLAYING_FIELD_WIDTH;
+			y = rand() % PLAYING_FIELD_HEIGHT;
+		} while (playingField[y][x] != PLAYING_FIELD_EMPTY);
+
+		playingField[y][x] = PLAYING_FIELD_MOON;
+	}
+
+	for (int i = 0; i < NUM_ENEMY_SHIPS; i++)
+	{
+		int x, y;
+		do
+		{
+			x = rand() % PLAYING_FIELD_WIDTH;
+			y = rand() % PLAYING_FIELD_HEIGHT;
+		} while (playingField[y][x] != PLAYING_FIELD_EMPTY);
+
+		playingField[y][x] = PLAYING_FIELD_ENEMY_SHIP;
+	}
 }
 
 void display_playing_field()
@@ -92,29 +140,38 @@ void handle_user_input()
 {
 	// Move the ship based on user input
 	char input;
-	cout << "Player " << currentPlayerIndex + 1 << ", enter your move (WASD): ";
-	cin >> input;
-
-	switch (input)
+	bool validInput = false;
+	while (!validInput)
 	{
-	case 'w':
-		playingField[10][10] = PLAYING_FIELD_STAR;
-		playingField[9][10] = PLAYING_FIELD_SHIP;
-		break;
-	case 'a':
-		playingField[10][10] = PLAYING_FIELD_STAR;
-		playingField[10][9] = PLAYING_FIELD_SHIP;
-		break;
-	case 's':
-		playingField[10][10] = PLAYING_FIELD_STAR;
-		playingField[11][10] = PLAYING_FIELD_SHIP;
-		break;
-	case 'd':
-		playingField[10][10] = PLAYING_FIELD_STAR;
-		playingField[10][11] = PLAYING_FIELD_SHIP;
-		break;
-	default:
-		break;
+		cout << "Player " << currentPlayerIndex + 1 << ", enter your move (WASD): ";
+		cin >> input;
+
+		switch (input)
+		{
+		case 'w':
+			playingField[10][10] = PLAYING_FIELD_STAR;
+			playingField[9][10] = PLAYING_FIELD_SHIP;
+			validInput = true;
+			break;
+		case 'a':
+			playingField[10][10] = PLAYING_FIELD_STAR;
+			playingField[10][9] = PLAYING_FIELD_SHIP;
+			validInput = true;
+			break;
+		case 's':
+			playingField[10][10] = PLAYING_FIELD_STAR;
+			playingField[11][10] = PLAYING_FIELD_SHIP;
+			validInput = true;
+			break;
+		case 'd':
+			playingField[10][10] = PLAYING_FIELD_STAR;
+			playingField[10][11] = PLAYING_FIELD_SHIP;
+			validInput = true;
+			break;
+		default:
+			cout << "Invalid input. Please enter W, A, S, or D." << endl;
+			break;
+		}
 	}
 }
 

@@ -6,12 +6,16 @@ const int PLAYING_FIELD_WIDTH = 80;
 const int PLAYING_FIELD_HEIGHT = 24;
 
 // Define the characters used for the playing field
+
+const char PLAYING_FIELD_BORDER = '#';
+const char PLAYING_FIELD_EMPTY = ' ';
+const char PLAYING_FIELD_SHIP = 'S';
+const char PLAYING_FIELD_PLANET = 'P';
 const char PLAYING_FIELD_VERTICAL_BORDER = '|';
 const char PLAYING_FIELD_HORIZONTAL_BORDER = '-';
 const char PLAYING_FIELD_CORNER = '_';
 const char PLAYING_FIELD_STAR = '*';
-const char PLAYING_FIELD_SHIP = 'S';
-const char PLAYING_FIELD_PLANET = 'P';
+
 
 // Define the struct for a player
 struct Player {

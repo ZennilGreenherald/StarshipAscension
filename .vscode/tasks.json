@@ -1,0 +1,27 @@
+{
+	"tasks": [
+		{
+			"type": "shell",
+			"label": "C++ Build",
+			"command": "g++",
+			"args": [
+				"-g",
+				"-std=c++98", // use C++11 standard
+				"${workspaceFolder}/*.cpp",
+				"-o",
+				"${workspaceFolder}/build/${workspaceFolderBasename}"
+			],
+			"options": {
+				"cwd": "${workspaceFolder}"
+			},
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+		}
+	],
+	"version": "2.0.0"
+}
