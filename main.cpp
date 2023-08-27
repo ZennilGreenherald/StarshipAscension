@@ -3,6 +3,11 @@
 
 using namespace std;
 
+// Constants for playing field objects
+const int NUM_STARBASES = 3;
+const int NUM_MOONS = 5;
+const int NUM_ENEMY_SHIPS = 10;
+
 // Declare global variables
 Player players[2];
 int currentPlayerIndex = 0;
