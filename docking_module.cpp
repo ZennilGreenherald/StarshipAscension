@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <cmath>
+#include "station.h"
 
 class Spaceship {
 public:
