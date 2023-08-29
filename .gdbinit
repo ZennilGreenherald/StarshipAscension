@@ -12,3 +12,7 @@ alias s step
 alias n next
 alias c continue
 alias bt backtrace
+
+set history save on
+set history size unlimited
+set history filename ~/.gdb_history

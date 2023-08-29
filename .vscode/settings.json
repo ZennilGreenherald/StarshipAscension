@@ -1,38 +1,119 @@
 {
-  "C_Cpp_Runner.cCompilerPath": "gcc",
-  "C_Cpp_Runner.cppCompilerPath": "g++",
-  "C_Cpp_Runner.debuggerPath": "gdb",
-  "C_Cpp_Runner.cStandard": "",
-  "C_Cpp_Runner.cppStandard": "",
-  "C_Cpp_Runner.msvcBatchPath": "",
-  "C_Cpp_Runner.useMsvc": false,
-  "C_Cpp_Runner.warnings": [
-    "-Wall",
-    "-Wextra",
-    "-Wpedantic",
-    "-Wshadow",
-    "-Wformat=2",
-    "-Wconversion",
-    "-Wnull-dereference",
-    "-Wsign-conversion"
-  ],
-  "C_Cpp_Runner.enableWarnings": true,
-  "C_Cpp_Runner.warningsAsError": false,
-  "C_Cpp_Runner.compilerArgs": [],
-  "C_Cpp_Runner.linkerArgs": [],
-  "C_Cpp_Runner.includePaths": [],
-  "C_Cpp_Runner.includeSearch": [
-    "*",
-    "**/*"
-  ],
-  "C_Cpp_Runner.excludeSearch": [
-    "**/build",
-    "**/build/**",
-    "**/.*",
-    "**/.*/**",
-    "**/.vscode",
-    "**/.vscode/**"
-  ],
-  "C_Cpp_Runner.useAddressSanitizer": false,
-  "C_Cpp_Runner.showCompilationTime": false
+	"[cpp]": {
+		"editor.defaultFormatter": "ms-vscode.cpptools",
+		"editor.formatOnSave": true
+	},
+	"[c]": {
+		"editor.defaultFormatter": "ms-vscode.cpptools"
+	},
+	"C_Cpp_Runner.cCompilerPath": "/usr/bin",
+	"C_Cpp_Runner.cppCompilerPath": "/usr/bin",
+	"C_Cpp_Runner.debuggerPath": "/usr/bin",
+	"C_Cpp_Runner.cStandard": "c11",
+	"C_Cpp_Runner.cppStandard": "c++17",
+	"C_Cpp_Runner.msvcBatchPath": "C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Auxiliary/Build/vcvarsall.bat",
+	"C_Cpp_Runner.useMsvc": false,
+	"C_Cpp_Runner.warnings": [
+		"-Wall",
+		"-Wextra",
+		"-Wpedantic",
+		"-Wshadow",
+		"-Wformat=2",
+		"-Wconversion",
+		"-Wnull-dereference",
+		"-Wsign-conversion"
+	],
+	"C_Cpp_Runner.enableWarnings": true,
+	"C_Cpp_Runner.warningsAsError": false,
+	"C_Cpp_Runner.compilerArgs": [
+		"-Wall",
+		"-Werror",
+		"-I/path/to/include",
+		"-Wl,-rpath,/path/to/library",
+		"-lmylib",
+		"/path/to/include1",
+		"/path/to/include2"
+	],
+	"C_Cpp_Runner.includeSearch": [
+		"*",
+		"**/*"
+	],
+	"C_Cpp_Runner.excludeSearch": [
+		"**/build",
+		"**/build/**",
+		"**/.*",
+		"**/.*/**",
+		"**/.vscode",
+		"**/.vscode/**"
+	],
+	"C_Cpp_Runner.useAddressSanitizer": false,
+	"C_Cpp_Runner.showCompilationTime": false,
+	"cmake.configureOnOpen": true,
+	"C_Cpp.autocompleteAddParentheses": true,
+	"files.associations": {
+		".c": "c",
+		".h": "c",
+		".hpp": "cpp",
+		".cpp": "cpp",
+		"Makefile": "makefile",
+	},
+	"emmet.includeLanguages": {
+		"c": "c",
+		"cpp": "cpp",
+		"assembly": "asm"
+	},
+	"cSpell.fixSpellingWithRenameProvider": true,
+	"cSpell.advanced.feature.useReferenceProviderWithRename": true,
+	"cSpell.advanced.feature.useReferenceProviderRemove": "/^#+\\s/",
+	"cSpell.diagnosticLevel": "Hint",
+	"cSpell.language": "en",
+	"cSpell.userWords": [],
+	"C_Cpp.clang_format_sortIncludes": true,
+	"C_Cpp.vcFormat.indent.preserveComments": true,
+	"C_Cpp.vcFormat.indent.namespaceContents": false,
+	"C_Cpp.vcFormat.indent.caseContentsWhenBlock": true,
+	"C_Cpp.vcFormat.space.pointerReferenceAlignment": "right",
+	"C_Cpp.default.browse.limitSymbolsToIncludedHeaders": false,
+	"C_Cpp.default.cppStandard": "c++20",
+	"C_Cpp.default.cStandard": "c17",
+	"C_Cpp.formatting": "clangFormat",
+	"C_Cpp.codeAnalysis.clangTidy.enabled": true,
+	"C_Cpp.configurationWarnings": "disabled",
+	"cmake.autoSelectActiveFolder": false,
+	"cmake.configureOnEdit": false,
+	"C_Cpp.errorSquiggles": "enabled",
+	"cmake.sourceDirectory": "${workspaceFolder}",
+	"C_Cpp.default.compilerPath": "/usr/bin/gcc",
+	"C_Cpp.loggingLevel": "Error",
+	"C_Cpp.default.enableConfigurationSquiggles": true,
+	"C_Cpp.default.includePath": [
+		"${workspaceFolder}/**", // Include all files in the workspace folder
+		"/usr/include", // Standard system include path
+		"/usr/local/include", // Additional system include path
+		"/path/to/custom/includes" // Custom include path
+	],
+	"workbench.editorAssociations": {
+		"*.bin": "default",
+		"*.h": "default",
+		"*.c": "default",
+		"*.json": "default",
+		"*.asm": "default"
+	},
+	"C_Cpp.default.intelliSenseMode": "linux-clang-x86",
+	"cmake.cmakePath": "/usr/bin/cmake",
+	"cmake.buildBeforeRun": true,
+	"cmake.configureSettings": {},
+	"cmake.buildArgs": [],
+	"cmake.generator": "",
+	"cmake.buildDirectory": "${workspaceFolder}/build",
+	"C_Cpp_Runner.linkerArgs": [],
+	"C_Cpp_Runner.includePaths": [],
+	"C_Cpp.default.defines": [],
+	"C_Cpp.default.compileCommands": "",
+	"C_Cpp.default.macFrameworkPath": [],
+	"C_Cpp.default.forcedInclude": [],
+	"C_Cpp.default.compilerArgs": [],
+	"C_Cpp.default.configurationProvider": "",
+	"C_Cpp.default.systemIncludePath": [],
+	"C_Cpp.default.dotConfig": "",
 }

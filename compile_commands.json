@@ -1,0 +1,37 @@
+[
+{
+  "directory": "/home/gbowne1/Documents/StarshipAscension",
+  "command": "c++   -I/home/gbowne1/Documents/StarshipAscension    -std=gnu++14 -o CMakeFiles/starship.dir/main.cpp.o -c /home/gbowne1/Documents/StarshipAscension/main.cpp",
+  "file": "/home/gbowne1/Documents/StarshipAscension/main.cpp"
+},
+{
+  "directory": "/home/gbowne1/Documents/StarshipAscension",
+  "command": "c++   -I/home/gbowne1/Documents/StarshipAscension    -std=gnu++14 -o CMakeFiles/starship.dir/movement.cpp.o -c /home/gbowne1/Documents/StarshipAscension/movement.cpp",
+  "file": "/home/gbowne1/Documents/StarshipAscension/movement.cpp"
+},
+{
+  "directory": "/home/gbowne1/Documents/StarshipAscension",
+  "command": "c++   -I/home/gbowne1/Documents/StarshipAscension    -std=gnu++14 -o CMakeFiles/starship.dir/shields_manager.cpp.o -c /home/gbowne1/Documents/StarshipAscension/shields_manager.cpp",
+  "file": "/home/gbowne1/Documents/StarshipAscension/shields_manager.cpp"
+},
+{
+  "directory": "/home/gbowne1/Documents/StarshipAscension",
+  "command": "c++   -I/home/gbowne1/Documents/StarshipAscension    -std=gnu++14 -o CMakeFiles/starship.dir/station.cpp.o -c /home/gbowne1/Documents/StarshipAscension/station.cpp",
+  "file": "/home/gbowne1/Documents/StarshipAscension/station.cpp"
+},
+{
+  "directory": "/home/gbowne1/Documents/StarshipAscension",
+  "command": "c++   -I/home/gbowne1/Documents/StarshipAscension    -std=gnu++14 -o CMakeFiles/starship.dir/docking_module.cpp.o -c /home/gbowne1/Documents/StarshipAscension/docking_module.cpp",
+  "file": "/home/gbowne1/Documents/StarshipAscension/docking_module.cpp"
+},
+{
+  "directory": "/home/gbowne1/Documents/StarshipAscension",
+  "command": "c++   -I/home/gbowne1/Documents/StarshipAscension    -std=gnu++14 -o CMakeFiles/starship.dir/weapons_manager.cpp.o -c /home/gbowne1/Documents/StarshipAscension/weapons_manager.cpp",
+  "file": "/home/gbowne1/Documents/StarshipAscension/weapons_manager.cpp"
+},
+{
+  "directory": "/home/gbowne1/Documents/StarshipAscension",
+  "command": "c++   -I/home/gbowne1/Documents/StarshipAscension    -std=gnu++14 -o CMakeFiles/starship.dir/ship.cpp.o -c /home/gbowne1/Documents/StarshipAscension/ship.cpp",
+  "file": "/home/gbowne1/Documents/StarshipAscension/ship.cpp"
+}
+]

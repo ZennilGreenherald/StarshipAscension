@@ -22,17 +22,24 @@
 			]
 		},
 		{
-			"name": "(gdb) Launch",
+			"name": "C++ Launch",
 			"type": "cppdbg",
 			"request": "launch",
-			"program": "${workspaceFolder}/game",
+			"program": "${workspaceFolder}/build/",
 			"args": [],
 			"stopAtEntry": false,
 			"cwd": "${workspaceFolder}",
 			"environment": [],
 			"externalConsole": true,
 			"MIMode": "gdb",
-			"miDebuggerPath": "/usr/bin/gdb"
+			"miDebuggerPath": "/usr/bin/gdb",
+			"setupCommands": [
+				{
+					"text": "-enable-pretty-printing",
+					"description": "Enable pretty-printing for gdb",
+					"ignoreFailures": true
+				}
+			]
 		},
 		{
 			"name": "g++ build and debug active file",

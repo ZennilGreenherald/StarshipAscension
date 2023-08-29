@@ -1,27 +1,49 @@
 {
+	"version": "2.0.0",
 	"tasks": [
 		{
+			"label": "Build",
 			"type": "shell",
-			"label": "C++ Build",
-			"command": "g++",
+			"command": "gcc",
 			"args": [
-				"-g",
-				"-std=c++98", // use C++11 standard
-				"${workspaceFolder}/*.cpp",
 				"-o",
-				"${workspaceFolder}/build/${workspaceFolderBasename}"
+				"starship",
+				"shields_manager.o",
+				"ship.o",
+				"station.o",
+				"main.o",
+				"weapons_manager.o",
+				"movement.o"
 			],
-			"options": {
-				"cwd": "${workspaceFolder}"
+			"group": {
+				"kind": "build",
+				"isDefault": true
 			},
-            "problemMatcher": [
-                "$gcc"
-            ],
-            "group": {
-                "kind": "build",
-                "isDefault": true
-            }
+			"problemMatcher": "$gcc"
+		},
+		{
+			"label": "Debug",
+			"type": "shell",
+			"command": "gdb",
+			"args": [
+				"-ex",
+				"file ${workspaceFolder}/build/myProgram",
+				"-ex",
+				"run"
+			],
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			}
+		},
+		{
+			"label": "Run Tests",
+			"type": "shell",
+			"command": "ctest",
+			"group": {
+				"kind": "test",
+				"isDefault": true
+			}
 		}
-	],
-	"version": "2.0.0"
+	]
 }

@@ -1,4 +1,13 @@
-BasedOnStyle: LLVM
+BasedOnStyle: Google
+
 IndentWidth: 4
+
+TabWidth: 4
+
+UseTab: false
+
 ColumnLimit: 80
-UseTab: Never
+
+AccessModifierOffset: -2
+
+NamespaceIndentation: All
