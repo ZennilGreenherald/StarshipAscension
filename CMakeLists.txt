@@ -7,13 +7,7 @@ set(CMAKE_C_COMPILER "cc")
 set(CMAKE_CXX_COMPILER "c++")
 
 # Add the main executable
-add_executable(starship)
-
-# Enable testing
-enable_testing()
-
-# Add the additional modules
-target_sources(starship PRIVATE
+add_executable(starship
     main.cpp
     movement.cpp
     shields_manager.cpp
@@ -21,18 +15,17 @@ target_sources(starship PRIVATE
     docking_module.cpp
     weapons_manager.cpp
     ship.cpp
+	game.h
+    movement.h
+    shields_manager.h
+    station.h
+    docking_module.h
+    weapons_manager.h
+    ship.h
 )
 
-# Set the language for each source file to C
-set_source_files_properties(
-    movement.cpp
-    shields_manager.cpp
-    station.cpp
-    docking_module.cpp
-    weapons_manager.cpp
-    ship.cpp
-    PROPERTIES LANGUAGE CXX
-)
+# Enable testing
+enable_testing()
 
 # Include the project root directory
 target_include_directories(starship PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})

@@ -2,6 +2,7 @@
 #define STATION_H
 
 #include <string>
+#include "docking_module.h"
 #include "ship.h"
 
 class Station {

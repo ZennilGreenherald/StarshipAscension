@@ -1,5 +1,6 @@
 #include "station.h"
-#include "ship.h" // Include the ship.h header file
+#include "docking_module.h" // Include the ship.h header file
+#include "ship.h"
 
 Station::Station(std::string name, int maxHealth, int maxFuel, int maxAmmo)
     : name_{name}, health_{maxHealth}, fuel_{maxFuel}, ammo_{maxAmmo},
