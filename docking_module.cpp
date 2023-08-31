@@ -1,67 +1,59 @@
-#include <iostream>
-#include <string>
-#include <cmath>
-#include "station.h"
 #include "docking_module.h"
-#include "ship.h"
 
-// Implement the member functions of the Spaceship class here
-
-std::string Spaceship::getName() const
-{
+std::string Spaceship::getName() const {
     return name_;
 }
 
-int Spaceship::getHealth() const
-{
+int Spaceship::getHealth() const {
     return health_;
 }
 
-int Spaceship::getFuel() const
-{
+int Spaceship::getFuel() const {
     return fuel_;
 }
 
-int Spaceship::getAmmo() const
-{
+int Spaceship::getAmmo() const {
     return ammo_;
 }
 
-void Spaceship::repair(int amount)
-{
+void Spaceship::repair(int amount) {
     health_ = std::min(health_ + amount, maxHealth_);
 }
 
-void Spaceship::refuel(int amount)
-{
+void Spaceship::refuel(int amount) {
     fuel_ = std::min(fuel_ + amount, maxFuel_);
 }
 
-void Spaceship::restock(int amount)
-{
+void Spaceship::restock(int amount) {
     ammo_ = std::min(ammo_ + amount, maxAmmo_);
 }
 
-void Spaceship::dock(Station& station)
-{
-    double distance = calculateDistance();
-    if (distance <= dockingDistanceThreshold)
-    {
-        activateDockingClamps();
-        std::cout << "Starbase Docking Successful!" << std::endl;
-    }
-    else
-    {
-        std::cout << "Approach the docking port to activate docking clamps." << std::endl;
-    }
+void Spaceship::dock(Station& station) {
+    // Implement the docking logic between the spaceship and the station
+    // ...
+    // Example: station.dockSpaceship(*this);
 }
 
-double Spaceship::calculateDistance() const
-{
-    // Implementation of calculateDistance function
+double Spaceship::calculateDistance() const {
+    // Calculate the distance between the spaceship and the docking port
+    // ...
+    // Example: return std::sqrt(std::pow(spaceshipX - dockingPortX, 2) + std::pow(spaceshipY - dockingPortY, 2));
 }
 
-void Spaceship::activateDockingClamps()
-{
-    // Implementation of activateDockingClamps function
+void Spaceship::activateDockingClamps() {
+    // Activate the docking clamps of the spaceship
+    // ...
+    // Example: std::cout << "Docking clamps activated!" << std::endl;
+}
+
+void Station::repair(Spaceship& spaceship, int amount) {
+    spaceship.repair(amount);
+}
+
+void Station::refuel(Spaceship& spaceship, int amount) {
+    spaceship.refuel(amount);
+}
+
+void Station::restock(Spaceship& spaceship, int amount) {
+    spaceship.restock(amount);
 }

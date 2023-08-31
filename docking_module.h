@@ -44,30 +44,4 @@ private:
     double spaceshipY;
 };
 
-class Station {
-public:
-    Station(std::string name, int maxHealth, int maxFuel, int maxAmmo)
-        : name_{ name }, health_{ maxHealth }, fuel_{ maxFuel }, ammo_{ maxAmmo },
-        maxHealth_{ maxHealth }, maxFuel_{ maxFuel }, maxAmmo_{ maxAmmo }
-    {
-    }
-
-    std::string getName() const;
-    int getHealth() const;
-    int getFuel() const;
-    int getAmmo() const;
-    void repair(Spaceship& spaceship, int amount);
-    void refuel(Spaceship& spaceship, int amount);
-    void restock(Spaceship& spaceship, int amount);
-
-private:
-    std::string name_;
-    int health_;
-    int fuel_;
-    int ammo_;
-    int maxHealth_;
-    int maxFuel_;
-    int maxAmmo_;
-};
-
 #endif
