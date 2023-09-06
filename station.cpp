@@ -1,5 +1,7 @@
 #include "station.h"
 
+#include "docking_module.h"
+
 Station::Station(std::string name, int maxHealth, int maxFuel, int maxAmmo)
     : name_{name},
       health_{maxHealth},
@@ -17,6 +19,10 @@ int Station::getFuel() const { return fuel_; }
 
 int Station::getAmmo() const { return ammo_; }
 
+void Station::repair(Spaceship* spaceship, int amount) {
+    spaceship->repair(amount);
+}
+
 void Station::repair(int amount) {
     health_ += amount;
     if (health_ > maxHealth_) {
@@ -24,11 +30,19 @@ void Station::repair(int amount) {
     }
 }
 
+void Station::refuel(Spaceship* spaceship, int amount) {
+    spaceship->refuel(amount);
+}
+
 void Station::refuel(int amount) {
     fuel_ += amount;
     if (fuel_ > maxFuel_) {
         fuel_ = maxFuel_;
     }
+}
+
+void Station::restock(Spaceship* spaceship, int amount) {
+    spaceship->restock(amount);
 }
 
 void Station::restock(int amount) {
