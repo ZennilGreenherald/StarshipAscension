@@ -4,8 +4,9 @@
 #include <iostream>
 #include <string>
 #include <cmath>
-#include "station.h"
 #include "ship.h"
+
+class Station;
 
 class Spaceship {
 public:
@@ -22,7 +23,7 @@ public:
     void repair(int amount);
     void refuel(int amount);
     void restock(int amount);
-    void dock(Station& station);
+    void dock(Station* station);
 
 private:
     std::string name_;

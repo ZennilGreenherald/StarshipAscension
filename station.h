@@ -3,6 +3,8 @@
 
 #include <string>
 
+class Spaceship;
+
 class Station {
 public:
     Station(std::string name, int maxHealth, int maxFuel, int maxAmmo);
@@ -10,8 +12,11 @@ public:
     int getHealth() const;
     int getFuel() const;
     int getAmmo() const;
+    void repair(Spaceship* spaceship, int amount);
     void repair(int amount);
+    void refuel(Spaceship* spaceship, int amount);
     void refuel(int amount);
+    void restock(Spaceship* spaceship, int amount);
     void restock(int amount);
 
 private:
