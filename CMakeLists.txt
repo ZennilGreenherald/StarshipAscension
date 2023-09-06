@@ -1,10 +1,16 @@
 cmake_minimum_required(VERSION 3.13)
-project(StarshipAscension)
+project(StarshipAscension
+        VERSION 1.0.0
+        DESCRIPTION "A game about space exploration and combat"
+        HOMEPAGE_URL "https://github.com/gbowne1/StarshipAscension"
+        LANGUAGES CXX)
 
 set(CMAKE_C_STANDARD 17)
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_C_COMPILER "cc")
 set(CMAKE_CXX_COMPILER "c++")
+
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 # Add the main executable
 add_executable(starship
@@ -23,6 +29,8 @@ add_executable(starship
     weapons_manager.h
     ship.h
 )
+
+target_compile_options(starship PRIVATE -Wall -Wextra)
 
 # Enable testing
 enable_testing()
