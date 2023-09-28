@@ -6,6 +6,7 @@ public:
     Player();
     int getScore() const;
     void setScore(int score);
+	int score;
 private:
     int score;
 };

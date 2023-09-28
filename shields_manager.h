@@ -22,6 +22,7 @@ public:
     void addShield(std::string name, int defense, int level);
     bool removeShield(std::string name);
     Shield* findShield(std::string name);
+    void updateShields(Spaceship& spaceship);
 
 private:
     Shield* shield_;

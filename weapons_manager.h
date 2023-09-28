@@ -24,6 +24,7 @@ public:
     bool removeWeapon(std::string name);
     Weapon* findWeapon(std::string name);
     std::vector<Weapon*> getAllWeapons() const;
+    void updateWeapons(Spaceship& spaceship);
 
 private:
     std::vector<Weapon*> weapons_;

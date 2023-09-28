@@ -1,4 +1,5 @@
 #include "vector2d.h"
+
 #include <cmath>
 
 Vector2D::Vector2D(double x, double y) : x_{x}, y_{y} {}
@@ -7,13 +8,9 @@ double Vector2D::getX() const { return x_; }
 
 double Vector2D::getY() const { return y_; }
 
-double Vector2D::getMagnitude() const {
-    return std::sqrt(x_ * x_ + y_ * y_);
-}
+double Vector2D::getMagnitude() const { return std::sqrt(x_ * x_ + y_ * y_); }
 
-double Vector2D::getMagnitudeSquared() const {
-    return x_ * x_ + y_ * y_;
-}
+double Vector2D::getMagnitudeSquared() const { return x_ * x_ + y_ * y_; }
 
 Vector2D Vector2D::getNormalized() const {
     double magnitude = getMagnitude();

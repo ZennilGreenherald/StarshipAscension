@@ -1,13 +1,10 @@
 #include "player.h"
+#define PLAYER_H
 
-Player::Player() {
-    score = 0;
-}
+class Player {
+public:
+    Player();
+    int score;
+};
 
-int Player::getScore() const {
-    return score;
-}
-
-void Player::setScore(int score) {
-    this->score = score;
-}
+#endif

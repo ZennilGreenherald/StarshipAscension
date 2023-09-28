@@ -2,6 +2,7 @@
 #define PLAYING_FIELD_H
 
 #include <vector>
+#include <cstdlib>
 
 const int PLAYING_FIELD_HEIGHT = 20;
 const int PLAYING_FIELD_WIDTH = 40;

@@ -13,12 +13,24 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 # Add the main executable
 add_executable(starship
     main.cpp
+	game.cpp
     movement.cpp
     shields_manager.cpp
     station.cpp
     docking_module.cpp
     weapons_manager.cpp
     ship.cpp
+	menu.cpp
+	movement.cpp
+	player.cpp
+	playing_field.cpp
+	vector2d.cpp
+	vector2d.h
+	playing_field.h
+	player.h
+	movement.h
+	menu.h
+	main.h
 	game.h
     movement.h
     shields_manager.h

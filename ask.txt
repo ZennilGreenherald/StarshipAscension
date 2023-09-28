@@ -1,0 +1,305 @@
+I want to make a terminal/console/cli text based space game with C++ 11 or C++ 14 or C++ 17 standard. There will be many files that control functions of the game.  I want to use .cpp and .h files not .cpp and .hpp files. I want to build for linux x86_64 and Windows 7 first before I build for Macintosh.  It is likely that the program should run on debian 10 buster linux with kernel 4.19.0-25-amd64, bash 5.0.3 on a disk with ext4 and a tempfs.  I am using VSCode 1.81 for Debian linux. I want to build in my StarshipAscension/build directory. I have GNU 8.3.0 installed.  Here are the files structure I have
+
+StarshipAscension/
+├── CMakeLists.txt
+├── main.cpp
+├── main.h
+├── player.cpp
+├── player.h
+├── playing_field.cpp
+├── playing_field.h
+├── movement.cpp
+├── movement.h
+├── menu.cpp
+├── menu.h
+├── station.cpp
+├── station.h
+├── shields_manager.cpp
+├── shields_manager.h
+├── weapons_manager.cpp
+├── weapons_manager.h
+├── docking_module.cpp
+├── docking_module.h
+├── ship.cpp
+├── ship.h
+├── game.cpp
+├── game.h
+├── vector2d.cpp
+├── vector2d.h
+└── README.md
+
+My CMakeLists.txt is
+
+cmake_minimum_required(VERSION 3.13)
+project(StarshipAscension
+        VERSION 1.0.0
+        DESCRIPTION "A game about space exploration and combat"
+        HOMEPAGE_URL "https://github.com/gbowne1/StarshipAscension"
+        LANGUAGES CXX)
+
+set(CMAKE_C_STANDARD 17)
+set(CMAKE_CXX_STANDARD 14)
+
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+
+# Add the main executable
+add_executable(starship
+    main.cpp
+	game.cpp
+    movement.cpp
+    shields_manager.cpp
+    station.cpp
+    docking_module.cpp
+    weapons_manager.cpp
+    ship.cpp
+	menu.cpp
+	player.cpp
+	playing_field.cpp
+	playing_field.h
+	vector2d.cpp
+	vector2d.h
+	player.h
+	menu.h
+	main.h
+	game.h
+    movement.h
+    shields_manager.h
+    station.h
+    docking_module.h
+    weapons_manager.h
+    ship.h
+)
+
+# Enable testing
+enable_testing()
+
+# Include the project root directory
+target_include_directories(starship PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
+
+my main.cpp is
+#include <cstdlib>
+#include <iostream>
+
+#include "docking_module.h"
+#include "game.h"
+#include "movement.h"
+#include "player.h"
+#include "shields_manager.h"
+#include "ship.h"
+#include "station.h"
+#include "vector2d.h"
+#include "weapons_manager.h"
+
+using namespace std;
+
+// Constants for playing field objects
+const int NUM_STARBASES = 3;
+const int NUM_MOONS = 5;
+const int NUM_ENEMY_SHIPS = 10;
+
+// Declare global variables
+Player players[2];
+int currentPlayerIndex = 0;
+char playingField[PLAYING_FIELD_HEIGHT][PLAYING_FIELD_WIDTH];
+
+// Declare functions and classes
+void display_menu();
+void initialize_playing_field();
+void display_playing_field();
+bool game_over();
+void handle_user_input();
+void update_playing_field();
+void handle_collisions();
+void handle_scoring();
+void display_high_score();
+
+int main() {
+    display_menu();
+    initialize_playing_field();
+    display_playing_field();
+
+    // Create instances of the necessary classes
+    Movement movement;
+    ShieldsManager shieldsManager;
+    WeaponsManager weaponsManager;
+    Ship ship;
+    Station station("", 0, 0, 0);
+    DockingModule dockingModule;
+    Vector2D vector2D;
+
+    while (!game_over()) {
+        handle_user_input();
+        update_playing_field();
+        display_playing_field();
+        handle_collisions();
+    }
+
+    handle_scoring();
+    display_high_score();
+
+    return 0;
+}
+
+void display_menu() {
+    // Display the name of the game and ask for the number of players
+    cout << "Welcome to Space Game!" << endl;
+    cout << "How many players? (1 or 2)" << endl;
+
+    // Read the number of players from the keyboard
+    int numPlayers;
+    cin >> numPlayers;
+
+    // Initialize the players' scores to 0
+    for (int i = 0; i < numPlayers; i++) {
+        players[i].score = 0;
+    }
+
+    // Display the high score and prompt the user to start the game
+    cout << "High Score: " << players[0].score << endl;
+    cout << "Press any key to start the game..." << endl;
+    cin.ignore();
+    cin.get();
+}
+
+const char PLAYING_FIELD_STARBASE = 'B';
+const char PLAYING_FIELD_MOON = 'M';
+const char PLAYING_FIELD_ENEMY_SHIP = 'E';
+
+void initialize_playing_field() {
+    // Initialize the playing field with empty spaces
+    for (int i = 0; i < PLAYING_FIELD_HEIGHT; i++) {
+        for (int j = 0; j < PLAYING_FIELD_WIDTH; j++) {
+            if (i == 0 || i == PLAYING_FIELD_HEIGHT - 1 || j == 0 ||
+                j == PLAYING_FIELD_WIDTH - 1) {
+                playingField[i][j] = PLAYING_FIELD_BORDER;
+            } else {
+                playingField[i][j] = PLAYING_FIELD_EMPTY;
+            }
+        }
+    }
+
+    // Add a ship and a planet to the playing field
+    playingField[PLAYING_FIELD_HEIGHT / 2][PLAYING_FIELD_WIDTH / 2] =
+        PLAYING_FIELD_SHIP;
+    playingField[PLAYING_FIELD_HEIGHT / 4][PLAYING_FIELD_WIDTH / 4] =
+        PLAYING_FIELD_PLANET;
+
+    // Add starbases, moons, and enemy ships to the playing field
+    for (int i = 0; i < NUM_STARBASES; i++) {
+        int x, y;
+        do {
+            x = rand() % PLAYING_FIELD_WIDTH;
+            y = rand() % PLAYING_FIELD_HEIGHT;
+        } while (playingField[y][x] != PLAYING_FIELD_EMPTY);
+        playingField[y][x] = PLAYING_FIELD_STARBASE;
+    }
+
+    for (int i = 0; i < NUM_MOONS; i++) {
+        int x, y;
+        do {
+            x = rand() % PLAYING_FIELD_WIDTH;
+            y = rand() % PLAYING_FIELD_HEIGHT;
+        } while (playingField[y][x] != PLAYING_FIELD_EMPTY);
+        playingField[y][x] = PLAYING_FIELD_MOON;
+    }
+
+    for (int i = 0; i < NUM_ENEMY_SHIPS; i++) {
+        int x, y;
+        do {
+            x = rand() % PLAYING_FIELD_WIDTH;
+            y = rand() % PLAYING_FIELD_HEIGHT;
+        } while (playingField[y][x] != PLAYING_FIELD_EMPTY);
+        playingField[y][x] = PLAYING_FIELD_ENEMY_SHIP;
+    }
+}
+
+void display_playing_field() {
+    // Clear the console window
+    system("clear");
+
+    // Display the playing field
+    for (int i = 0; i < PLAYING_FIELD_HEIGHT; i++) {
+        for (int j = 0; j < PLAYING_FIELD_WIDTH; j++) {
+            cout << playingField[i][j];
+        }
+        cout << endl;
+    }
+}
+
+bool game_over() {
+    // Game over if the ship collides with the planet
+    return playingField[ship.getY()][ship.getX()] == PLAYING_FIELD_PLANET;
+}
+
+void handle_user_input() {
+    // Move the ship based on user input
+    char input;
+    bool validInput = false;
+    while (!validInput) {
+        cout << "Player " << currentPlayerIndex + 1
+             << ", enter your move (WASD): ";
+        cin >> input;
+        switch (input) {
+            case 'w':
+                movement.moveUp(ship, playingField);
+                validInput = true;
+                break;
+            case 'a':
+                movement.moveLeft(ship, playingField);
+                validInput = true;
+                break;
+            case 's':
+                movement.moveDown(ship, playingField);
+                validInput = true;
+                break;
+            case 'd':
+                movement.moveRight(ship, playingField);
+                validInput = true;
+                break;
+            default:
+                cout << "Invalid input. Please enter W, A, S, or D." << endl;
+                break;
+        }
+    }
+}
+
+void update_playing_field() {
+    // Update the playing field based on game logic
+    shieldsManager.updateShields(ship);
+    weaponsManager.updateWeapons(ship);
+}
+
+void handle_collisions() {
+    // Handle collisions between objects in the game
+    if (playingField[ship.getY()][ship.getX()] == PLAYING_FIELD_PLANET) {
+        players[currentPlayerIndex].score -= 10;
+    }
+}
+
+void handle_scoring() {
+    // Update the player's score based on the game's outcome
+    if (playingField[ship.getY()][ship.getX()] == PLAYING_FIELD_PLANET) {
+        players[currentPlayerIndex].score -= 10;
+    } else {
+        players[currentPlayerIndex].score += 5;
+    }
+
+    // Switch to the next player
+    currentPlayerIndex = (currentPlayerIndex + 1) % 2;
+}
+
+void display_high_score() {
+    // Check which player has the highest score
+    int highestScore = players.score;
+    int highestScoreIndex = 0;
+    for (int i = 1; i < 2; i++) {
+        if (players[i].score > highestScore) {
+            highestScore = players[i].score;
+            highestScoreIndex = i;
+        }
+    }
+
+    // Display the high score and the name of the winning player
+    cout << "High Score: " << highestScore << endl;
+    cout << "Player " << highestScoreIndex + 1 << " wins!" << endl;
+}

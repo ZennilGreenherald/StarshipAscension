@@ -2,21 +2,13 @@
 
 #include "station.h"
 
-std::string Spaceship::getName() const {
-    return name_;
-}
+std::string Spaceship::getName() const { return name_; }
 
-int Spaceship::getHealth() const {
-    return health_;
-}
+int Spaceship::getHealth() const { return health_; }
 
-int Spaceship::getFuel() const {
-    return fuel_;
-}
+int Spaceship::getFuel() const { return fuel_; }
 
-int Spaceship::getAmmo() const {
-    return ammo_;
-}
+int Spaceship::getAmmo() const { return ammo_; }
 
 void Spaceship::repair(int amount) {
     health_ = std::min(health_ + amount, maxHealth_);
@@ -39,7 +31,8 @@ void Spaceship::dock(Station* station) {
 double Spaceship::calculateDistance() const {
     // Calculate the distance between the spaceship and the docking port
     // ...
-    // Example: return std::sqrt(std::pow(spaceshipX - dockingPortX, 2) + std::pow(spaceshipY - dockingPortY, 2));
+    // Example: return std::sqrt(std::pow(spaceshipX - dockingPortX, 2) +
+    // std::pow(spaceshipY - dockingPortY, 2));
     return 0.0;
 }
 

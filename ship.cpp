@@ -1,10 +1,13 @@
 #include "ship.h"
 
+StarshipAscension::StarshipAscension()
+    : name_{""}, captain_{""}, firstOfficer_{""} {}
+
 StarshipAscension::StarshipAscension(std::string name, std::string captain,
                                      std::string firstOfficer)
-    : name_{name}, captain_{captain}, firstOfficer_{firstOfficer} {
-    // Constructor implementation
-}
+    : name_{name}, captain_{captain}, firstOfficer_{firstOfficer} {}
+
+// Other member function definitions here
 
 // Implement member functions for weapons, shields, crew, communications, engine
 // status, away missions, transporters, shuttlecraft, fuel status, health, ammo,

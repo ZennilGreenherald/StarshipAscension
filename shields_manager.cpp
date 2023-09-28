@@ -4,26 +4,26 @@
 #include <string>
 
 class Shield {
-public:
+  public:
     Shield(std::string name, int defense, int level);
 
     std::string getName() const;
     int getDefense() const;
     int getLevel() const;
 
-private:
+  private:
     std::string name_;
     int defense_;
     int level_;
 };
 
 class ShieldsManager {
-public:
+  public:
     void addShield(std::string name, int defense, int level);
     bool removeShield(std::string name);
     Shield* findShield(std::string name);
 
-private:
+  private:
     Shield* shield_;
 };
 
