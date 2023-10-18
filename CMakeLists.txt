@@ -75,4 +75,5 @@ add_executable(starship
 enable_testing()
 
 # Include the project root directory
-target_include_directories(starship PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
+target_include_directories(starship PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/src/)
+target_include_directories(starship PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/src/include)
