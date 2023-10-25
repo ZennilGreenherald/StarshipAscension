@@ -1,6 +1,6 @@
-#include "docking_module.h"
+#include "./include/docking_module.h"
 
-#include "station.h"
+#include "./include/station.h"
 
 std::string Spaceship::getName() const { return name_; }
 

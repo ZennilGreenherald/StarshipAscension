@@ -1,30 +1,35 @@
-#ifndef SHIELDS_MANAGER_H
-#define SHIELDS_MANAGER_H
+#include "./include/shields_manager.h"
+#include "./include/ship.h"
 
-#include <string>
+void ShieldsManager::addShield(std::string name, int defense, int level) {
+    shield_ = new Shield(name, defense, level);
+}
 
-class Shield {
-  public:
-    Shield(std::string name, int defense, int level);
+bool ShieldsManager::removeShield(std::string name) {
+    if (shield_ != nullptr && shield_->getName() == name) {
+        delete shield_;
+        shield_ = nullptr;
+        return true;
+    }
+    return false;
+}
 
-    std::string getName() const;
-    int getDefense() const;
-    int getLevel() const;
+Shield* ShieldsManager::findShield(std::string name) {
+    if (shield_ != nullptr && shield_->getName() == name) {
+        return shield_;
+    }
+    return nullptr;
+}
 
-  private:
-    std::string name_;
-    int defense_;
-    int level_;
-};
-
-class ShieldsManager {
-  public:
-    void addShield(std::string name, int defense, int level);
-    bool removeShield(std::string name);
-    Shield* findShield(std::string name);
-
-  private:
-    Shield* shield_;
-};
-
-#endif
+void ShieldsManager::updateShields(StarshipAscension& spaceship) {
+    if (shield_ != nullptr) {
+        int damage = spaceship.getDamage();
+        int defense = shield_->getDefense();
+        int level = shield_->getLevel();
+        int remainingDefense = defense - damage;
+        if (remainingDefense < 0) {
+            remainingDefense = 0;
+        }
+        shield_ = new Shield(shield_->getName(), remainingDefense, level);
+    }
+}

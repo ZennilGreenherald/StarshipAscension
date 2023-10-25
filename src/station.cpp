@@ -1,6 +1,6 @@
-#include "station.h"
-
-#include "docking_module.h"
+#include "./include/station.h"
+#include "./include/ship.h"
+#include "./include/docking_module.h"
 
 Station::Station(std::string name, int maxHealth, int maxFuel, int maxAmmo)
     : name_{name},
@@ -19,8 +19,8 @@ int Station::getFuel() const { return fuel_; }
 
 int Station::getAmmo() const { return ammo_; }
 
-void Station::repair(Spaceship* spaceship, int amount) {
-    spaceship->repair(amount);
+void Station::repair(StarshipAscension* spaceship, int amount) {
+    StarshipAscension->repair(amount);
 }
 
 void Station::repair(int amount) {
@@ -41,7 +41,7 @@ void Station::refuel(int amount) {
     }
 }
 
-void Station::restock(Spaceship* spaceship, int amount) {
+void Station::restock(StarshipAscension* spaceship, int amount) {
     spaceship->restock(amount);
 }
 

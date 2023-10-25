@@ -1,15 +1,15 @@
 #include <cstdlib>
 #include <iostream>
 
-#include "docking_module.h"
-#include "game.h"
-#include "movement.h"
-#include "player.h"
-#include "shields_manager.h"
-#include "ship.h"
-#include "station.h"
-#include "vector2d.h"
-#include "weapons_manager.h"
+#include "./include/docking_module.h"
+#include "./include/game.h"
+#include "./include/movement.h"
+#include "./include/player.h"
+#include "./include/shields_manager.h"
+#include "./include/ship.h"
+#include "./include/station.h"
+#include "./include/vector2d.h"
+#include "./include/weapons_manager.h"
 
 using namespace std;
 
@@ -145,8 +145,7 @@ void display_playing_field() {
 
 bool game_over() {
     // Game over if the ship collides with the planet
-    return playingField[ship.getY()][ship.getX()] ==
-           PLAYING_FIELD_PLANET;
+    return playingField[ship.getY()][ship.getX()] == PLAYING_FIELD_PLANET;
 }
 
 void handle_user_input() {
