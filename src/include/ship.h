@@ -6,10 +6,13 @@
 class StarshipAscension {
 public:
     StarshipAscension(std::string name, std::string captain, std::string firstOfficer);
-    // Add member functions for weapons, shields, crew, communications, engine status, away missions, transporters, shuttlecraft, fuel status, health, ammo, docking functions, life support status, damage control, astrometrics, science, alert status, hailing frequencies, radio and viewscreen controls, sickbay status, etc.
+
+    int getX() const;
+    void setX(int x);
+    int getY() const;
+    void setY(int y);
 
 private:
-    std::string name;
     std::string captain;
     std::string firstOfficer;
 	std::string name;
@@ -17,6 +20,8 @@ private:
     int ammo;
     int fuelStatus;
     int alertStatus;
+	int m_x;
+    int m_y;
 	void updateShields();
     void updateEngineStatus();
     void updateLifeSupportStatus();
@@ -27,7 +32,7 @@ private:
     void updateRadio();
     void updateViewscreens();
     void updateSickbayStatus();
-    // Add member variables for weapons, shields, crew, communications, engine status, away missions, transporters, shuttlecraft, fuel status, health, ammo, docking functions, life support status, damage control, astrometrics, science, alert status, hailing frequencies, radio and viewscreen controls, sickbay status, etc.
+    // Add member variables here
 };
 
 #endif // SHIP_H

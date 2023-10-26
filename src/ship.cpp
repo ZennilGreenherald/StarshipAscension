@@ -2,9 +2,30 @@
 
 #include "./include/player.h"
 #include "./include/weapons_manager.h"
-#include "iostream"
+#include <iostream>
+#include <string>
 
-StarshipAscension::StarshipAscension(std::string name) : name(name), health(100), ammo(100), fuelStatus(100), alertStatus(0) {}
+StarshipAscension::StarshipAscension(std::string name, std::string captain, std::string firstOfficer) : captain(captain), firstOfficer(firstOfficer), health(100), ammo(100), fuelStatus(100), alertStatus(0), name(name) {}
+
+void StarshipAscension::setX(int x)
+{
+    m_x = x;
+}
+
+int StarshipAscension::getX() const
+{
+    return m_x;
+}
+
+int StarshipAscension::getY() const
+{
+    return m_y;
+}
+
+void StarshipAscension::setY(int y)
+{
+    m_y = y;
+}
 
 void enterShipInfo(std::string& name, std::string& captain,
                    std::string& firstOfficer) {
@@ -23,44 +44,15 @@ void printShipInfo(std::string name, std::string captain,
     std::cout << "First Officer: " << firstOfficer << std::endl;
 }
 
-std::string StarshipAscension::getName() const {
-    return name_;
-}
-
-int StarshipAscension::getHealth() const {
-    return health_;
-}
-
-int StarshipAscension::getAmmo() const {
-    return ammo_;
-}
-
-int StarshipAscension::getFuelStatus() const {
-    return fuelStatus_;
-}
-
-int StarshipAscension::getAlertStatus() const {
-    return alertStatus_;
-}
-
-void StarshipAscension::setHealth(int health) {
-    health_ = health;
-}
-
-void StarshipAscension::setAmmo(int ammo) {
-    ammo_ = ammo;
-}
-
-void StarshipAscension::setFuelStatus(int fuelStatus) {
-    fuelStatus_ = fuelStatus;
-}
-
-void StarshipAscension::setAlertStatus(int alertStatus) {
-    alertStatus_ = alertStatus;
-}
-
 void StarshipAscension::updateShields() {
-    // TODO: Implement shield update logic
+    // Access the captain member variable
+    std::cout << "Captain " << captain << ", raising shields!" << std::endl;
+    // Access the firstOfficer member variable
+    std::cout << "First Officer " << firstOfficer << ", report status!" << std::endl;
+    // Access the name member variable
+    std::cout << "Ship name: " << name << std::endl;
+    // Update the shields
+    // ...
 }
 
 void StarshipAscension::updateEngineStatus() {

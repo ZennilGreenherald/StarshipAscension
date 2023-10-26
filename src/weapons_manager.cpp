@@ -1,4 +1,5 @@
 #include "./include/weapons_manager.h"
+#include <string>
 
 Weapon::Weapon(std::string name, int damage, int level)
     : name_{name}, damage_{damage}, level_{level} {}

@@ -7,8 +7,9 @@
 class Player {
 public:
     // Constructor
+	Player() {}
     Player(std::string name);
-
+int score() const;
     // Getters
     std::string getName() const;
     int getHealth() const;

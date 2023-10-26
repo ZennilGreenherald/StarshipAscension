@@ -144,8 +144,12 @@ void display_playing_field() {
 }
 
 bool game_over() {
-    // Game over if the ship collides with the planet
-    return playingField[ship.getY()][ship.getX()] == PLAYING_FIELD_PLANET;
+    // Check if the ship has collided with a planet
+    if (playingField[ship.getY()][ship.getX()] == PLAYING_FIELD_PLANET) {
+        return true;
+    }
+
+    return false;
 }
 
 void handle_user_input() {
@@ -159,11 +163,11 @@ void handle_user_input() {
         cin >> input;
         switch (input) {
             case 'w':
-                movement.moveUp(ship, playingField);
+                movement.moveUp(Spaceship, playingField);
                 validInput = true;
                 break;
             case 'a':
-                movement.moveLeft(spaceship, playingField);
+                movement.moveLeft(Spaceship, playingField);
                 validInput = true;
                 break;
             case 's':
@@ -191,9 +195,39 @@ void update_playing_field() {
 }
 
 void handle_collisions() {
-    // Handle collisions between objects in the game
+    // Check for collisions between ships and planets
     if (playingField[ship.getY()][ship.getX()] == PLAYING_FIELD_PLANET) {
-        players[currentPlayerIndex].score -= 10;
+        // Reduce the ship's health and play a sound effect
+        ship.reduceHealth(10);
+        playSoundEffect("explosion.wav");
+    }
+
+    // Check for collisions between ships and enemy ships
+    for (int i = 0; i < NUM_ENEMY_SHIPS; i++) {
+        if (ship.collidesWith(enemyShips[i])) {
+            // Reduce the health of both ships and play a sound effect
+            ship.reduceHealth(5);
+            enemyShips[i].reduceHealth(5);
+            playSoundEffect("explosion.wav");
+        }
+    }
+
+    // Check for collisions between ships and stars
+    for (int i = 0; i < NUM_STARS; i++) {
+        if (ship.collidesWith(stars[i])) {
+            // Change the ship's velocity and play a sound effect
+            ship.setVelocity(stars[i].getVelocity());
+            playSoundEffect("whoosh.wav");
+        }
+    }
+
+    // Check for collisions between ships and starbases
+    for (int i = 0; i < NUM_STARBASES; i++) {
+        if (ship.collidesWith(starbases[i])) {
+            // Dock the ship with the starbase and play a sound effect
+            dockingModule.dock(ship, starbases[i]);
+            playSoundEffect("dock.wav");
+        }
     }
 }
 

@@ -2,7 +2,6 @@
 #define MOVEMENT_H
 
 #include "ship.h"
-#include "vector2.h"
 
 class Movement {
 public:
@@ -42,3 +41,6 @@ void StarshipAscension::setY(int y)
 {
     m_y = y;
 }
+
+
+#endif // MOVEMENT_H

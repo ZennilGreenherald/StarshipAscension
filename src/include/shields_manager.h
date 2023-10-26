@@ -2,6 +2,7 @@
 #define SHIELDS_MANAGER_H
 
 #include <string>
+#include "ship.h"
 
 class Shield {
 public:

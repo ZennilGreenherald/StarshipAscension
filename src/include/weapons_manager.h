@@ -3,6 +3,7 @@
 
 #include <string>
 #include <vector>
+#include "ship.h"
 
 class Weapon {
 public:
@@ -24,7 +25,7 @@ public:
     bool removeWeapon(std::string name);
     Weapon* findWeapon(std::string name);
     std::vector<Weapon*> getAllWeapons() const;
-    void updateWeapons(Spaceship& spaceship);
+    void updateWeapons(StarshipAscension& spaceship);
 
 private:
     std::vector<Weapon*> weapons_;
