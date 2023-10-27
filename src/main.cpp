@@ -143,7 +143,7 @@ void display_playing_field() {
     }
 }
 
-bool game_over() {
+bool game_over(const Spaceship &&ship){
     // Check if the ship has collided with a planet
     if (playingField[ship.getY()][ship.getX()] == PLAYING_FIELD_PLANET) {
         return true;
