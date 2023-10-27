@@ -2,10 +2,14 @@
 #define SHIELDS_MANAGER_H
 
 #include <string>
-#include "ship.h"
 
-class Shield {
+#include "StarshipAscension.h"
+
+class Shield
+{
 public:
+    Shield() = default;
+
     Shield(std::string name, int defense, int level);
 
     std::string getName() const;
@@ -20,6 +24,8 @@ private:
 
 class ShieldsManager {
 public:
+    ShieldsManager();
+
     void addShield(std::string name, int defense, int level);
     bool removeShield(std::string name);
     Shield* findShield(std::string name);

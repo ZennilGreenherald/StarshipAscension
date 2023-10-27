@@ -1,5 +1,6 @@
 #include "./include/game.h"
 #include "./include/player.h"
+#include "include/Spaceship.h"
 #include <iostream>
 #include <cstdlib>
 #include <ctime>
@@ -47,8 +48,9 @@ void Game::displayMenu() {
     cin.get();
 }
 
-void Game::initializePlayingField() {
-    srand(time(NULL));
+void Game::initializePlayingField()
+{
+    srand((unsigned int)time(nullptr));
 
     playingField.initialize();
 
@@ -88,8 +90,8 @@ void Game::displayPlayingField() {
     playingField.display();
 }
 
-bool Game::gameOver() {
-    return playingField.getObject(PLAYING_FIELD_SHIP) == PLAYING_FIELD_PLANET;
+bool Game::gameOver(const Spaceship* ship) {
+    return playingField.getObject(ship->x, ship->y) == PLAYING_FIELD_PLANET;
 }
 
 void Game::handleUserInput() {

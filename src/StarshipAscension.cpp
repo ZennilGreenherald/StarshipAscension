@@ -1,11 +1,18 @@
-#include "./include/ship.h"
+#include "./include/StarshipAscension.h"
 
-#include "./include/player.h"
-#include "./include/weapons_manager.h"
 #include <iostream>
 #include <string>
 
-StarshipAscension::StarshipAscension(std::string name, std::string captain, std::string firstOfficer) : captain(captain), firstOfficer(firstOfficer), health(100), ammo(100), fuelStatus(100), alertStatus(0), name(name) {}
+#include "./include/player.h"
+#include "./include/weapons_manager.h"
+#include "station.h"
+
+StarshipAscension::StarshipAscension(std::string name, std::string captain, std::string firstOfficer)
+    : name(std::move(name)), captain(std::move(captain)),
+      firstOfficer(std::move(firstOfficer)), maxHealth(100), health(100),
+      ammo(100), fuel(100), alertStatus(0)
+{
+}
 
 void StarshipAscension::setX(int x)
 {
@@ -25,6 +32,65 @@ int StarshipAscension::getY() const
 void StarshipAscension::setY(int y)
 {
     m_y = y;
+}
+
+int StarshipAscension::getMaxHealth() const
+{
+    return maxHealth;
+}
+
+int StarshipAscension::getHealth() const
+{
+    return health;
+}
+
+int StarshipAscension::getDamage() const
+{
+    return maxHealth - health;
+}
+
+std::string StarshipAscension::getName() const
+{
+    return name;
+}
+
+int StarshipAscension::getFuel() const
+{
+    return fuel;
+}
+
+int StarshipAscension::getAmmo() const { return ammo; }
+
+void StarshipAscension::repair(int amount) {
+    health = std::min(health + amount, maxHealth);
+}
+
+void StarshipAscension::refuel(int amount) {
+    fuel = std::min(fuel + amount, maxFuel);
+}
+
+void StarshipAscension::restock(int amount) {
+    ammo = std::min(ammo + amount, maxAmmo);
+}
+
+void StarshipAscension::dock(Station* station) {
+    // Implement the docking logic between the StarshipAscension and the station
+    // ...
+    // Example: station.dockStarshipAscension(*this);
+}
+
+double StarshipAscension::calculateDistance() const {
+    // Calculate the distance between the StarshipAscension and the docking port
+    // ...
+    // Example: return std::sqrt(std::pow(StarshipAscensionX - dockingPortX, 2) +
+    // std::pow(StarshipAscensionY - dockingPortY, 2));
+    return 0.0;
+}
+
+void StarshipAscension::activateDockingClamps() {
+    // Activate the docking clamps of the StarshipAscension
+    // ...
+    // Example: std::cout << "Docking clamps activated!" << std::endl;
 }
 
 void enterShipInfo(std::string& name, std::string& captain,

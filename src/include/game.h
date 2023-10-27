@@ -3,6 +3,7 @@
 
 #include "player.h"
 #include "playing_field.h"
+#include "Spaceship.h"
 
 class Game {
 public:
@@ -15,7 +16,7 @@ private:
     void displayMenu();
     void initializePlayingField();
     void displayPlayingField();
-    bool gameOver();
+    bool gameOver(const Spaceship* ship);
     void handleUserInput();
     void updatePlayingField();
     void handleCollisions();
