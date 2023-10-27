@@ -1,40 +1,15 @@
 #ifndef DOCKING_MODULE_H
 #define DOCKING_MODULE_H
 
+#include <cmath>
 #include <iostream>
 #include <string>
-#include <cmath>
-#include "ship.h"
+
+#include "StarshipAscension.h"
+#include "Spaceship.h"
 #include "station.h"
 
 class Station;
-
-class Spaceship {
-public:
-    Spaceship();
-    Spaceship(std::string name, int maxHealth, int maxFuel, int maxAmmo)
-        : name_{ name }, health_{ maxHealth }, fuel_{ maxFuel }, ammo_{ maxAmmo },
-        maxHealth_{ maxHealth }, maxFuel_{ maxFuel }, maxAmmo_{ maxAmmo }
-    {
-    }
-
-    // Add the missing field declarations
-    std::string name_;
-    int health_;
-    int fuel_;
-    int ammo_;
-    int maxHealth_;
-    int maxFuel_;
-    int maxAmmo_;
-    int x_;
-    int y_;
-
-    int getX() const { return x_; }
-    int getY() const { return y_; }
-    void setX(int x) { x_ = x; }
-    void setY(int y) { y_ = y_; }
-
-};
 
 class DockingModule {
 public:

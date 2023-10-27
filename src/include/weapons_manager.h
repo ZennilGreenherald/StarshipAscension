@@ -3,7 +3,8 @@
 
 #include <string>
 #include <vector>
-#include "ship.h"
+
+#include "StarshipAscension.h"
 
 class Weapon {
 public:

@@ -2,54 +2,102 @@
 
 #include <iostream>
 
-PlayingField::PlayingField() {
-    field.resize(PLAYING_FIELD_HEIGHT,
-                 std::vector<char>(PLAYING_FIELD_WIDTH, PLAYING_FIELD_EMPTY));
+PlayingField::PlayingField()
+{
 }
 
-void PlayingField::initialize() {
-    for (int i = 0; i < PLAYING_FIELD_HEIGHT; i++) {
-        for (int j = 0; j < PLAYING_FIELD_WIDTH; j++) {
-            if (i == 0 || i == PLAYING_FIELD_HEIGHT - 1 || j == 0 ||
-                j == PLAYING_FIELD_WIDTH - 1) {
-                field[i][j] = PLAYING_FIELD_BORDER;
-            } else {
-                field[i][j] = PLAYING_FIELD_EMPTY;
-            }
-        }
-    }
+bool PlayingField::hasObject(const std::string& name)
+{
+	for (size_t i = 0; i < objects.size(); ++i)
+		if (*objects[i] == name)
+			return true;
+
+	return false;
 }
 
-void PlayingField::addObject(char object, int row, int col) {
-    field[row][col] = object;
+bool PlayingField::addObject(GameObj* obj)
+{
+	if (hasObject(obj->getName()) || getObject(obj->getPos()))
+		return false;
+
+	objects.push_back(obj);
+
+	return true;
 }
 
-void PlayingField::removeObject(int row, int col) {
-    field[row][col] = PLAYING_FIELD_EMPTY;
+bool PlayingField::removeObject(const std::string& name)
+{
+	for (size_t i = 0; i < objects.size(); ++i)
+	{
+		if (*objects[i] != name)
+			continue;
+
+		std::swap(objects[i], objects[objects.size() - 1]);
+		objects.pop_back();
+
+		return true;
+	}
+
+	return false;
 }
 
-char PlayingField::getObject(int row, int col) const { return field[row][col]; }
 
-void PlayingField::moveObject(char object, int rowOffset, int colOffset) {
-    int row, col;
-    for (int i = 0; i < PLAYING_FIELD_HEIGHT; i++) {
-        for (int j = 0; j < PLAYING_FIELD_WIDTH; j++) {
-            if (field[i][j] == object) {
-                row = i;
-                col = j;
-                break;
-            }
-        }
-    }
-    field[row][col] = PLAYING_FIELD_EMPTY;
-    field[row + rowOffset][col + colOffset] = object;
+bool PlayingField::removeObject(const Vector2D& pos)
+{
+	for (size_t i = 0; i < objects.size(); ++i)
+	{
+		if (*objects[i] != pos)
+			continue;
+
+		std::swap(objects[i], objects[objects.size() - 1]);
+		objects.pop_back();
+
+		return true;
+	}
+
+	return false;
 }
 
-void PlayingField::display() const {
-    for (int i = 0; i < PLAYING_FIELD_HEIGHT; i++) {
-        for (int j = 0; j < PLAYING_FIELD_WIDTH; j++) {
-            std::cout << field[i][j];
-        }
-        std::cout << std::endl;
-    }
+GameObj* PlayingField::getObject(const std::string& name) const
+{
+	for (size_t i = 0; i < objects.size(); ++i)
+		if (*objects[i] == name)
+			return objects[i];
+
+	return nullptr;
+}
+
+GameObj* PlayingField::getObject(const Vector2D& pos) const
+{
+	for (size_t i = 0; i < objects.size(); ++i)
+		if (*objects[i] == pos)
+			return objects[i];
+
+	return nullptr;
+}
+
+void PlayingField::display() const
+{
+	std::string field;
+
+	for (int i = 0; i < PLAYING_FIELD_HEIGHT; i++)
+	{
+		for (int j = 0; j < PLAYING_FIELD_WIDTH; j++)
+		{
+			if (i == 0 || i == PLAYING_FIELD_HEIGHT - 1 || j == 0 || j == PLAYING_FIELD_WIDTH - 1)
+			{
+				field += PLAYING_FIELD_BORDER + "\n";
+			}
+			else
+			{
+				GameObj* obj = getObject(Vector2D(j, i));
+				if (!obj)
+					field += PLAYING_FIELD_EMPTY;
+				else
+					field += obj->getDisplay();
+			}
+		}
+	}
+
+    std::cout << field;
 }

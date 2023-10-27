@@ -1,5 +1,11 @@
 #include "./include/shields_manager.h"
-#include "./include/ship.h"
+
+#include "./include/StarshipAscension.h"
+
+ShieldsManager::ShieldsManager()
+    : shield_(nullptr)
+{
+}
 
 void ShieldsManager::addShield(std::string name, int defense, int level) {
     shield_ = new Shield(name, defense, level);

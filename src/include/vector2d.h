@@ -1,27 +1,47 @@
 #ifndef VECTOR2D_H
 #define VECTOR2D_H
 
-class Vector2D {
+#include <cstdint>
+
+class Vector2D
+{
 public:
-    Vector2D(double x, double y);
+	uint32_t x_;
+	uint32_t y_;
+
+    Vector2D(uint32_t x, uint32_t y);
+
+	Vector2D(uint32_t scalar);
+
     Vector2D();
-    double getX() const;
-    double getY() const;
-    double getMagnitude() const;
-    double getMagnitudeSquared() const;
+
+	uint32_t getMagnitude() const;
+
+	uint32_t getMagnitudeSquared() const;
+
     Vector2D getNormalized() const;
+
     void normalize();
+
     Vector2D operator+(const Vector2D& other) const;
+
     Vector2D operator-(const Vector2D& other) const;
-    Vector2D operator*(double scalar) const;
-    Vector2D operator/(double scalar) const;
+
+    Vector2D operator*(uint32_t scalar) const;
+
+    Vector2D operator/(uint32_t scalar) const;
+
     Vector2D& operator+=(const Vector2D& other);
+
     Vector2D& operator-=(const Vector2D& other);
-    Vector2D& operator*=(double scalar);
-    Vector2D& operator/=(double scalar);
-private:
-    double x_;
-    double y_;
+
+    Vector2D& operator*=(uint32_t scalar);
+
+    Vector2D& operator/=(uint32_t scalar);
+
+	bool operator==(const Vector2D& other) const;
+
+	bool operator!=(const Vector2D& other) const;
 };
 
 #endif

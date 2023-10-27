@@ -1,12 +1,12 @@
 #include <cstdlib>
 #include <iostream>
 
+#include "./include/StarshipAscension.h"
 #include "./include/docking_module.h"
 #include "./include/game.h"
 #include "./include/movement.h"
 #include "./include/player.h"
 #include "./include/shields_manager.h"
-#include "./include/ship.h"
 #include "./include/station.h"
 #include "./include/vector2d.h"
 #include "./include/weapons_manager.h"

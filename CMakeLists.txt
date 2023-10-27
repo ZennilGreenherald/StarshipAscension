@@ -9,23 +9,27 @@ project(StarshipAscension
 
 set(CMAKE_C_STANDARD 17)
 set(CMAKE_CXX_STANDARD 14)
-set(CMAKE_C_COMPILER gcc)
-set(CMAKE_LINKER ld)
-set(CMAKE_EXE_LINKER_FLAGS "-g -s")
-set(CMAKE_LINK_FLAGS "${CMAKE_LINK_FLAGS} -e")
-set(CMAKE_CXX_FLAGS "-g -Wall")
-set(CMAKE_C_FLAGS "-g -Wall -m32")
-set(CMAKE_C_FLAGS_DEBUG "-g")
-set(CMAKE_BUILD_TYPE Debug)
-set(CMAKE_GDB_COMMAND gdb)
-set(CMAKE_CXX_FLAGS_DEBUG "-g -O0")
-set(CMAKE_CXX_COMPILER g++)
-set(CMAKE_ASM_COMPILER nasm)
-set(CMAKE_ASM_FLAGS "${CMAKE_ASM_FLAGS} --32")
-set(CMAKE_ASM_NASM_OBJECT_FORMAT bin)
-set(CMAKE_SYSTEM_PROCESSOR i386)
-set(CMAKE_SYSTEM_NAME None)
-set(CMAKE_ASM_NASM_COMPILER nasm)
+
+if (${CMAKE_HOST_SYSTEM_NAME} STREQUAL "Linux")
+	set(CMAKE_C_COMPILER gcc)
+	set(CMAKE_LINKER ld)
+	set(CMAKE_EXE_LINKER_FLAGS "-g -s")
+	set(CMAKE_LINK_FLAGS "${CMAKE_LINK_FLAGS} -e")
+	set(CMAKE_CXX_FLAGS "-g -Wall")
+	set(CMAKE_C_FLAGS "-g -Wall -m32")
+	set(CMAKE_C_FLAGS_DEBUG "-g")
+	set(CMAKE_BUILD_TYPE Debug)
+	set(CMAKE_GDB_COMMAND gdb)
+	set(CMAKE_CXX_FLAGS_DEBUG "-g -O0")
+	set(CMAKE_CXX_COMPILER g++)
+	set(CMAKE_ASM_COMPILER nasm)
+	set(CMAKE_ASM_FLAGS "${CMAKE_ASM_FLAGS} --32")
+	set(CMAKE_ASM_NASM_OBJECT_FORMAT bin)
+	set(CMAKE_SYSTEM_PROCESSOR i386)
+	set(CMAKE_SYSTEM_NAME None)
+	set(CMAKE_ASM_NASM_COMPILER nasm)
+endif ()
+
 set(CMAKE_SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/src)
 set(CMAKE_BINARY_DIR ${CMAKE_CURRENT_SOURCE_DIR}/build)
 # set_target_properties(starship PROPERTIES LINK_FLAGS "-T ${CMAKE_CURRENT_SOURCE_DIR}/linker.ld")
@@ -52,7 +56,7 @@ add_executable(starship
 	src/shields_manager.cpp
 	src/vector2d.cpp
 	src/movement.cpp
-	src/ship.cpp
+		src/StarshipAscension.cpp
 	src/station.cpp
 	src/weapons_manager.cpp
 	src/include/docking_module.h
@@ -62,12 +66,20 @@ add_executable(starship
 	src/include/movement.h
 	src/include/player.h
 	src/include/playing_field.h
-	src/include/ship.h
+		src/include/StarshipAscension.h
 	src/include/station.h
 	src/include/shields_manager.h
 	src/include/station.h
 	src/include/vector2d.h
 	src/include/weapons_manager.h
+		src/Spaceship.cpp
+		src/include/Spaceship.h
+		src/planet.cpp
+        src/include/planet.h
+		src/include/GameObj.cpp
+		src/include/GameObj.h
+		src/Serializer.cpp
+		src/include/Serializer.h
 )
 
 # Enable testing
