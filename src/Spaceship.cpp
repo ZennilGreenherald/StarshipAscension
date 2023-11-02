@@ -1,4 +1,4 @@
-#include "Spaceship.h"
+#include "./include/Spaceship.h"
 
 Spaceship::Spaceship()
 	: maxHealth(0), health(0), maxFuel(0), fuel(0), maxAmmo(0), ammo(0)

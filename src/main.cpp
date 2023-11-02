@@ -76,7 +76,7 @@ void display_menu() {
     }
 
     // Display the high score and prompt the user to start the game
-    cout << "High Score: " << players[0].score() << endl;
+    cout << "High Score: " << players.getScore() << endl;
     cout << "Press any key to start the game..." << endl;
     cin.ignore();
     cin.get();
@@ -143,7 +143,7 @@ void display_playing_field() {
     }
 }
 
-bool game_over(const Spaceship &&ship){
+bool game_over(const Spaceship &&ship) {
     // Check if the ship has collided with a planet
     if (playingField[ship.getY()][ship.getX()] == PLAYING_FIELD_PLANET) {
         return true;
@@ -258,6 +258,6 @@ void display_high_score() {
     }
 
     // Display the high score and the name of the winning player
-    cout << "High Score: " << players[0].score() << endl;
+    cout << "High Score: " << players.getScore() << endl;
     cout << "Player " << highestScoreIndex + 1 << " wins!" << endl;
 }

@@ -26,6 +26,23 @@ private:
 public:
     PlayingField();
 
+	void PlayingField::initialize()
+	{
+    	objects.clear();
+	}
+
+	void PlayingField::moveObject(GameObj* obj, int dx, int dy) {
+    Vector2D newPos = obj->getPos() + Vector2D(dx, dy);
+    if (newPos.getX() < 0 || newPos.getX() >= PLAYING_FIELD_WIDTH ||
+        newPos.getY() < 0 || newPos.getY() >= PLAYING_FIELD_HEIGHT) {
+        return;
+    }
+    GameObj* otherObj = getObject(newPos);
+    if (otherObj && otherObj != obj) {
+        return;
+    }
+    obj->setPos(newPos);
+	}
 	bool hasObject(const std::string& name);
 
     bool addObject(GameObj* obj);

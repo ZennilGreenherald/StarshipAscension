@@ -56,6 +56,15 @@ public:
 	std::string getDisplay() const override;
 
 	Spaceship* Clone() const override;
+
+	int getX() const;
+
+	void setX(int x);
+
+	int getY() const;
+
+	void setY(int y);
+
 };
 
 #endif  // SPACESHIP_H

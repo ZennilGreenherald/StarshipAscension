@@ -27,6 +27,8 @@ public:
 
     GameObj& operator=(const GameObj& obj);
 
+	bool operator==(const GameObj& other) const;
+
 	bool operator==(const GameObj& other);
 
 	bool operator!=(const GameObj& other);
