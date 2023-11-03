@@ -26,21 +26,19 @@ private:
 DockingModule::DockingModule() : docked_{ false }, station_{ nullptr } {}
 
 bool DockingModule::isDocked(Spaceship& spaceship) {
-    return docked_ && spaceship.getX() == station_->getX() && spaceship.getY() == station_->getY();
+    return docked_ && spaceship.getPos().x_ == station_->getX() && spaceship.getPos().y_ == station_->getY();
 }
 
 void DockingModule::dock(Spaceship& spaceship, Station& station) {
     docked_ = true;
     station_ = &station;
-    spaceship.setX(station.getX());
-    spaceship.setY(station.getY());
+    spaceship.setPos(Vector2D(station.getX(), station.getY()));
 }
 
 void DockingModule::undock(Spaceship& spaceship) {
     docked_ = false;
     station_ = nullptr;
-    spaceship.setX(spaceship.getX() + 1);
-    spaceship.setY(spaceship.getY() + 1);
+    spaceship.setPos(spaceship.getPos() + Vector2D(1, 1));
 }
 
 #endif

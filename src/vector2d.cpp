@@ -19,7 +19,7 @@ Vector2D::Vector2D(uint32_t scalar)
 
 uint32_t Vector2D::getMagnitude() const
 {
-	return (uint32_t)std::sqrtf((float)(x_ * x_ + y_ * y_));
+	return (uint32_t)std::sqrt((float)(x_ * x_ + y_ * y_));
 }
 
 uint32_t Vector2D::getMagnitudeSquared() const

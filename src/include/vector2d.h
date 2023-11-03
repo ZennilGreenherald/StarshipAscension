@@ -6,8 +6,8 @@
 class Vector2D
 {
 public:
-	uint32_t x_;
-	uint32_t y_;
+	int32_t x_;
+	int32_t y_;
 
     Vector2D(uint32_t x, uint32_t y);
 
