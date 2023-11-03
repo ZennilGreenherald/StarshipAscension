@@ -1,6 +1,7 @@
 #include "./include/Serializer.h"
 
 #include <cstring>
+#include <cstddef>
 
 Serializer::~Serializer()
 {

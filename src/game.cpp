@@ -1,5 +1,8 @@
 #include "./include/game.h"
-
+#include "./include/player.h"
+#include "include/Spaceship.h"
+#include "include/planet.h"
+#include <iostream>
 #include <cstdlib>
 #include <ctime>
 #include <iostream>
@@ -53,30 +56,47 @@ void Game::displayMenu() {
 
 void Game::initializePlayingField() {
     srand((unsigned int)time(nullptr));
-    playingField.initialize();
-    Spaceship ship;
-    playingField.addObject(&ship, Vector2D(PLAYING_FIELD_HEIGHT / 2, PLAYING_FIELD_WIDTH / 2));
-    playingField.addObject(PLAYING_FIELD_PLANET, Vector2D(PLAYING_FIELD_HEIGHT / 4, PLAYING_FIELD_WIDTH / 4));
+
+    playingField = {};
+
+    Spaceship* ship = new Spaceship("Player_1", 100, 100, 100);
+    ship->setPos({PLAYING_FIELD_HEIGHT / 2, PLAYING_FIELD_WIDTH / 2});
+    playingField.addObject(ship);
+
+    // Planet class needs to be implemented and derived from GameObj class.
+    playingField.addObject(PLAYING_FIELD_PLANET, PLAYING_FIELD_HEIGHT / 4, PLAYING_FIELD_WIDTH / 4);
+
     for (int i = 0; i < NUM_STARBASES; i++) {
         Vector2D pos;
         do {
-            pos = Vector2D(rand() % PLAYING_FIELD_HEIGHT, rand() % PLAYING_FIELD_WIDTH);
-        } while (playingField.getObject(pos)->getName() != PLAYING_FIELD_EMPTY);
-        playingField.addObject(PLAYING_FIELD_STARBASE, pos);
+            pos.x_ = rand() % PLAYING_FIELD_WIDTH;
+            pos.y_ = rand() % PLAYING_FIELD_HEIGHT;
+        } while (playingField.getObject(pos) != nullptr);
+
+        // Starbase class needs to be implemented and derived from gameObj class.
+        playingField.addObject(PLAYING_FIELD_STARBASE, y, x);
     }
     for (int i = 0; i < NUM_MOONS; i++) {
         Vector2D pos;
         do {
-            pos = Vector2D(rand() % PLAYING_FIELD_HEIGHT, rand() % PLAYING_FIELD_WIDTH);
-        } while (playingField.getObject(pos)->getName() != PLAYING_FIELD_EMPTY);
-        playingField.addObject(PLAYING_FIELD_MOON, pos);
+            pos.x_ = rand() % PLAYING_FIELD_WIDTH;
+            pos.y_ = rand() % PLAYING_FIELD_HEIGHT;
+        } while (playingField.getObject(pos) != nullptr);
+
+        // Use planet class here when it's implemented.
+        playingField.addObject(PLAYING_FIELD_MOON, y, x);
     }
     for (int i = 0; i < NUM_ENEMY_SHIPS; i++) {
         Vector2D pos;
         do {
-            pos = Vector2D(rand() % PLAYING_FIELD_HEIGHT, rand() % PLAYING_FIELD_WIDTH);
-        } while (playingField.getObject(pos)->getName() != PLAYING_FIELD_EMPTY);
-        playingField.addObject(PLAYING_FIELD_ENEMY_SHIP, pos);
+            pos.x_ = rand() % PLAYING_FIELD_WIDTH;
+            pos.y_ = rand() % PLAYING_FIELD_HEIGHT;
+        } while (playingField.getObject(pos) != nullptr);
+
+        Spaceship* enemy = new Spaceship("Enemy", 100, 100, 100);
+        enemy->setPos(pos);
+
+        playingField.addObject(enemy);
     }
 }
 
@@ -86,31 +106,37 @@ void Game::displayPlayingField() {
 }
 
 bool Game::gameOver(const Spaceship* ship) {
-    Vector2D pos(ship->getX(), ship->getY());
-    return playingField.getObject(pos)->getName() == PLAYING_FIELD_PLANET;
+    return typeid(playingField.getObject(ship->getPos())) == typeid(planet);
 }
 
 void Game::handleUserInput() {
     char input;
     bool validInput = false;
+
+    Spaceship* playerShip = (Spaceship*)playingField.getObject("Player_1");
+    if (!playerShip) {
+        cout << "Player ship not found." << std::endl;
+        return;
+    }
+
     while (!validInput) {
         cout << "Player " << currentPlayerIndex + 1 << ", enter your move (WASD): ";
         cin >> input;
         switch (input) {
             case 'w':
-                playingField.moveObject(playingField.getObject(PLAYING_FIELD_SHIP), -1, 0);
+                playerShip->setPos(playerShip->getPos() - Vector2D(1, 0));
                 validInput = true;
                 break;
             case 'a':
-                playingField.moveObject(playingField.getObject(PLAYING_FIELD_SHIP), 0, -1);
+                playerShip->setPos(playerShip->getPos() - Vector2D(0, 1));
                 validInput = true;
                 break;
             case 's':
-                playingField.moveObject(playingField.getObject(PLAYING_FIELD_SHIP), 1, 0);
+                playerShip->setPos(playerShip->getPos() + Vector2D(1, 0));
                 validInput = true;
                 break;
             case 'd':
-                playingField.moveObject(playingField.getObject(PLAYING_FIELD_SHIP), 0, 1);
+                playerShip->setPos(playerShip->getPos() + Vector2D(0, 1));
                 validInput = true;
                 break;
             default:
