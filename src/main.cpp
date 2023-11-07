@@ -11,8 +11,6 @@
 #include "./include/vector2d.h"
 #include "./include/weapons_manager.h"
 
-using namespace std;
-
 // Constants for playing field objects
 const int NUM_STARBASES = 3;
 const int NUM_MOONS = 5;
@@ -63,12 +61,12 @@ int main() {
 
 void display_menu() {
     // Display the name of the game and ask for the number of players
-    cout << "Welcome to Space Game!" << endl;
-    cout << "How many players? (1 or 2)" << endl;
+    std::cout << "Welcome to Space Game!" << std::endl;
+    std::cout << "How many players? (1 or 2)" << std::endl;
 
     // Read the number of players from the keyboard
     int numPlayers;
-    cin >> numPlayers;
+    std::cin >> numPlayers;
 
     // Initialize the players' scores to 0
     for (int i = 0; i < numPlayers; i++) {
@@ -76,10 +74,10 @@ void display_menu() {
     }
 
     // Display the high score and prompt the user to start the game
-    cout << "High Score: " << players.getScore() << endl;
-    cout << "Press any key to start the game..." << endl;
-    cin.ignore();
-    cin.get();
+    std::cout << "High Score: " << players.getScore() << std::endl;
+    std::cout << "Press any key to start the game..." << std::endl;
+    std::cin.ignore();
+    std::cin.get();
 }
 
 void initialize_playing_field() {
@@ -137,9 +135,9 @@ void display_playing_field() {
     // Display the playing field
     for (int i = 0; i < PLAYING_FIELD_HEIGHT; i++) {
         for (int j = 0; j < PLAYING_FIELD_WIDTH; j++) {
-            cout << playingField[i][j];
+            std::cout << playingField[i][j];
         }
-        cout << endl;
+       std::cout << std::endl;
     }
 }
 
@@ -158,9 +156,9 @@ void handle_user_input() {
     char input;
     bool validInput = false;
     while (!validInput) {
-        cout << "Player " << currentPlayerIndex + 1
+        std::cout << "Player " << currentPlayerIndex + 1
              << ", enter your move (WASD): ";
-        cin >> input;
+        std::cin >> input;
         switch (input) {
             case 'w':
                 movement.moveUp(Spaceship, playingField);
@@ -179,7 +177,7 @@ void handle_user_input() {
                 validInput = true;
                 break;
             default:
-                cout << "Invalid input. Please enter W, A, S, or D." << endl;
+                std::cout << "Invalid input. Please enter W, A, S, or D." << std::endl;
                 break;
         }
     }
@@ -258,6 +256,6 @@ void display_high_score() {
     }
 
     // Display the high score and the name of the winning player
-    cout << "High Score: " << players.getScore() << endl;
-    cout << "Player " << highestScoreIndex + 1 << " wins!" << endl;
+    std::cout << "High Score: " << players.getScore() << std::endl;
+    std::cout << "Player " << highestScoreIndex + 1 << " wins!" << std::endl;
 }

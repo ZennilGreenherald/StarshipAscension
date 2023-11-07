@@ -7,8 +7,8 @@
 #include <cstdlib>
 #include <array>
 
-const uint32_t PLAYING_FIELD_HEIGHT = 20;
-const uint32_t PLAYING_FIELD_WIDTH = 40;
+const uint32_t PLAYING_FIELD_HEIGHT = 50;
+const uint32_t PLAYING_FIELD_WIDTH = 100;
 
 const std::string PLAYING_FIELD_EMPTY = " ";
 const std::string PLAYING_FIELD_BORDER = "#";

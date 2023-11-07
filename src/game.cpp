@@ -1,7 +1,7 @@
 #include "./include/game.h"
 #include "./include/player.h"
 #include "include/Spaceship.h"
-#include "include/planet.h"
+#include "include/Planet.h"
 #include <iostream>
 #include <cstdlib>
 #include <ctime>
@@ -12,8 +12,6 @@
 #include "./include/vector2d.h"
 #include "./include/playing_field.h"
 #include "./include/StarshipAscension.h"
-
-using namespace std;
 
 const int NUM_STARBASES = 3;
 const int NUM_MOONS = 5;
@@ -38,20 +36,20 @@ void Game::start() {
 }
 
 void Game::displayMenu() {
-    cout << "Welcome to Space Game!" << endl;
-    cout << "How many players? (1 or 2)" << endl;
+    std::cout << "Welcome to Space Game!" << std::endl;
+    std::cout << "How many players? (1 or 2)" << std::endl;
 
     int numPlayers;
-    cin >> numPlayers;
+    std::cin >> numPlayers;
 
     for (int i = 0; i < numPlayers; i++) {
         players[i].setScore(0);
     }
 
-    cout << "High Score: " << players[0].getScore() << endl;
-    cout << "Press any key to start the game..." << endl;
-    cin.ignore();
-    cin.get();
+    std::cout << "High Score: " << players[0].getScore() << std::endl;
+    std::cout << "Press any key to start the game..." << std::endl;
+    std::cin.ignore();
+    std::cin.get();
 }
 
 void Game::initializePlayingField() {
@@ -115,13 +113,13 @@ void Game::handleUserInput() {
 
     Spaceship* playerShip = (Spaceship*)playingField.getObject("Player_1");
     if (!playerShip) {
-        cout << "Player ship not found." << std::endl;
+        std::cout << "Player ship not found." << std::endl;
         return;
     }
 
     while (!validInput) {
-        cout << "Player " << currentPlayerIndex + 1 << ", enter your move (WASD): ";
-        cin >> input;
+        std::cout << "Player " << currentPlayerIndex + 1 << ", enter your move (WASD): ";
+        std::cin >> input;
         switch (input) {
             case 'w':
                 playerShip->setPos(playerShip->getPos() - Vector2D(1, 0));
@@ -140,7 +138,7 @@ void Game::handleUserInput() {
                 validInput = true;
                 break;
             default:
-                cout << "Invalid input. Please enter W, A, S, or D." << endl;
+                std::cout << "Invalid input. Please enter W, A, S, or D." << std::endl;
                 break;
         }
     }
