@@ -47,18 +47,11 @@ endif()
 
 # Add the main executable
 add_executable(starship
-	src/main.cpp
+	src/Spaceship.cpp
 	src/docking_module.cpp
 	src/game.cpp
-	src/menu.cpp
-	src/player.cpp
-	src/playing_field.cpp
-	src/shields_manager.cpp
-	src/vector2d.cpp
-	src/movement.cpp
-		src/StarshipAscension.cpp
-	src/station.cpp
-	src/weapons_manager.cpp
+	src/include/GameObj.cpp
+	src/include/GameObj.h
 	src/include/docking_module.h
 	src/include/game.h
 	src/include/main.h
@@ -66,20 +59,20 @@ add_executable(starship
 	src/include/movement.h
 	src/include/player.h
 	src/include/playing_field.h
-		src/include/StarshipAscension.h
-	src/include/station.h
+	src/include/Planet.h
 	src/include/shields_manager.h
-	src/include/station.h
 	src/include/vector2d.h
 	src/include/weapons_manager.h
-		src/Spaceship.cpp
-		src/include/Spaceship.h
-		src/planet.cpp
-        src/include/planet.h
-		src/include/GameObj.cpp
-		src/include/GameObj.h
-		src/Serializer.cpp
-		src/include/Serializer.h
+	src/Planet.cpp
+	src/main.cpp
+	src/menu.cpp
+	src/movement.cpp
+	src/player.cpp
+	src/playing_field.cpp
+	src/shields_manager.cpp
+	src/station.cpp
+	src/vector2d.cpp
+	src/weapons_manager.cpp
 )
 
 # Enable testing

@@ -1,17 +1,16 @@
 #include "./include/game.h"
-#include "./include/player.h"
-#include "include/Spaceship.h"
-#include "include/Planet.h"
-#include <iostream>
+
 #include <cstdlib>
 #include <ctime>
 #include <iostream>
 
-#include "./include/player.h"
 #include "./include/Spaceship.h"
-#include "./include/vector2d.h"
-#include "./include/playing_field.h"
 #include "./include/StarshipAscension.h"
+#include "./include/player.h"
+#include "./include/playing_field.h"
+#include "./include/vector2d.h"
+#include "./include/Planet.h"
+#include "./include/Spaceship.h"
 
 const int NUM_STARBASES = 3;
 const int NUM_MOONS = 5;
@@ -24,7 +23,8 @@ void Game::start() {
     initializePlayingField();
     displayPlayingField();
 
-    while (!gameOver(dynamic_cast<Spaceship*>(playingField.getObject(PLAYING_FIELD_SHIP)))) {
+    while (!gameOver(
+        dynamic_cast<Spaceship*>(playingField.getObject(PLAYING_FIELD_SHIP)))) {
         handleUserInput();
         updatePlayingField();
         displayPlayingField();
@@ -62,7 +62,8 @@ void Game::initializePlayingField() {
     playingField.addObject(ship);
 
     // Planet class needs to be implemented and derived from GameObj class.
-    playingField.addObject(PLAYING_FIELD_PLANET, PLAYING_FIELD_HEIGHT / 4, PLAYING_FIELD_WIDTH / 4);
+    playingField.addObject(PLAYING_FIELD_PLANET, PLAYING_FIELD_HEIGHT / 4,
+                           PLAYING_FIELD_WIDTH / 4);
 
     for (int i = 0; i < NUM_STARBASES; i++) {
         Vector2D pos;
@@ -71,7 +72,8 @@ void Game::initializePlayingField() {
             pos.y_ = rand() % PLAYING_FIELD_HEIGHT;
         } while (playingField.getObject(pos) != nullptr);
 
-        // Starbase class needs to be implemented and derived from gameObj class.
+        // Starbase class needs to be implemented and derived from gameObj
+        // class.
         playingField.addObject(PLAYING_FIELD_STARBASE, y, x);
     }
     for (int i = 0; i < NUM_MOONS; i++) {
@@ -104,7 +106,7 @@ void Game::displayPlayingField() {
 }
 
 bool Game::gameOver(const Spaceship* ship) {
-    return typeid(playingField.getObject(ship->getPos())) == typeid(planet);
+    return typeid(playingField.getObject(ship->getPos())) == typeid(Planet);
 }
 
 void Game::handleUserInput() {
@@ -118,7 +120,8 @@ void Game::handleUserInput() {
     }
 
     while (!validInput) {
-        std::cout << "Player " << currentPlayerIndex + 1 << ", enter your move (WASD): ";
+        std::cout << "Player " << currentPlayerIndex + 1
+                  << ", enter your move (WASD): ";
         std::cin >> input;
         switch (input) {
             case 'w':
@@ -138,7 +141,8 @@ void Game::handleUserInput() {
                 validInput = true;
                 break;
             default:
-                std::cout << "Invalid input. Please enter W, A, S, or D." << std::endl;
+                std::cout << "Invalid input. Please enter W, A, S, or D."
+                          << std::endl;
                 break;
         }
     }
@@ -154,13 +158,14 @@ void Game::handleCollisions() {
         return;
     }
     if (shipObj->getName() == PLAYING_FIELD_PLANET) {
-        players[currentPlayerIndex].setScore(players[currentPlayerIndex].getScore() - 10);
+        players[currentPlayerIndex].setScore(
+            players[currentPlayerIndex].getScore() - 10);
     }
 }
 
 void Game::handleScoring() {
     // Update the player's score based on the game's outcome
-    if (playingField.getObject(PLAYING_FIELD_SHIP) == PLAYING_FIELD_PLANET) {
+    if (typeid(*playingField.getObject(PLAYING_FIELD_SHIP)) == typeid(Planet)) {
         players[currentPlayerIndex].setScore(
             players[currentPlayerIndex].getScore() - 10);
     } else {
@@ -180,6 +185,6 @@ void Game::displayHighScore() {
             highestScoreIndex = i;
         }
     }
-    cout << "High Score: " << highestScore << endl;
-    cout << "Player " << highestScoreIndex + 1 << " wins!" << endl;
+    std::cout << "High Score: " << highestScore << std::endl;
+    std::cout << "Player " << highestScoreIndex + 1 << " wins!" << std::endl;
 }
