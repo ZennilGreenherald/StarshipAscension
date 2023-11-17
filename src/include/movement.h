@@ -9,19 +9,19 @@ class Movement
 public:
     Movement();
 
-    void moveUp(StarshipAscension& spaceship, int playingField[][PLAYING_FIELD_WIDTH]);
-    void moveLeft(StarshipAscension& spaceship, int playingField[][PLAYING_FIELD_WIDTH]);
-    void moveDown(StarshipAscension& spaceship, int playingField[][PLAYING_FIELD_WIDTH]);
-    void moveRight(StarshipAscension& spaceship, int playingField[][PLAYING_FIELD_WIDTH]);
+    void moveUp(StarshipAscension& spaceship, uint32_t playingField[][PLAYING_FIELD_WIDTH]);
+    void moveLeft(StarshipAscension& spaceship, uint32_t playingField[][PLAYING_FIELD_WIDTH]);
+    void moveDown(StarshipAscension& spaceship, uint32_t playingField[][PLAYING_FIELD_WIDTH]);
+    void moveRight(StarshipAscension& spaceship, uint32_t playingField[][PLAYING_FIELD_WIDTH]);
 
-    int getX() const;
-    void setX(int x);
-    int getY() const;
-    void setY(int y);
+    uint32_t getX() const;
+    void setX(const uint32_t x);
+    uint32_t getY() const;
+    void setY(const uint32_t y);
 
 private:
-    int m_x;
-    int m_y;
+    uint32_t m_x;
+    uint32_t m_y;
 
 };
 

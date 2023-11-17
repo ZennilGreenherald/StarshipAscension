@@ -1,6 +1,7 @@
 #ifndef SHIP_H
 #define SHIP_H
 
+#include <cstdint>
 #include <string>
 
 class Station;
@@ -9,13 +10,13 @@ class StarshipAscension {
 public:
     StarshipAscension(std::string name, std::string captain, std::string firstOfficer);
 
-    int getX() const;
+    uint32_t getX() const;
 
-    void setX(int x);
+    void setX(const uint32_t x);
 
-    int getY() const;
+    uint32_t getY() const;
 
-    void setY(int y);
+    void setY(const uint32_t y);
 
     int getMaxHealth() const;
 
