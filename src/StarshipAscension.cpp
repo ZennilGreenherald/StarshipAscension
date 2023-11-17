@@ -5,7 +5,7 @@
 
 #include "./include/player.h"
 #include "./include/weapons_manager.h"
-#include "station.h"
+#include "./include/station.h"
 
 StarshipAscension::StarshipAscension(std::string name, std::string captain, std::string firstOfficer)
     : name(std::move(name)), captain(std::move(captain)),

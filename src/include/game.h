@@ -9,6 +9,8 @@ class Game {
 public:
     Game();
     void start();
+	uint32_t x;
+    uint32_t y;
 private:
     Player players[2];
     PlayingField playingField;

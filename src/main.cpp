@@ -1,5 +1,7 @@
 #include <cstdlib>
 #include <iostream>
+#include <string>
+#include <cstdio>
 
 #include "./include/StarshipAscension.h"
 #include "./include/docking_module.h"
@@ -137,7 +139,7 @@ void display_playing_field() {
         for (int j = 0; j < PLAYING_FIELD_WIDTH; j++) {
             std::cout << playingField[i][j];
         }
-       std::cout << std::endl;
+        std::cout << std::endl;
     }
 }
 
@@ -157,7 +159,7 @@ void handle_user_input() {
     bool validInput = false;
     while (!validInput) {
         std::cout << "Player " << currentPlayerIndex + 1
-             << ", enter your move (WASD): ";
+                  << ", enter your move (WASD): ";
         std::cin >> input;
         switch (input) {
             case 'w':
@@ -177,7 +179,8 @@ void handle_user_input() {
                 validInput = true;
                 break;
             default:
-                std::cout << "Invalid input. Please enter W, A, S, or D." << std::endl;
+                std::cout << "Invalid input. Please enter W, A, S, or D."
+                          << std::endl;
                 break;
         }
     }
