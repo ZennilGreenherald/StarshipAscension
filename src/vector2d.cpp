@@ -3,97 +3,97 @@
 #include <cmath>
 
 Vector2D::Vector2D()
-	: x_(0), y_(0)
+	: x(0), y(0)
 {
 }
 
-Vector2D::Vector2D(uint32_t x, uint32_t y)
-	: x_{x}, y_{y}
+Vector2D::Vector2D(const uint32_t x, const uint32_t y)
+	: x{x}, y{y}
 {
 }
 
-Vector2D::Vector2D(uint32_t scalar)
-	: x_(scalar), y_(scalar)
+Vector2D::Vector2D(const uint32_t scalar)
+	: x(scalar), y(scalar)
 {
 }
 
 uint32_t Vector2D::getMagnitude() const
 {
-	return (uint32_t)std::sqrt((float)(x_ * x_ + y_ * y_));
+	return static_cast<uint32_t>(std::sqrt(static_cast<float>(x * x + y * y)));
 }
 
 uint32_t Vector2D::getMagnitudeSquared() const
 {
-	return x_ * x_ + y_ * y_;
+	return x * x + y * y;
 }
 
 Vector2D Vector2D::getNormalized() const
 {
-	uint32_t magnitude = getMagnitude();
-    return {x_ / magnitude, y_ / magnitude};
+	const uint32_t magnitude = getMagnitude();
+    return {x / magnitude, y / magnitude};
 }
 
 void Vector2D::normalize()
 {
-	uint32_t magnitude = getMagnitude();
-    x_ /= magnitude;
-    y_ /= magnitude;
+	const uint32_t magnitude = getMagnitude();
+    x /= magnitude;
+    y /= magnitude;
 }
 
 Vector2D Vector2D::operator+(const Vector2D& other) const
 {
-    return {x_ + other.x_, y_ + other.y_};
+    return {x + other.x, y + other.y};
 }
 
 Vector2D Vector2D::operator-(const Vector2D& other) const
 {
-    return {x_ - other.x_, y_ - other.y_};
+    return {x - other.x, y - other.y};
 }
 
-Vector2D Vector2D::operator*(uint32_t scalar) const
+Vector2D Vector2D::operator*(const uint32_t scalar) const
 {
-    return {x_ * scalar, y_ * scalar};
+    return {x * scalar, y * scalar};
 }
 
-Vector2D Vector2D::operator/(uint32_t scalar) const
+Vector2D Vector2D::operator/(const uint32_t scalar) const
 {
-    return {x_ / scalar, y_ / scalar};
+    return {x / scalar, y / scalar};
 }
 
 Vector2D& Vector2D::operator+=(const Vector2D& other)
 {
-    x_ += other.x_;
-    y_ += other.y_;
+    x += other.x;
+    y += other.y;
     return *this;
 }
 
 Vector2D& Vector2D::operator-=(const Vector2D& other)
 {
-    x_ -= other.x_;
-    y_ -= other.y_;
+    x -= other.x;
+    y -= other.y;
     return *this;
 }
 
-Vector2D& Vector2D::operator*=(uint32_t scalar)
+Vector2D& Vector2D::operator*=(const uint32_t scalar)
 {
-    x_ *= scalar;
-    y_ *= scalar;
+    x *= scalar;
+    y *= scalar;
     return *this;
 }
 
-Vector2D& Vector2D::operator/=(uint32_t scalar)
+Vector2D& Vector2D::operator/=(const uint32_t scalar)
 {
-    x_ /= scalar;
-    y_ /= scalar;
+    x /= scalar;
+    y /= scalar;
     return *this;
 }
 
 bool Vector2D::operator==(const Vector2D& other) const
 {
-	return x_ == other.x_ && y_ == other.y_;
+	return x == other.x && y == other.y;
 }
 
 bool Vector2D::operator!=(const Vector2D& other) const
 {
-	return x_ != other.x_ || y_ != other.y_;
+	return x != other.x || y != other.y;
 }

@@ -1,6 +1,7 @@
 #ifndef STATION_H
 #define STATION_H
 
+#include <cstdint>
 #include <string>
 
 class Spaceship;
@@ -19,10 +20,10 @@ public:
     void restock(Spaceship* spaceship, int amount);
     void restock(int amount);
     Station();
-    Station(int x, int y) : x_{ x }, y_{ y } {}
+    Station(uint32_t x, uint32_t y) : x_{ x }, y_{ y } {}
 
-    int getX() const { return x_; }
-    int getY() const { return y_; }
+    uint32_t getX() const { return x_; }
+    uint32_t getY() const { return y_; }
 
 private:
     std::string name_;
@@ -32,8 +33,8 @@ private:
     int maxHealth_;
     int maxFuel_;
     int maxAmmo_;
-    int x_;
-    int y_;
+    uint32_t x_;
+    uint32_t y_;
 };
 
 Station::Station() : x_{ 0 }, y_{ 0 } {}

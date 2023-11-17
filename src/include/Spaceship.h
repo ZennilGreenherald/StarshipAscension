@@ -57,13 +57,13 @@ public:
 
 	Spaceship* Clone() const override;
 
-	int getX() const;
+	uint32_t getX() const;
 
-	void setX(int x);
+	void setX(const uint32_t x);
 
-	int getY() const;
+	uint32_t getY() const;
 
-	void setY(int y);
+	void setY(const uint32_t y);
 
 };
 

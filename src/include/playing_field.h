@@ -33,8 +33,8 @@ public:
 
 	void moveObject(GameObj* obj, int dx, int dy) {
     Vector2D newPos = obj->getPos() + Vector2D(dx, dy);
-    if (newPos.getX() < 0 || newPos.getX() >= PLAYING_FIELD_WIDTH ||
-        newPos.getY() < 0 || newPos.getY() >= PLAYING_FIELD_HEIGHT) {
+    if (newPos.x < 0 || newPos.x >= PLAYING_FIELD_WIDTH ||
+        newPos.y < 0 || newPos.y >= PLAYING_FIELD_HEIGHT) {
         return;
     }
     GameObj* otherObj = getObject(newPos);

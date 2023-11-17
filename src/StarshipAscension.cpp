@@ -14,22 +14,22 @@ StarshipAscension::StarshipAscension(std::string name, std::string captain, std:
 {
 }
 
-void StarshipAscension::setX(int x)
+void StarshipAscension::setX(const uint32_t x)
 {
     m_x = x;
 }
 
-int StarshipAscension::getX() const
+uint32_t StarshipAscension::getX() const
 {
     return m_x;
 }
 
-int StarshipAscension::getY() const
+uint32_t StarshipAscension::getY() const
 {
     return m_y;
 }
 
-void StarshipAscension::setY(int y)
+void StarshipAscension::setY(const uint32_t y)
 {
     m_y = y;
 }
