@@ -26,7 +26,7 @@ private:
 DockingModule::DockingModule() : docked_{ false }, station_{ nullptr } {}
 
 bool DockingModule::isDocked(Spaceship& spaceship) {
-    return docked_ && spaceship.getPos().x_ == station_->getX() && spaceship.getPos().y_ == station_->getY();
+    return docked_ && spaceship.getPos().x == station_->getX() && spaceship.getPos().y == station_->getY();
 }
 
 void DockingModule::dock(Spaceship& spaceship, Station& station) {

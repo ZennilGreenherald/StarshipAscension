@@ -68,8 +68,8 @@ void Game::initializePlayingField() {
     for (int i = 0; i < NUM_STARBASES; i++) {
         Vector2D pos;
         do {
-            pos.x_ = rand() % PLAYING_FIELD_WIDTH;
-            pos.y_ = rand() % PLAYING_FIELD_HEIGHT;
+            pos.x = rand() % PLAYING_FIELD_WIDTH;
+            pos.y = rand() % PLAYING_FIELD_HEIGHT;
         } while (playingField.getObject(pos) != nullptr);
 
         // Starbase class needs to be implemented and derived from gameObj
@@ -79,8 +79,8 @@ void Game::initializePlayingField() {
     for (int i = 0; i < NUM_MOONS; i++) {
         Vector2D pos;
         do {
-            pos.x_ = rand() % PLAYING_FIELD_WIDTH;
-            pos.y_ = rand() % PLAYING_FIELD_HEIGHT;
+            pos.x = rand() % PLAYING_FIELD_WIDTH;
+            pos.y = rand() % PLAYING_FIELD_HEIGHT;
         } while (playingField.getObject(pos) != nullptr);
 
         // Use planet class here when it's implemented.
@@ -89,8 +89,8 @@ void Game::initializePlayingField() {
     for (int i = 0; i < NUM_ENEMY_SHIPS; i++) {
         Vector2D pos;
         do {
-            pos.x_ = rand() % PLAYING_FIELD_WIDTH;
-            pos.y_ = rand() % PLAYING_FIELD_HEIGHT;
+            pos.x = rand() % PLAYING_FIELD_WIDTH;
+            pos.y = rand() % PLAYING_FIELD_HEIGHT;
         } while (playingField.getObject(pos) != nullptr);
 
         Spaceship* enemy = new Spaceship("Enemy", 100, 100, 100);

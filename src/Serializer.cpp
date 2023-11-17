@@ -136,7 +136,7 @@ void Serializer::writeVec2D(const Vector2D& vec)
 	if (sizeof(uint32_t) * 2 > size - offset)
 		setSize(size + sizeof(uint32_t) * 2 - size - offset);
 
-	memcpy(data, &((char*)&vec)[offsetof(Vector2D, x_)], sizeof(uint32_t));
+	memcpy(data, &((char*)&vec)[offsetof(Vector2D, x)], sizeof(uint32_t));
 
 	offset += sizeof(uint32_t) * 2;
 }
@@ -160,7 +160,7 @@ Vector2D Serializer::readVec2D()
 
 	Vector2D result;
 
-	memcpy(&((char*)&result)[offsetof(Vector2D, x_)], &data[offset], sizeof(uint32_t));
+	memcpy(&((char*)&result)[offsetof(Vector2D, x)], &data[offset], sizeof(uint32_t));
 
 	offset += sizeof(uint32_t) * 2;
 
