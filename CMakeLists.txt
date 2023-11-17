@@ -47,29 +47,37 @@ endif()
 
 # Add the main executable
 add_executable(starship
-	src/Spaceship.cpp
-	src/docking_module.cpp
-	src/game.cpp
-	src/include/GameObj.cpp
-	src/include/GameObj.h
 	src/include/docking_module.h
 	src/include/game.h
+	src/include/GameData.h
+	src/include/GameObj.cpp
+	src/include/GameObj.h
 	src/include/main.h
 	src/include/menu.h
 	src/include/movement.h
+	src/include/Planet.h
 	src/include/player.h
 	src/include/playing_field.h
-	src/include/Planet.h
+	src/include/Serializer.h
 	src/include/shields_manager.h
+	src/include/Spaceship.h
+	src/include/StarshipAscension.h
+	src/include/station.h
 	src/include/vector2d.h
 	src/include/weapons_manager.h
-	src/Planet.cpp
+	src/docking_module.cpp
+	src/game.cpp
+	src/GameData.cpp
 	src/main.cpp
 	src/menu.cpp
 	src/movement.cpp
+	src/Planet.cpp
 	src/player.cpp
 	src/playing_field.cpp
+	src/Serializer.cpp
 	src/shields_manager.cpp
+	src/Spaceship.cpp
+	src/StarshipAscension.cpp
 	src/station.cpp
 	src/vector2d.cpp
 	src/weapons_manager.cpp
