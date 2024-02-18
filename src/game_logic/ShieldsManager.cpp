@@ -2,6 +2,8 @@
 
 #include <iostream>
 
+#include "../../include/data_models/Shields.h"
+
 ShieldsManager::ShieldsManager() {
     // Constructor code for ShieldsManager
 }

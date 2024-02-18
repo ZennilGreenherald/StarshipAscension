@@ -1,6 +1,9 @@
 #include "../../include/ui/PlayingField.h"  // Include the PlayingField header file
 
-#include "./include/ui/Display.h"  // Include the Display header file
+#include <iostream>
+#include <string>
+
+#include "../../include/ui/Display.h"  // Include the Display header file
 
 // Constants for the terminal size
 constexpr int TERMINAL_WIDTH = 207;

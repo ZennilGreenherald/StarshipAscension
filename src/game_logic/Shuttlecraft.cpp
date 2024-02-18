@@ -1,5 +1,6 @@
 #include "../../include/game_logic/Shuttlecraft.h"
 #include "../../include/game_logic/Spaceship.h"
+#include "../../include/game_logic/Engine.h"
 
 Shuttlecraft::Shuttlecraft() : Spaceship() {
     // Constructor code for Shuttlecraft

@@ -1,4 +1,5 @@
 #include "../../include/utils/Vector2D.h"
+
 #include <cmath>
 
 // Accessors
@@ -10,9 +11,7 @@ void Vector2D::setX(float x) { m_x = x; }
 void Vector2D::setY(float y) { m_y = y; }
 
 // Other methods
-float Vector2D::magnitude() const {
-    return sqrt(m_x * m_x + m_y * m_y);
-}
+float Vector2D::magnitude() const { return sqrt(m_x * m_x + m_y * m_y); }
 
 Vector2D Vector2D::normalize() const {
     float mag = magnitude();
@@ -24,7 +23,7 @@ float Vector2D::dotProduct(const Vector2D& v) const {
 }
 
 float Vector2D::crossProduct(const Vector2D& v) const {
-    return m_x * v.m_y - m_y * v.m_x; // Returns a scalar
+    return m_x * v.m_y - m_y * v.m_x;  // Returns a scalar
 }
 
 // Overloaded operators
@@ -72,6 +71,4 @@ bool operator==(const Vector2D& v1, const Vector2D& v2) {
     return v1.m_x == v2.m_x && v1.m_y == v2.m_y;
 }
 
-bool operator!=(const Vector2D& v1, const Vector2D& v2) {
-    return !(v1 == v2);
-}
+bool operator!=(const Vector2D& v1, const Vector2D& v2) { return !(v1 == v2); }
