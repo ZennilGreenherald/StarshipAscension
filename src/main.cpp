@@ -1,264 +1,42 @@
-#include <cstdlib>
 #include <iostream>
-#include <string>
-#include <cstdio>
+#include "include/game_logic/Game.h"
+#include "include/ui/Display.h"
+#include "include/ui/Menu.h"
+#include "include/game_logic/Engine.h"
 
-#include "./include/StarshipAscension.h"
-#include "./include/docking_module.h"
-#include "./include/game.h"
-#include "./include/movement.h"
-#include "./include/player.h"
-#include "./include/shields_manager.h"
-#include "./include/station.h"
-#include "./include/vector2d.h"
-#include "./include/weapons_manager.h"
-
-// Constants for playing field objects
-const int NUM_STARBASES = 3;
-const int NUM_MOONS = 5;
-const int NUM_ENEMY_SHIPS = 10;
-
-// Declare global variables
-Player players[2];
-int currentPlayerIndex = 0;
-char playingField[PLAYING_FIELD_HEIGHT][PLAYING_FIELD_WIDTH];
-
-// Declare functions and classes
-void display_menu();
-void initialize_playing_field();
-void display_playing_field();
-bool game_over();
-void handle_user_input();
-void update_playing_field();
-void handle_collisions();
-void handle_scoring();
-void display_high_score();
+using namespace std;
 
 int main() {
-    display_menu();
-    initialize_playing_field();
-    display_playing_field();
+    // Initialize the game engine
+    Engine engine;
 
-    // Create instances of the necessary classes
-    Movement movement;
-    ShieldsManager shieldsManager;
-    WeaponsManager weaponsManager;
-    Spaceship ship;
-    Station station("", 0, 0, 0);
-    DockingModule dockingModule;
-    Vector2D vector2D;
+    // Initialize the game display
+    Display display;
 
-    while (!game_over()) {
-        handle_user_input();
-        update_playing_field();
-        display_playing_field();
-        handle_collisions();
+    // Initialize the game menu
+    Menu menu;
+
+    // Start the game
+    engine.start();
+
+    // Display the game
+    display.show();
+
+    // Show the main menu
+    menu.display();
+
+    // Main game loop
+    while (engine.isRunning()) {
+        // Process user input
+        menu.processInput();
+
+        // Update the game state
+        engine.update();
+
+        // Redraw the game display
+        display.redraw();
     }
 
-    handle_scoring();
-    display_high_score();
-
-    return 0;
-}
-
-void display_menu() {
-    // Display the name of the game and ask for the number of players
-    std::cout << "Welcome to Space Game!" << std::endl;
-    std::cout << "How many players? (1 or 2)" << std::endl;
-
-    // Read the number of players from the keyboard
-    int numPlayers;
-    std::cin >> numPlayers;
-
-    // Initialize the players' scores to 0
-    for (int i = 0; i < numPlayers; i++) {
-        players[i].setScore(0);
-    }
-
-    // Display the high score and prompt the user to start the game
-    std::cout << "High Score: " << players.getScore() << std::endl;
-    std::cout << "Press any key to start the game..." << std::endl;
-    std::cin.ignore();
-    std::cin.get();
-}
-
-void initialize_playing_field() {
-    // Initialize the playing field with empty spaces
-    for (int i = 0; i < PLAYING_FIELD_HEIGHT; i++) {
-        for (int j = 0; j < PLAYING_FIELD_WIDTH; j++) {
-            if (i == 0 || i == PLAYING_FIELD_HEIGHT - 1 || j == 0 ||
-                j == PLAYING_FIELD_WIDTH - 1) {
-                playingField[i][j] = PLAYING_FIELD_BORDER;
-            } else {
-                playingField[i][j] = PLAYING_FIELD_EMPTY;
-            }
-        }
-    }
-
-    // Add a ship and a planet to the playing field
-    playingField[PLAYING_FIELD_HEIGHT / 2][PLAYING_FIELD_WIDTH / 2] =
-        PLAYING_FIELD_SHIP;
-    playingField[PLAYING_FIELD_HEIGHT / 4][PLAYING_FIELD_WIDTH / 4] =
-        PLAYING_FIELD_PLANET;
-
-    // Add starbases, moons, and enemy ships to the playing field
-    for (int i = 0; i < NUM_STARBASES; i++) {
-        int x, y;
-        do {
-            x = rand() % PLAYING_FIELD_WIDTH;
-            y = rand() % PLAYING_FIELD_HEIGHT;
-        } while (playingField[y][x] != PLAYING_FIELD_EMPTY);
-        playingField[y][x] = PLAYING_FIELD_STARBASE;
-    }
-
-    for (int i = 0; i < NUM_MOONS; i++) {
-        int x, y;
-        do {
-            x = rand() % PLAYING_FIELD_WIDTH;
-            y = rand() % PLAYING_FIELD_HEIGHT;
-        } while (playingField[y][x] != PLAYING_FIELD_EMPTY);
-        playingField[y][x] = PLAYING_FIELD_MOON;
-    }
-
-    for (int i = 0; i < NUM_ENEMY_SHIPS; i++) {
-        int x, y;
-        do {
-            x = rand() % PLAYING_FIELD_WIDTH;
-            y = rand() % PLAYING_FIELD_HEIGHT;
-        } while (playingField[y][x] != PLAYING_FIELD_EMPTY);
-        playingField[y][x] = PLAYING_FIELD_ENEMY_SHIP;
-    }
-}
-
-void display_playing_field() {
-    // Clear the console window
-    system("clear");
-
-    // Display the playing field
-    for (int i = 0; i < PLAYING_FIELD_HEIGHT; i++) {
-        for (int j = 0; j < PLAYING_FIELD_WIDTH; j++) {
-            std::cout << playingField[i][j];
-        }
-        std::cout << std::endl;
-    }
-}
-
-bool game_over(const Spaceship &&ship) {
-    // Check if the ship has collided with a planet
-    if (playingField[ship.getY()][ship.getX()] == PLAYING_FIELD_PLANET) {
-        return true;
-    }
-
-    return false;
-}
-
-void handle_user_input() {
-    // Move the ship based on user input
-    Movement movement;
-    char input;
-    bool validInput = false;
-    while (!validInput) {
-        std::cout << "Player " << currentPlayerIndex + 1
-                  << ", enter your move (WASD): ";
-        std::cin >> input;
-        switch (input) {
-            case 'w':
-                movement.moveUp(Spaceship, playingField);
-                validInput = true;
-                break;
-            case 'a':
-                movement.moveLeft(Spaceship, playingField);
-                validInput = true;
-                break;
-            case 's':
-                movement.moveDown(spaceship, playingField);
-                validInput = true;
-                break;
-            case 'd':
-                movement.moveRight(spaceship, playingField);
-                validInput = true;
-                break;
-            default:
-                std::cout << "Invalid input. Please enter W, A, S, or D."
-                          << std::endl;
-                break;
-        }
-    }
-}
-
-void update_playing_field() {
-    // Update the playing field based on game logic
-    ShieldsManager shieldsManager;
-    WeaponsManager weaponsManager;
-    Spaceship ship;
-    shieldsManager.updateShields(ship);
-    weaponsManager.updateWeapons(ship);
-}
-
-void handle_collisions() {
-    // Check for collisions between ships and planets
-    if (playingField[ship.getY()][ship.getX()] == PLAYING_FIELD_PLANET) {
-        // Reduce the ship's health and play a sound effect
-        ship.reduceHealth(10);
-        playSoundEffect("explosion.wav");
-    }
-
-    // Check for collisions between ships and enemy ships
-    for (int i = 0; i < NUM_ENEMY_SHIPS; i++) {
-        if (ship.collidesWith(enemyShips[i])) {
-            // Reduce the health of both ships and play a sound effect
-            ship.reduceHealth(5);
-            enemyShips[i].reduceHealth(5);
-            playSoundEffect("explosion.wav");
-        }
-    }
-
-    // Check for collisions between ships and stars
-    for (int i = 0; i < NUM_STARS; i++) {
-        if (ship.collidesWith(stars[i])) {
-            // Change the ship's velocity and play a sound effect
-            ship.setVelocity(stars[i].getVelocity());
-            playSoundEffect("whoosh.wav");
-        }
-    }
-
-    // Check for collisions between ships and starbases
-    for (int i = 0; i < NUM_STARBASES; i++) {
-        if (ship.collidesWith(starbases[i])) {
-            // Dock the ship with the starbase and play a sound effect
-            dockingModule.dock(ship, starbases[i]);
-            playSoundEffect("dock.wav");
-        }
-    }
-}
-
-void handle_scoring() {
-    // Update the player's score based on the game's outcome
-    if (playingField[spaceship.getY()][spaceship.getX()] ==
-        PLAYING_FIELD_PLANET) {
-        players[currentPlayerIndex].setScore(
-            players[currentPlayerIndex].score() - 10);
-    } else {
-        players[currentPlayerIndex].setScore(
-            players[currentPlayerIndex].score() + 5);
-    }
-
-    // Switch to the next player
-    currentPlayerIndex = (currentPlayerIndex + 1) % 2;
-}
-
-void display_high_score() {
-    // Check which player has the highest score
-    int highestScore = players[0].score();
-    int highestScoreIndex = 0;
-    for (int i = 1; i < 2; i++) {
-        if (players[i].score() > highestScore) {
-            highestScore = players[i].score();
-            highestScoreIndex = i;
-        }
-    }
-
-    // Display the high score and the name of the winning player
-    std::cout << "High Score: " << players.getScore() << std::endl;
-    std::cout << "Player " << highestScoreIndex + 1 << " wins!" << std::endl;
+    // Exit the game cleanly
+    return  0;
 }

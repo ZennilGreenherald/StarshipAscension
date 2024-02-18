@@ -9,13 +9,12 @@
 			"command": "g++",
 			"args": [
 				"-g",
+				"-f",
 				"-Wall",
 				"-Werror",
 				"-Wextra",
 				"-pedantic",
-				"-o",
-				"${fileDirname}/${fileBasenameNoExtension}",
-				"${file}"
+				"-o3",
 			],
 			"group": {
 				"kind": "build",

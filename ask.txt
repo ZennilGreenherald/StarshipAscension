@@ -1,37 +1,64 @@
-I want to make a terminal/console/cli text based space game with C++ 11 or C++ 14 or C++ 17 standard. There will be many files that control functions of the game.  I want to use .cpp and .h files not .cpp and .hpp files. I want to build for linux x86_64 and Windows 7 first before I build for Macintosh.  It is likely that the program should run on debian 10 buster linux with kernel 4.19.0-25-amd64, bash 5.0.3 on a disk with ext4 and a tempfs.  I am using VSCode 1.81 for Debian linux. I want to build in my StarshipAscension/build directory. I have GNU 8.3.0 installed.  Here are the files structure I have
+I want to make a cli/terminal/console/tty/shell/bash session window text based space game with C++ 11 or C++ 14 or C++ 17 standard. There will be many files that control functions of the game.  I want to use .cpp and .h files not .cpp and .hpp files. I want to build for linux x86_64 and Windows 7 first before I build for Macintosh.  It is likely that the program should run on debian 10 buster linux with kernel 4.19.0-25-amd64, bash 5.0.3 on a disk with ext4 and a tempfs.  I am using VSCode 1.81 for Debian linux. I want to build in my StarshipAscension/build directory. I have GNU 8.3.0 installed.  Here are the files structure I have.  I want the playing field ot play in a 207 character wide by 57 character tall full size cli/terminal/console/tty/shell/bash session window and use ansi, ascii, unicode, utf8 characters I am using both clang 11 and gcc 8 and g++ 8.
 
 StarshipAscension/
+├── build/  (CMake -B build goes here)
+├── include/
+|   |	|  data_models/
+|   |	|	|	Health.h
+|   |	|	|	Inventory.h
+|   |	|	|	Moon.h
+|   |	|	|	Navigation.h
+|   |	|	|	Planet.h
+|   |	|	|	Player.h
+|   |	|	|	Position.h
+|   |	|	|	Score.h
+|   |	|	|	Shields.h
+|   |	|  game_logic/
+|   |	|	|	Engine.h
+|   |	|	|	Game.h
+|   |	|	|	Movement.h
+|   |	|	|	Missions.h
+|   |	|	|	Player.h
+|   |	|	|	ShieldsManager.h
+|   |	|	|	Spaceship.h
+|   |	|	|	Starbase.h
+|   |	|	|	StarshipAscension.h
+|   |	|	|	WeaponsManager.h
+|   |	|  ui/
+|   |	|	|	Display.h
+|   |	|	|	Menu.h
+|   |	|	|	PlayingField.h
+|   |	|  utils/
+|   |	|	|	Serializer.h
+|   |	|	|	Vector2D.h
 └── src/
-    ├── docking_module.cpp
-    ├── game.cpp
-    ├── main.cpp
-    ├── menu.cpp
-    ├── movement.cpp
-    ├── planet.cpp
-    ├── player.cpp
-    ├── playing_field.cpp
-    ├── Serializer.cpp
-    ├── shields_manager.cpp
-	├── Spaceship.cpp
-	├── StarshipAscension.cpp
-	├── station.cpp
-	├── vector2d.cpp
-	├── weapons_manager.cpp
-    ├── include/
-    │   ├── docking_module.h
-    │   ├── game.h
-    │   ├── GameObj.h
-    │   ├── main.h
-    │   ├── menu.h
-    │   ├── movement.h
-    │   ├── planet.h
-    │   ├── player.h
-    │   ├── playing_field.h
-	│   ├── Serializer.h
-	│   ├── shields_manager.h
-	│   ├── Spaceship.h
-	│   ├── StarshipAscension.h
-	│   ├── station.h
-	│   ├── vector2d.h
-    │   └── weapons_manager.h
+|   |	|  data_models/
+|   |	|	|	Health.cpp
+|   |	|	|	Inventory.cpp
+|   |	|	|	Moon.cpp
+|   |	|	|	Navigation.cpp
+|   |	|	|	Planet.cpp
+|   |	|	|	Player.cpp
+|   |	|	|	Position.cpp
+|   |	|	|	Score.cpp
+|   |	|	|	Shields.cpp
+|   |	|  game_logic/
+|   |	|	|	Engine.cpp
+|   |	|	|	Game.cpp
+|   |	|	|	Movement.cpp
+|   |	|	|	Missions.h
+|   |	|	|	Player.h
+|   |	|	|	ShieldsManager.h
+|   |	|	|	Spaceship.h
+|   |	|	|	Starbase.h
+|   |	|	|	StarshipAscension.h
+|   |	|	|	WeaponsManager.h
+|   |	|  ui/
+|   |	|	|	Display.h
+|   |	|	|	Menu.h
+|   |	|	|	PlayingField.h
+|   |	|  utils/
+|   |	|	|	Serializer.h
+|   |	|	|	Vector2D.h
 
+I need a main.cpp with main() for an entry point for the game. the main game logic will be in Game.cpp/Game.h all of the other files shown here will be used as the logic for the game and game objects and ships and weapons, etc.  Menu.cpp/Menu.h will be brought in to the main.cpp to display the menu for the game and the menu logic.  PlayingField will control the PlayingField.
