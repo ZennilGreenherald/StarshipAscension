@@ -1,4 +1,4 @@
-#include "./include/player.h"
+#include "../../include/game_logic/Player.h"
 
 #include <string>
 

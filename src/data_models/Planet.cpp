@@ -1,5 +1,7 @@
-#include "../data_models/Planet.h"
-#include "../utils/Vector2D.h"
+#include "../../include/data_models/Planet.h"
+
+#include "../../include/utils/Vector2D.h"
+#include "../../include/ui/PlayingField.h"
 
 // Constructor
 Planet::Planet(const std::string& name, double distanceFrom, double gravity)
@@ -21,22 +23,43 @@ double Planet::getHabitabilityIndex() const { return habitabilityIndex; }
 // Setters
 void Planet::setName(const std::string& name) { m_name = name; }
 void Planet::setSize(double size) { this->size = size; }
-void Planet::setDistanceFrom(double distanceFrom) { m_distanceFrom = distanceFrom; }
+void Planet::setDistanceFrom(double distanceFrom) {
+    m_distanceFrom = distanceFrom;
+}
 void Planet::setGravity(double gravity) { m_gravity = gravity; }
-void Planet::setPosition(const Vector2D& position) { this->position = position; }
-void Planet::setMoons(const std::vector<std::string>& moons) { this->moons = moons; }
-void Planet::setDayNightCycleLength(double dayNightCycleLength) { this->dayNightCycleLength = dayNightCycleLength; }
-void Planet::setOrbitalPeriod(double orbitalPeriod) { this->orbitalPeriod = orbitalPeriod; }
+void Planet::setPosition(const Vector2D& position) {
+    this->position = position;
+}
+void Planet::setMoons(const std::vector<std::string>& moons) {
+    this->moons = moons;
+}
+void Planet::setDayNightCycleLength(double dayNightCycleLength) {
+    this->dayNightCycleLength = dayNightCycleLength;
+}
+void Planet::setOrbitalPeriod(double orbitalPeriod) {
+    this->orbitalPeriod = orbitalPeriod;
+}
 void Planet::setAxialTilt(double axialTilt) { this->axialTilt = axialTilt; }
 void Planet::setSeasons(const std::string& seasons) { this->seasons = seasons; }
-void Planet::setHabitabilityIndex(double habitabilityIndex) { this->habitabilityIndex = habitabilityIndex; }
+void Planet::setHabitabilityIndex(double habitabilityIndex) {
+    this->habitabilityIndex = habitabilityIndex;
+}
 
 // Other methods
-bool Planet::isHabitable() const { /* implement this method */ }
-bool Planet::isInHabitableZone() const { /* implement this method */ }
-bool Planet::hasResourcesAvailable() const { /* implement this method */ }
-bool Planet::hasBeenVisited() const { /* implement this method */ }
-bool Planet::hasBeenDiscovered() const { /* implement this method */ }
-std::string Planet::getAtmosphereComposition() const { /* implement this method */ }
-double Planet::getTemperatureVariation() const { /* implement this method */ }
-double Planet::getDistanceFromPlayer() const { /* implement this method */ }
+bool Planet::isHabitable() const { /* implement this method */
+}
+bool Planet::isInHabitableZone() const { /* implement this method */
+}
+bool Planet::hasResourcesAvailable() const { /* implement this method */
+}
+bool Planet::hasBeenVisited() const { /* implement this method */
+}
+bool Planet::hasBeenDiscovered() const { /* implement this method */
+}
+std::string Planet::getAtmosphereComposition()
+    const { /* implement this method */
+}
+double Planet::getTemperatureVariation() const { /* implement this method */
+}
+double Planet::getDistanceFromPlayer() const { /* implement this method */
+}

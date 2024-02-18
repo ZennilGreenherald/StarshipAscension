@@ -1,7 +1,7 @@
 #ifndef PLAYING_FIELD_H
 #define PLAYING_FIELD_H
 
-#include "Spaceship.h"
+#include "../game_logic/Spaceship.h"
 
 #include <vector>
 #include <cstdlib>
@@ -30,7 +30,7 @@ public:
 	{
     	objects.clear();
 	}
-
+	void setPosition(const Vector2D& position);
 	void moveObject(GameObj* obj, int dx, int dy) {
     Vector2D newPos = obj->getPos() + Vector2D(dx, dy);
     if (newPos.x < 0 || newPos.x >= PLAYING_FIELD_WIDTH ||

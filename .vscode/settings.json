@@ -6,20 +6,6 @@
 		"editor.defaultFormatter": "ms-vscode.cpptools",
 		"editor.formatOnSave": true
 	},
-	"C_Cpp.autoAddFileAssociations": true,
-	"C_Cpp.autocompleteAddParentheses": true,
-	"C_Cpp.clang_format_sortIncludes": true,
-	"C_Cpp.codeAnalysis.clangTidy.enabled": true,
-	"C_Cpp.configurationWarnings": "enabled",
-	"C_Cpp.default.browse.limitSymbolsToIncludedHeaders": false,
-	"C_Cpp.default.cStandard": "c11",
-	"C_Cpp.default.compilerPath": "/usr/bin/",
-	"C_Cpp.default.cppStandard": "c++11",
-	"C_Cpp.formatting": "default",
-	"cmake.autoSelectActiveFolder": false,
-	"cmake.configureOnEdit": false,
-	"cmake.configureOnOpen": false,
-	"cmake.sourceDirectory": "${workspaceFolder}",
 	"files.associations": {
 		"*.c": "C",
 		"*.cpp": "cpp",
@@ -31,18 +17,5 @@
 		"*.cpp": "default",
 		"*.h": "default",
 		"*.hpp": "default"
-	},
-	"C_Cpp.loggingLevel": "Error",
-	"C_Cpp.errorSquiggles": "enabledIfIncludesResolve",
-	"C_Cpp.default.includePath": [
-		"${workspaceFolder}/**",
-		"${workspaceFolder}/StarshipAscension/include"
-	],
-	"C_Cpp.default.defines": [],
-	"C_Cpp.default.compileCommands": "build/compile_commands.json",
-	"C_Cpp.default.browse.path": [
-		"${workspaceFolder}/src/include"
-	],
-	"C_Cpp.default.browse.databaseFilename": "${workspaceFolder}/.vscode/browse.vc.db",
-	"C_Cpp.default.configurationProvider": "ms-vscode.cmake-tools"
+	}
 }

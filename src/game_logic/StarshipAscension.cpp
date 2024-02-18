@@ -1,63 +1,40 @@
-#include "./include/StarshipAscension.h"
+#include "../../include/game_logic/StarshipAscension.h"
 
 #include <iostream>
 #include <string>
 
-#include "./include/player.h"
-#include "./include/weapons_manager.h"
-#include "./include/station.h"
+#include "../../include/game_logic/Station.h"
+#include "../../include/game_logic/Weapons.h"
+#include "../../include/game_logic/WeaponsManager.h"
 
-StarshipAscension::StarshipAscension(std::string name, std::string captain, std::string firstOfficer)
-    : name(std::move(name)), captain(std::move(captain)),
-      firstOfficer(std::move(firstOfficer)), maxHealth(100), health(100),
-      ammo(100), fuel(100), alertStatus(0)
-{
-}
+StarshipAscension::StarshipAscension(std::string name, std::string captain,
+                                     std::string firstOfficer)
+    : name(std::move(name)),
+      captain(std::move(captain)),
+      firstOfficer(std::move(firstOfficer)),
+      maxHealth(100),
+      health(100),
+      ammo(100),
+      fuel(100),
+      alertStatus(0) {}
 
-void StarshipAscension::setX(const uint32_t x)
-{
-    m_x = x;
-}
+void StarshipAscension::setX(const uint32_t x) { m_x = x; }
 
-uint32_t StarshipAscension::getX() const
-{
-    return m_x;
-}
+uint32_t StarshipAscension::getX() const { return m_x; }
 
-uint32_t StarshipAscension::getY() const
-{
-    return m_y;
-}
+uint32_t StarshipAscension::getY() const { return m_y; }
 
-void StarshipAscension::setY(const uint32_t y)
-{
-    m_y = y;
-}
+void StarshipAscension::setY(const uint32_t y) { m_y = y; }
 
-int StarshipAscension::getMaxHealth() const
-{
-    return maxHealth;
-}
+int StarshipAscension::getMaxHealth() const { return maxHealth; }
 
-int StarshipAscension::getHealth() const
-{
-    return health;
-}
+int StarshipAscension::getHealth() const { return health; }
 
-int StarshipAscension::getDamage() const
-{
-    return maxHealth - health;
-}
+int StarshipAscension::getDamage() const { return maxHealth - health; }
 
-std::string StarshipAscension::getName() const
-{
-    return name;
-}
+std::string StarshipAscension::getName() const { return name; }
 
-int StarshipAscension::getFuel() const
-{
-    return fuel;
-}
+int StarshipAscension::getFuel() const { return fuel; }
 
 int StarshipAscension::getAmmo() const { return ammo; }
 
@@ -82,8 +59,8 @@ void StarshipAscension::dock(Station* station) {
 double StarshipAscension::calculateDistance() const {
     // Calculate the distance between the StarshipAscension and the docking port
     // ...
-    // Example: return std::sqrt(std::pow(StarshipAscensionX - dockingPortX, 2) +
-    // std::pow(StarshipAscensionY - dockingPortY, 2));
+    // Example: return std::sqrt(std::pow(StarshipAscensionX - dockingPortX, 2)
+    // + std::pow(StarshipAscensionY - dockingPortY, 2));
     return 0.0;
 }
 
@@ -114,7 +91,8 @@ void StarshipAscension::updateShields() {
     // Access the captain member variable
     std::cout << "Captain " << captain << ", raising shields!" << std::endl;
     // Access the firstOfficer member variable
-    std::cout << "First Officer " << firstOfficer << ", report status!" << std::endl;
+    std::cout << "First Officer " << firstOfficer << ", report status!"
+              << std::endl;
     // Access the name member variable
     std::cout << "Ship name: " << name << std::endl;
     // Update the shields

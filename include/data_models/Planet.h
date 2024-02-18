@@ -8,6 +8,7 @@ class Planet {
 public:
     // Constructor
     Planet(const std::string& name, double distanceFrom, double gravity);
+	 ~Planet();
 
     // Getters
     std::string getName() const;
@@ -15,6 +16,7 @@ public:
     double getDistanceFrom() const;
     double getGravity() const;
     Vector2D getPosition() const;
+	void setPosition(const Vector2D& position);
     std::vector<std::string> getMoons() const;
     double getDayNightCycleLength() const;
     double getOrbitalPeriod() const;
@@ -46,10 +48,11 @@ public:
     double getDistanceFromPlayer() const;
 
 private:
+	Vector2D position;
+	double size;
     std::string m_name;
     double m_distanceFrom;
     double m_gravity;
-    Vector2D position;
     std::vector<std::string> moons;
     double dayNightCycleLength;
     double orbitalPeriod;

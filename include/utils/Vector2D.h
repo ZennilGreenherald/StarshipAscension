@@ -7,7 +7,7 @@
 class Vector2D {
 public:
     // Constructor
-    Vector2D(float x = 0, float y = 0) : m_x(x), m_y(y) {}
+    Vector2D(float x =  0, float y =  0) : m_x(x), m_y(y) {}
 
     // Accessors
     float getX() const { return m_x; }
@@ -17,11 +17,13 @@ public:
     void setX(float x) { m_x = x; }
     void setY(float y) { m_y = y; }
 
-    // Other methods
+    float getY() const;
+
+// Other methods
     float magnitude() const;
     Vector2D normalize() const;
     float dotProduct(const Vector2D& v) const;
-    Vector2D crossProduct(const Vector2D& v) const;
+    float crossProduct(const Vector2D& v) const; // Changed return type to float
 
     // Overloaded operators
     Vector2D& operator+=(const Vector2D& v);
@@ -36,6 +38,10 @@ public:
 
     friend bool operator==(const Vector2D& v1, const Vector2D& v2);
     friend bool operator!=(const Vector2D& v1, const Vector2D& v2);
+
+	std::pair<float, float> getPosition() const {
+        return std::make_pair(x, y);
+    }
 
 private:
     float m_x;

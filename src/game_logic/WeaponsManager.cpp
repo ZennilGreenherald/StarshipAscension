@@ -1,4 +1,5 @@
-#include "include/game_logic/WeaponsManager.h"
+#include "../../include/game_logic/WeaponsManager.h"
+#include "../../include/game_logic/Weapons.h"
 
 #include <string>
 

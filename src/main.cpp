@@ -1,8 +1,9 @@
 #include <iostream>
-#include "include/game_logic/Game.h"
-#include "include/ui/Display.h"
-#include "include/ui/Menu.h"
-#include "include/game_logic/Engine.h"
+
+#include "../../include/game_logic/Engine.h"
+#include "../../include/game_logic/Game.h"
+#include "../../include/ui/Display.h"
+#include "../../include/ui/Menu.h"
 
 using namespace std;
 
@@ -13,8 +14,10 @@ int main() {
     // Initialize the game display
     Display display;
 
+    Game game;
+
     // Initialize the game menu
-    Menu menu;
+    Menu menu(display, game);
 
     // Start the game
     engine.start();
@@ -26,17 +29,13 @@ int main() {
     menu.display();
 
     // Main game loop
-    while (engine.isRunning()) {
-        // Process user input
+    while (true) {
+        menu.displayMenu();
+        menu.handleInput();
         menu.processInput();
-
-        // Update the game state
-        engine.update();
-
-        // Redraw the game display
         display.redraw();
     }
 
     // Exit the game cleanly
-    return  0;
+    return 0;
 }
