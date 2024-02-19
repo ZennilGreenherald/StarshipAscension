@@ -1,8 +1,9 @@
 #ifndef MOVEMENT_H
 #define MOVEMENT_H
 
-#include "StarshipAscension.h"
-#include "PlayingField.h"
+#include "../../include/game_logic/StarshipAscension.h"
+#include "../../include/ui/PlayingField.h"
+#include "../../include/game_logic/Station.h"
 
 class Movement
 {

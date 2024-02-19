@@ -5,7 +5,9 @@ Engine::Engine(int thrust, int fuelConsumptionRate, int maxFuelLevel)
     : m_thrust(thrust),
       m_fuelConsumptionRate(fuelConsumptionRate),
       m_maxFuelLevel(maxFuelLevel),
-      m_isRunning(false) {}
+      m_isRunning(false),
+      m_currentFuelLevel(maxFuelLevel) {
+}  // Initialize m_currentFuelLevel with maxFuelLevel
 
 // Destructor
 Engine::~Engine() {

@@ -1,5 +1,4 @@
 #include "../../include/utils/Vector2D.h"
-
 #include <cmath>
 
 // Accessors
@@ -22,8 +21,8 @@ float Vector2D::dotProduct(const Vector2D& v) const {
     return m_x * v.m_x + m_y * v.m_y;
 }
 
-float Vector2D::crossProduct(const Vector2D& v) const {
-    return m_x * v.m_y - m_y * v.m_x;  // Returns a scalar
+Vector2D Vector2D::crossProduct(const Vector2D& v) const {
+    return Vector2D(m_y * v.m_x - m_x * v.m_y); // Returns a vector
 }
 
 // Overloaded operators

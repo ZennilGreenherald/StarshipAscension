@@ -2,9 +2,8 @@
 #define STARSHIP_ASCENSION_H
 
 #include <string>
-#include "Station.h"
-#include "Weapons.h"
-#include "WeaponsManager.h"
+#include "../../include/game_logic/Station.h"
+#include "../../include/game_logic/Weapons.h"
 
 class StarshipAscension {
 public:

@@ -4,7 +4,11 @@
 #include <string>
 #include <vector>
 
-#include "StarshipAscension.h"
+class StarshipAscension; // Forward declaration for StarshipAscension
+class Station;
+
+#include "../../include/game_logic/StarshipAscension.h"
+#include "../../include/game_logic/Station.h"
 
 class Weapon {
 public:
@@ -27,6 +31,7 @@ public:
     Weapon* findWeapon(std::string name);
     std::vector<Weapon*> getAllWeapons() const;
     void updateWeapons(StarshipAscension& spaceship);
+	void dock(Station* station);
 
 private:
     std::vector<Weapon*> weapons_;

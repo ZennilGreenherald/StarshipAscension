@@ -1,18 +1,37 @@
 #ifndef SPACESHIP_H
 #define SPACESHIP_H
 
-#include "../../include/Shields.h"
-#include "../../include/GameObj.h" // Assuming GameObj is the base class for game objects
+#include "../../include/utils/Vector2D.h" // Include the Vector2D class for position and velocity
+#include "../../include/data_models/Shields.h"  // Include the Shields class for shield functionality
 
-class Spaceship : public GameObj {
+class Spaceship {
 public:
-    Spaceship();
-    ~Spaceship();
+    // Constructor
+    Spaceship(const Vector2D& initialPosition, const Vector2D& initialVelocity, int initialHealth);
 
-    // Other methods...
+    // Getters and setters for position, velocity, and health
+    Vector2D getPosition() const;
+    void setPosition(const Vector2D& newPosition);
+    Vector2D getVelocity() const;
+    void setVelocity(const Vector2D& newVelocity);
+    int getHealth() const;
+    void setHealth(int newHealth);
+
+    // Methods for spaceship actions, such as moving and firing weapons
+    void move();
+    void fireWeapon();
+
+    // Shield methods
+    void raiseShields();
+    void lowerShields();
+    bool areShieldsUp() const;
+    int getShieldHealth() const;
 
 private:
-    Shields shields; // Include the Shields class
+    Vector2D position;
+    Vector2D velocity;
+    int health;
+    Shields shields; // Instance of the Shields class
 };
 
 #endif // SPACESHIP_H

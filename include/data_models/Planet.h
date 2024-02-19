@@ -4,6 +4,8 @@
 #include <string>
 #include <vector>
 
+#include "../../include/utils/Vector2D.h"
+
 class Planet {
 public:
     // Constructor
@@ -16,7 +18,6 @@ public:
     double getDistanceFrom() const;
     double getGravity() const;
     Vector2D getPosition() const;
-	void setPosition(const Vector2D& position);
     std::vector<std::string> getMoons() const;
     double getDayNightCycleLength() const;
     double getOrbitalPeriod() const;
@@ -59,6 +60,12 @@ private:
     double axialTilt;
     std::string seasons;
     double habitabilityIndex;
+	int resourceCount;
+    bool visited;
+    bool discovered;
+    std::string atmosphereComposition;
+    double temperatureVariation;
+    double distanceFromPlayer;
 };
 
 #endif // PLANET_H

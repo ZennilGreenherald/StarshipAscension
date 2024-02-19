@@ -5,11 +5,12 @@ class Engine {
 public:
     // Constructor
     Engine(int thrust, int fuelConsumptionRate, int maxFuelLevel);
-	~Engine();
+    ~Engine();
+
     // Methods
     void start();
     void stop();
-	void accelerate();
+    void accelerate();
     void decelerate();
     int calculateFuelUsage();
     bool isOperational() const;
@@ -29,6 +30,7 @@ private:
     int m_fuelConsumptionRate;
     int m_maxFuelLevel;
     bool m_isRunning;
+    int m_currentFuelLevel; // Declare the missing member variable
 };
 
 #endif // ENGINE_H

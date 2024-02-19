@@ -1,8 +1,8 @@
-#include "include/game_logic/Movement.h"
+#include "../../include/game_logic/Movement.h"
 
 #include "../../include/ui/PlayingField.h"
-#include "include/game_logic/StarshipAscension.h"
-#include "include/utils/Vector2D.h"
+#include "../../include/game_logic/StarshipAscension.h"
+#include "../../include/utils/Vector2D.h"
 
 Movement::Movement()
 	: m_x(0), m_y(0)

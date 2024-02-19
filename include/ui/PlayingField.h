@@ -1,7 +1,9 @@
 #ifndef PLAYING_FIELD_H
 #define PLAYING_FIELD_H
 
-#include "../game_logic/Spaceship.h"
+#include "../../include/game_logic/Spaceship.h"
+#include "../../include/utils/Vector2D.h"
+#include "../../include/game_logic/GameObj.h"
 
 #include <vector>
 #include <cstdlib>
@@ -32,7 +34,7 @@ public:
 	}
 	void setPosition(const Vector2D& position);
 	void moveObject(GameObj* obj, int dx, int dy) {
-    Vector2D newPos = obj->getPos() + Vector2D(dx, dy);
+    Vector2D newPos = obj->getPosition() + Vector2D(dx, dy);
     if (newPos.x < 0 || newPos.x >= PLAYING_FIELD_WIDTH ||
         newPos.y < 0 || newPos.y >= PLAYING_FIELD_HEIGHT) {
         return;
@@ -41,7 +43,7 @@ public:
     if (otherObj && otherObj != obj) {
         return;
     }
-    obj->setPos(newPos);
+    obj->setPosition(newPos);
 	}
 	bool hasObject(const std::string& name);
 
