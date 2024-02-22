@@ -2,8 +2,8 @@
 #define MENU_H
 
 #include <string>
-#include "Display.h" // Assuming Display.h is the header for your display class
-#include "Game.h" // Assuming Game.h is the header for your game class
+#include "../../include/ui/Display.h" // Assuming Display.h is the header for your display class
+#include "../../include/game_logic/Game.h" // Assuming Game.h is the header for your game class
 
 class Menu {
 public:

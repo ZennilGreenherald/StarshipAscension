@@ -4,75 +4,70 @@
 #include <cstdint>
 #include <string>
 
-#include "vector2d.h"
+#include "../../include/utils/Vector2D.h"
 
-class Serializer
-{
-private:
-	unsigned char* data;
-	size_t size;
-	size_t offset;
+class Serializer {
+  private:
+    unsigned char* data;
+    size_t size;
+    size_t offset;
 
-public:
-	~Serializer();
+  public:
+    ~Serializer();
 
-	Serializer();
+    Serializer();
 
-	Serializer(const size_t size);
+    Serializer(const size_t size);
 
-	Serializer(const unsigned char* data, const size_t size);
+    Serializer(const unsigned char* data, const size_t size);
 
-	Serializer(Serializer&& ser) noexcept;
+    Serializer(Serializer&& ser) noexcept;
 
-	Serializer(const Serializer& ser);
+    Serializer(const Serializer& ser);
 
-	Serializer& operator=(Serializer&& ser) noexcept;
+    Serializer& operator=(Serializer&& ser) noexcept;
 
-	Serializer& operator=(const Serializer& ser);
+    Serializer& operator=(const Serializer& ser);
 
-	operator unsigned char*() const;
+    operator unsigned char*() const;
 
-	void Release();
+    void Release();
 
-	void setSize(const size_t newSize);
+    void setSize(const size_t newSize);
 
-	size_t getSize() const;
+    size_t getSize() const;
 
-	void setOffset(const size_t newOffset);
+    void setOffset(const size_t newOffset);
 
-	size_t getOffset() const;
+    size_t getOffset() const;
 
-	void reset();
+    void reset();
 
-	template<typename T>
-	void write(const T in)
-	{
-		if (sizeof(T) > size - offset)
-			setSize(size + sizeof(T) - size - offset);
+    template <typename T>
+    void write(const T in) {
+        if (sizeof(T) > size - offset)
+            setSize(size + sizeof(T) - size - offset);
 
-		*(T*)&data[offset] = in;
-		offset += sizeof(T);
-	}
+        *(T*)&data[offset] = in;
+        offset += sizeof(T);
+    }
 
-	void writeStr(const std::string& str);
+    void writeStr(const std::string& str);
 
-	void writeVec2D(const Vector2D& vec);
+    void writeVec2D(const Vector2D& vec);
 
-	template<typename T>
-	T read()
-	{
-		if (sizeof(T) > size - offset)
-			return {};
+    template <typename T>
+    T read() {
+        if (sizeof(T) > size - offset) return {};
 
-		T result = *(T*)&data[offset];
-		offset += sizeof(T);
-		return result;
-	}
+        T result = *(T*)&data[offset];
+        offset += sizeof(T);
+        return result;
+    }
 
-	std::string readStr();
+    std::string readStr();
 
-	Vector2D readVec2D();
+    Vector2D readVec2D();
 };
-
 
 #endif

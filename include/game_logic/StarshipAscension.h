@@ -2,12 +2,14 @@
 #define STARSHIP_ASCENSION_H
 
 #include <string>
+
 #include "../../include/game_logic/Station.h"
 #include "../../include/game_logic/Weapons.h"
 
 class StarshipAscension {
-public:
-    StarshipAscension(std::string name, std::string captain, std::string firstOfficer);
+  public:
+    StarshipAscension(std::string name, std::string captain,
+                      std::string firstOfficer);
 
     void setX(const uint32_t x);
     uint32_t getX() const;
@@ -36,7 +38,7 @@ public:
     void updateViewscreens();
     void updateSickbayStatus();
 
-private:
+  private:
     std::string name;
     std::string captain;
     std::string firstOfficer;
@@ -50,4 +52,4 @@ private:
     // Add any other private member variables as needed
 };
 
-#endif // STARSHIP_ASCENSION_H
+#endif  // STARSHIP_ASCENSION_H

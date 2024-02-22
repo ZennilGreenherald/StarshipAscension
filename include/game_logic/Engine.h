@@ -2,7 +2,7 @@
 #define ENGINE_H
 
 class Engine {
-public:
+  public:
     // Constructor
     Engine(int thrust, int fuelConsumptionRate, int maxFuelLevel);
     ~Engine();
@@ -25,12 +25,12 @@ public:
     void setFuelConsumptionRate(int fuelConsumptionRate);
     void setCurrentFuelLevel(int currentFuelLevel);
 
-private:
+  private:
     int m_thrust;
     int m_fuelConsumptionRate;
     int m_maxFuelLevel;
     bool m_isRunning;
-    int m_currentFuelLevel; // Declare the missing member variable
+    int m_currentFuelLevel;  // Declare the missing member variable
 };
 
-#endif // ENGINE_H
+#endif  // ENGINE_H

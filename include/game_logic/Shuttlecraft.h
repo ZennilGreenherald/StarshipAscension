@@ -1,10 +1,10 @@
 #ifndef SHUTTLECRAFT_H
 #define SHUTTLECRAFT_H
 
-#include "Spaceship.h"
+#include "../../include/game_logic/Spaceship.h"
 
 class Shuttlecraft : public Spaceship {
-public:
+  public:
     Shuttlecraft();
     ~Shuttlecraft();
 
@@ -18,4 +18,4 @@ public:
     // void fireWeapon() override;
 };
 
-#endif // SHUTTLECRAFT_H
+#endif  // SHUTTLECRAFT_H

@@ -1,7 +1,8 @@
 #include "../../include/game_logic/WeaponsManager.h"
-#include "../../include/game_logic/Weapons.h"
 
 #include <string>
+
+#include "../../include/game_logic/Weapons.h"
 
 Weapon::Weapon(std::string name, int damage, int level)
     : name_{name}, damage_{damage}, level_{level} {}

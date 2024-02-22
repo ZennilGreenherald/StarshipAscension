@@ -1,13 +1,14 @@
 #ifndef SPACESHIP_H
 #define SPACESHIP_H
 
-#include "../../include/utils/Vector2D.h" // Include the Vector2D class for position and velocity
 #include "../../include/data_models/Shields.h"  // Include the Shields class for shield functionality
+#include "../../include/utils/Vector2D.h"  // Include the Vector2D class for position and velocity
 
 class Spaceship {
-public:
+  public:
     // Constructor
-    Spaceship(const Vector2D& initialPosition, const Vector2D& initialVelocity, int initialHealth);
+    Spaceship(const Vector2D& initialPosition, const Vector2D& initialVelocity,
+              int initialHealth);
 
     // Getters and setters for position, velocity, and health
     Vector2D getPosition() const;
@@ -27,11 +28,11 @@ public:
     bool areShieldsUp() const;
     int getShieldHealth() const;
 
-private:
+  private:
     Vector2D position;
     Vector2D velocity;
     int health;
-    Shields shields; // Instance of the Shields class
+    Shields shields;  // Instance of the Shields class
 };
 
-#endif // SPACESHIP_H
+#endif  // SPACESHIP_H

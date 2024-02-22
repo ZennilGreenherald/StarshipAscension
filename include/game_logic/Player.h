@@ -5,11 +5,11 @@
 #include <vector>
 
 class Player {
-public:
+  public:
     // Constructor
-	Player() {}
+    Player() {}
     Player(std::string name);
-int score() const;
+    int score() const;
     // Getters
     std::string getName() const;
     int getHealth() const;
@@ -22,7 +22,7 @@ int score() const;
     std::vector<std::string> getEquipment() const;
 
     // Setters
-	void setName(std::string name);
+    void setName(std::string name);
     void setHealth(int health);
     void setScore(int score);
     void setDamage(int damage);
@@ -35,7 +35,7 @@ int score() const;
     void addEquipment(std::string equipment);
     void removeEquipment(std::string equipment);
 
-private:
+  private:
     std::string m_name;
     int m_health;
     int m_score;
@@ -47,4 +47,4 @@ private:
     std::vector<std::string> m_equipment;
 };
 
-#endif // PLAYER_H
+#endif  // PLAYER_H

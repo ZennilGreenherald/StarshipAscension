@@ -2,28 +2,30 @@
 #define MOVEMENT_H
 
 #include "../../include/game_logic/StarshipAscension.h"
-#include "../../include/ui/PlayingField.h"
 #include "../../include/game_logic/Station.h"
+#include "../../include/ui/PlayingField.h"
 
-class Movement
-{
-public:
+class Movement {
+  public:
     Movement();
 
-    void moveUp(StarshipAscension& spaceship, uint32_t playingField[][PLAYING_FIELD_WIDTH]);
-    void moveLeft(StarshipAscension& spaceship, uint32_t playingField[][PLAYING_FIELD_WIDTH]);
-    void moveDown(StarshipAscension& spaceship, uint32_t playingField[][PLAYING_FIELD_WIDTH]);
-    void moveRight(StarshipAscension& spaceship, uint32_t playingField[][PLAYING_FIELD_WIDTH]);
+    void moveUp(StarshipAscension& spaceship,
+                uint32_t playingField[][PLAYING_FIELD_WIDTH]);
+    void moveLeft(StarshipAscension& spaceship,
+                  uint32_t playingField[][PLAYING_FIELD_WIDTH]);
+    void moveDown(StarshipAscension& spaceship,
+                  uint32_t playingField[][PLAYING_FIELD_WIDTH]);
+    void moveRight(StarshipAscension& spaceship,
+                   uint32_t playingField[][PLAYING_FIELD_WIDTH]);
 
     uint32_t getX() const;
     void setX(const uint32_t x);
     uint32_t getY() const;
     void setY(const uint32_t y);
 
-private:
+  private:
     uint32_t m_x;
     uint32_t m_y;
-
 };
 
-#endif // MOVEMENT_H
+#endif  // MOVEMENT_H

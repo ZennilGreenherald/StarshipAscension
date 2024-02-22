@@ -7,10 +7,10 @@
 #include "../../include/utils/Vector2D.h"
 
 class Planet {
-public:
+  public:
     // Constructor
     Planet(const std::string& name, double distanceFrom, double gravity);
-	 ~Planet();
+    ~Planet();
 
     // Getters
     std::string getName() const;
@@ -48,9 +48,9 @@ public:
     double getTemperatureVariation() const;
     double getDistanceFromPlayer() const;
 
-private:
-	Vector2D position;
-	double size;
+  private:
+    Vector2D position;
+    double size;
     std::string m_name;
     double m_distanceFrom;
     double m_gravity;
@@ -60,7 +60,7 @@ private:
     double axialTilt;
     std::string seasons;
     double habitabilityIndex;
-	int resourceCount;
+    int resourceCount;
     bool visited;
     bool discovered;
     std::string atmosphereComposition;
@@ -68,4 +68,4 @@ private:
     double distanceFromPlayer;
 };
 
-#endif // PLANET_H
+#endif  // PLANET_H
