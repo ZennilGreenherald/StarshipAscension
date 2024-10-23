@@ -2,10 +2,11 @@
 #define SHIELDSMANAGER_H
 
 #include <vector>
-#include "../../include/data_models/Shields.h" // Assuming Shield is a class representing a shield
+
+#include "../../include/data_models/Shields.h"  // Assuming Shield is a class representing a shield
 
 class ShieldsManager {
-public:
+  public:
     ShieldsManager();
     ~ShieldsManager();
 
@@ -23,9 +24,9 @@ public:
 
     // Other methods as needed for managing shields
 
-private:
-    std::vector<Shields*> shields; // A collection of pointers to shields
+  private:
+    std::vector<Shields*> shields;  // A collection of pointers to shields
     // Other private members as needed for the shields manager
 };
 
-#endif // SHIELDS_MANAGER_H
+#endif  // SHIELDS_MANAGER_H

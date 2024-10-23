@@ -1,3 +1,5 @@
+// include/game_logic/Movement.h
+
 #ifndef MOVEMENT_H
 #define MOVEMENT_H
 
@@ -9,14 +11,10 @@ class Movement {
   public:
     Movement();
 
-    void moveUp(StarshipAscension& spaceship,
-                uint32_t playingField[][PLAYING_FIELD_WIDTH]);
-    void moveLeft(StarshipAscension& spaceship,
-                  uint32_t playingField[][PLAYING_FIELD_WIDTH]);
-    void moveDown(StarshipAscension& spaceship,
-                  uint32_t playingField[][PLAYING_FIELD_WIDTH]);
-    void moveRight(StarshipAscension& spaceship,
-                   uint32_t playingField[][PLAYING_FIELD_WIDTH]);
+    void moveUp(StarshipAscension& spaceship, uint32_t* playingField, uint32_t width, uint32_t height);
+    void moveLeft(StarshipAscension& spaceship, uint32_t* playingField, uint32_t width, uint32_t height);
+    void moveDown(StarshipAscension& spaceship, uint32_t* playingField, uint32_t width, uint32_t height);
+    void moveRight(StarshipAscension& spaceship, uint32_t* playingField, uint32_t width, uint32_t height);
 
     uint32_t getX() const;
     void setX(const uint32_t x);
@@ -28,4 +26,4 @@ class Movement {
     uint32_t m_y;
 };
 
-#endif  // MOVEMENT_H
+#endif // MOVEMENT_H

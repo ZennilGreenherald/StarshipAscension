@@ -1,31 +1,31 @@
 #ifndef VECTOR2D_H
 #define VECTOR2D_H
 
-#include <cmath>
 #include <algorithm>
+#include <cmath>
 
 class Vector2D {
-public:
+  public:
+    float x;  // x-coordinate
+    float y;  // y-coordinate
 
-	float x; // x-coordinate
-    float y; // y-coordinate
-	
     // Constructor
-    Vector2D(float x =   0, float y =   0) : m_x(x), m_y(y) {}
+    Vector2D(float x = 0, float y = 0) : m_x(x), m_y(y) {}
 
     // Accessors
-    float getX() const { return m_x; }
-    float getY() const { return m_y; }
+    float getX() const;
+    float getY() const;
 
     // Mutators
-    void setX(float x) { m_x = x; }
-    void setY(float y) { m_y = y; }
+    void setX(float x);
+    void setY(float y);
 
     // Other methods
     float magnitude() const;
     Vector2D normalize() const;
     float dotProduct(const Vector2D& v) const;
-    Vector2D crossProduct(const Vector2D& v) const; // Corrected return type to Vector2D
+    Vector2D crossProduct(
+        const Vector2D& v) const;  // Corrected return type to Vector2D
 
     // Overloaded operators
     Vector2D& operator+=(const Vector2D& v);
@@ -41,9 +41,9 @@ public:
     friend bool operator==(const Vector2D& v1, const Vector2D& v2);
     friend bool operator!=(const Vector2D& v1, const Vector2D& v2);
 
-private:
+  private:
     float m_x;
     float m_y;
 };
 
-#endif // VECTOR2D_H
+#endif  // VECTOR2D_H

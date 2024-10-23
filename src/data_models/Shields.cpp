@@ -1,8 +1,15 @@
 #include "../../include/data_models/Shields.h"
 
-Shields::Shields(int initialHealth) : health(initialHealth) {}
+int Shields::lastId_ = 0;
+
+Shields::Shields(int initialHealth)
+    : health(initialHealth), shieldId_(++lastId_) {}
 
 Shields::~Shields() {}
+
+int Shields::getId() const {
+    return shieldId_;  // Assuming shieldId_ is a member variable
+}
 
 bool Shields::areUp() const { return health > 0; }
 

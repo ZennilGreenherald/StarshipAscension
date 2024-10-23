@@ -1,16 +1,17 @@
-#include "../../include/ui/PlayingField.h"  // Include the PlayingField header file
+// src/ui/PlayingField.cpp
+
+#include "../../include/ui/PlayingField.h"
 
 #include <iostream>
 #include <string>
 
-#include "../../include/ui/Display.h"  // Include the Display header file
+#include "../../include/ui/Display.h"
 
 // Constants for the terminal size
 constexpr int TERMINAL_WIDTH = 207;
 constexpr int TERMINAL_HEIGHT = 56;
 
 PlayingField::PlayingField() {
-    // Initialize the playing field based on the terminal size
     initializeField(TERMINAL_WIDTH, TERMINAL_HEIGHT);
 }
 
@@ -32,14 +33,10 @@ void PlayingField::initializeField(int width, int height) {
     }
 }
 
-// ... (rest of your PlayingField class implementation)
-
 void PlayingField::display() const {
-    Display display;
-
     std::string fieldString;
 
-    // Convert the  2D field vector to a string
+    // Convert the 2D field vector to a string
     for (const auto &row : field) {
         for (const auto &cell : row) {
             fieldString += cell;

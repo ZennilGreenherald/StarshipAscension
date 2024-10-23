@@ -5,7 +5,7 @@
 #include <string>
 
 class Weapons {
-public:
+  public:
     Weapons(const std::string& name, int id, int ammo, int damage, float range);
     // ... other properties and methods
 
@@ -14,7 +14,7 @@ public:
     int getDamage() const;
     float getRange() const;
 
-private:
+  private:
     std::string name;
     int id;
     int ammo;
@@ -22,4 +22,4 @@ private:
     float range;
 };
 
-#endif // WEAPONS_H
+#endif  // WEAPONS_H

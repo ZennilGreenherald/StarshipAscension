@@ -11,7 +11,6 @@
 			"intelliSenseMode": "linux-gcc-x86",
 			"includePath": [
 				"${workspaceFolder}/**",
-				"${workspaceFolder}/src/include",
 				"/usr/local/include",
 				"/usr/include/x86_64-linux-gnu",
 				"/usr/include"
@@ -23,7 +22,6 @@
 			"compileCommands": "build/compile_commands.json",
 			"browse": {
 				"path": [
-					"${workspaceFolder}/src/include",
 					"${workspaceFolder}/**",
 					"/usr/local/include",
 					"/usr/include/x86_64-linux-gnu",

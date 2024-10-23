@@ -4,7 +4,7 @@
 class Engine {
   public:
     // Constructor
-    Engine(int thrust, int fuelConsumptionRate, int maxFuelLevel);
+    Engine(int thrust, int fuelConsumptionRate, int maxFuelLevel, int initialFuelLevel = 100);
     ~Engine();
 
     // Methods

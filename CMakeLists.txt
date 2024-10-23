@@ -7,18 +7,17 @@ project(StarshipAscension
 
 		include(CTest)
 
-set(CMAKE_C_STANDARD 17)
+set(CMAKE_C_STANDARD 11)
 set(CMAKE_CXX_STANDARD 14)
-
-enable_language(CXX)
-enable_language(C)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS OFF)
 
 if (${CMAKE_HOST_SYSTEM_NAME} STREQUAL "Linux")
 	set(CMAKE_C_COMPILER /usr/bin/gcc)
 	set(CMAKE_C_LINKER "ld")
 	set(CMAKE_CXX_LINKER "ld")
 	set(CMAKE_EXE_LINKER_FLAGS "-g -s")
-	set(CMAKE_LINK_FLAGS "${CMAKE_LINK_FLAGS} -e")
+	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -Wpedantic")
 	set(CMAKE_CXX_FLAGS "-g -Wall")
 	set(CMAKE_C_FLAGS "-g -Wall")
 	set(CMAKE_C_FLAGS_DEBUG "-g")
@@ -101,3 +100,5 @@ enable_testing()
 target_include_directories(starship PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/src/)
 target_include_directories(starship PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/include)
 target_include_directories(starship PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/src/include)
+target_include_directories(starship PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/src/utils)
+target_include_directories(starship PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/include/utils)

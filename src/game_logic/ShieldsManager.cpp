@@ -12,14 +12,21 @@ ShieldsManager::~ShieldsManager() {
     // Destructor code for ShieldsManager
 }
 
-void ShieldsManager::addShield(Shield* shield) { shields.push_back(shield); }
+void ShieldsManager::addShield(Shields* shield) { shields.push_back(shield); }
 
-void ShieldsManager::removeShield(Shield* shield) {
+void ShieldsManager::removeShield(Shields* shield) {
     // Implementation to remove a shield from the manager
 }
 
-Shield* ShieldsManager::getShield(int id) {
+Shields* ShieldsManager::getShield(int id) {
     // Implementation to get a shield by its ID
+    for (auto shield : shields) {
+        if (shield->getId() == id) {
+            return shield;
+        }
+    }
+    // If shield not found, throw exception
+    throw std::runtime_error("Shield not found");
 }
 
 void ShieldsManager::updateShields() {

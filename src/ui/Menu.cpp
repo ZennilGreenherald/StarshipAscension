@@ -1,4 +1,5 @@
 #include "../../include/ui/Menu.h"
+
 #include <iostream>
 
 Menu::Menu(Display& displayRef, Game& gameRef)
@@ -22,19 +23,19 @@ void Menu::handleInput() {
     std::cin >> choice;
 
     switch (choice) {
-        case  1:
+        case 1:
             startGame();
             break;
-        case  2:
+        case 2:
             selectPlayers();
             break;
-        case  3:
+        case 3:
             loadGame();
             break;
-        case  4:
+        case 4:
             saveGame();
             break;
-        case  5:
+        case 5:
             exitGame();
             break;
         default:

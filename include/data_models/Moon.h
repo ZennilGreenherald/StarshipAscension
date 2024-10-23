@@ -4,7 +4,7 @@
 #include <string>
 
 class Moon {
-public:
+  public:
     // Constructor
     Moon(const std::string& name, double distanceFrom, double gravity);
 
@@ -18,10 +18,10 @@ public:
     void setDistanceFrom(double distanceFrom);
     void setGravity(double gravity);
 
-private:
+  private:
     std::string m_name;
     double m_distanceFrom;
     double m_gravity;
 };
 
-#endif // MOON_H
+#endif  // MOON_H

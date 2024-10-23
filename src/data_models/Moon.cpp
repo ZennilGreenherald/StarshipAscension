@@ -10,5 +10,7 @@ double Moon::getGravity() const { return m_gravity; }
 
 // Setters
 void Moon::setName(const std::string& name) { m_name = name; }
-void Moon::setDistanceFrom(double distanceFrom) { m_distanceFrom = distanceFrom; }
+void Moon::setDistanceFrom(double distanceFrom) {
+    m_distanceFrom = distanceFrom;
+}
 void Moon::setGravity(double gravity) { m_gravity = gravity; }

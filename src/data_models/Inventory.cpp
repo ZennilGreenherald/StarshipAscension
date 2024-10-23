@@ -1,5 +1,6 @@
 // Inventory.cpp
 #include "../../include/data_models/Inventory.h"
+
 #include <iostream>
 
 void Inventory::addItem(const std::string& itemName, int quantity) {

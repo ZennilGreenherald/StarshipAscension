@@ -11,12 +11,12 @@ struct Item {
 };
 
 class Inventory {
-public:
+  public:
     void addItem(const std::string& itemName, int quantity);
     void removeItem(const std::string& itemName, int quantity);
     void listItems() const;
 
-private:
+  private:
     std::vector<Item> items;
 };
 

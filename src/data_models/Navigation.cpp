@@ -2,12 +2,20 @@
 
 #include <iostream>
 
-Navigation::Navigation() {
-    // Constructor implementation
+#include "../../include/game_logic/Engine.h"
+#include "../../include/game_logic/Movement.h"
+#include "../../include/utils/Vector2D.h"
+
+// Constructor for Navigation
+Navigation::Navigation()
+    : engine(10, 5, 100, 100),  // Replace with actual values as needed
+      currentPosition(),
+      destination() {
+    // Constructor implementation (if needed)
 }
 
 Navigation::~Navigation() {
-    // Destructor implementation
+    // Destructor implementation (if needed)
 }
 
 void Navigation::setDestination(Position destination) {
@@ -16,10 +24,8 @@ void Navigation::setDestination(Position destination) {
 
 void Navigation::calculatePath() {
     // Logic to calculate the path to the destination
-    // Using Vector2D and other relevant data
 }
 
 void Navigation::initiateMovement() {
     // Logic to initiate movement based on the calculated path
-    // Using Movement and Engine classes
 }

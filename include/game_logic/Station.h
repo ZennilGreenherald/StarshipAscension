@@ -3,10 +3,11 @@
 
 #include <string>
 #include <vector>
-#include "../../include/game_logic/Spaceship.h" // Assuming Spaceship.h is the header for your spaceship class
+
+class Spaceship;
 
 class Station {
-public:
+  public:
     Station(const std::string& name);
     ~Station();
 
@@ -22,9 +23,9 @@ public:
     // Method to get the list of spaceships docked at the station
     const std::vector<Spaceship*>& getDockedSpaceships() const;
 
-private:
+  private:
     std::string name;
     std::vector<Spaceship*> dockedSpaceships;
 };
 
-#endif // STATION_H
+#endif  // STATION_H

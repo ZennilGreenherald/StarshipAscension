@@ -4,10 +4,11 @@
 #include <string>
 
 class Shields {
-public:
+  public:
     Shields(int initialHealth);
     ~Shields();
 
+    int getId() const;
     bool areUp() const;
     void raise();
     void lower();
@@ -16,8 +17,10 @@ public:
     int getHealth() const;
     std::string getStatus() const;
 
-private:
+  private:
     int health;
+    static int lastId_;
+    int shieldId_;
 };
 
-#endif // SHIELDS_H
+#endif  // SHIELDS_H

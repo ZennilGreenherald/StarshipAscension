@@ -7,6 +7,15 @@
 
 class Menu {
 public:
+    enum class Action {
+      StartGame,
+      SelectPlayers,
+      LoadGame,
+      SaveGame,
+      ExitGame,
+      Invalid
+    };
+
     Menu(Display& display, Game& game);
     ~Menu();
 

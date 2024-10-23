@@ -2,11 +2,11 @@
 #define STARBASE_H
 
 class Starbase {
-public:
+  public:
     // Constructor
     Starbase();
 
     // Other methods...
 };
 
-#endif // STARBASE_H
+#endif  // STARBASE_H

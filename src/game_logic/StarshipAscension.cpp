@@ -1,8 +1,8 @@
 #include "../../include/game_logic/StarshipAscension.h"
 
+#include <algorithm>
 #include <iostream>
 #include <string>
-#include <iostream>
 
 #include "../../include/game_logic/Station.h"
 #include "../../include/game_logic/Weapons.h"
@@ -13,11 +13,18 @@ StarshipAscension::StarshipAscension(std::string name, std::string captain,
     : name(std::move(name)),
       captain(std::move(captain)),
       firstOfficer(std::move(firstOfficer)),
+      connOfficer("Lt. Commander"),  // Initialize with default value
+      weaponsOfficer("Lt."),         // Initialize with default value
       maxHealth(100),
       health(100),
       ammo(100),
       fuel(100),
-      alertStatus(0) {}
+      shields(100),  // Initialize shields
+      alertStatus(0),
+      engine(100),  // Initialize engine status
+      weapon(100),  // Initialize weapon status
+      maxAmmo(10),
+      maxFuel(1000) {}
 
 void StarshipAscension::setX(const uint32_t x) { m_x = x; }
 
@@ -38,6 +45,8 @@ std::string StarshipAscension::getName() const { return name; }
 int StarshipAscension::getFuel() const { return fuel; }
 
 int StarshipAscension::getAmmo() const { return ammo; }
+
+int StarshipAscension::getShields() const { return shields; }
 
 void StarshipAscension::repair(int amount) {
     health = std::min(health + amount, maxHealth);
@@ -89,19 +98,26 @@ void printShipInfo(std::string name, std::string captain,
 }
 
 void StarshipAscension::updateShields() {
-    // Access the captain member variable
     std::cout << "Captain " << captain << ", raising shields!" << std::endl;
-    // Access the firstOfficer member variable
-    std::cout << "First Officer " << firstOfficer << ", report status!"
-              << std::endl;
-    // Access the name member variable
+    std::cout << "First Officer " << firstOfficer << ", report " << shields
+              << " status!" << std::endl;
     std::cout << "Ship name: " << name << std::endl;
-    // Update the shields
-    // ...
+}
+
+void StarshipAscension::updateAlertStatus() {
+    std::cout << "Captain " << captain << ", Red Alert!" << std::endl;
+    std::cout << "First Officer " << firstOfficer << ", reports " << alertStatus
+              << " status!" << std::endl;
 }
 
 void StarshipAscension::updateEngineStatus() {
-    // TODO: Implement engine status update logic
+    std::cout << "Conn " << connOfficer << ", reports " << engine << " status!"
+              << std::endl;
+}
+
+void StarshipAscension::updateWeaponStatus() {
+    std::cout << "Weapons " << weaponsOfficer << ", reports " << weapon
+              << " status!" << std::endl;
 }
 
 void StarshipAscension::updateLifeSupportStatus() {
@@ -133,5 +149,9 @@ void StarshipAscension::updateViewscreens() {
 }
 
 void StarshipAscension::updateSickbayStatus() {
+    // TODO: Implement sickbay status update logic
+}
+
+void StarshipAscension::updateTransporterStatus() {
     // TODO: Implement sickbay status update logic
 }

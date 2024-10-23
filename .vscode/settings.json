@@ -7,10 +7,14 @@
 		"editor.formatOnSave": true
 	},
 	"files.associations": {
+		"*.html": "html",
+		"*.asm": "asm-intel-x86-generic",
+		"*.py": "python",
 		"*.c": "C",
 		"*.cpp": "cpp",
 		"*.h": "C",
-		"*.hpp": "cpp"
+		"*.hpp": "cpp",
+		"iostream": "cpp"
 	},
 	"workbench.editorAssociations": {
 		"*.c": "default",
