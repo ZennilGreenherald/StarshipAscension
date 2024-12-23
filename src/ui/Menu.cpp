@@ -1,6 +1,8 @@
 #include "../../include/ui/Menu.h"
 
 #include <iostream>
+#include <limits>
+#include <stdexcept>
 
 Menu::Menu(Display& displayRef, Game& gameRef)
     : display(displayRef), game(gameRef) {}
@@ -8,7 +10,6 @@ Menu::Menu(Display& displayRef, Game& gameRef)
 Menu::~Menu() {}
 
 void Menu::displayMenu() {
-    // Use the Display class to print the menu options
     display.clearScreen();
     display.printLine("1. Start Game");
     display.printLine("2. Select Players");
@@ -18,53 +19,56 @@ void Menu::displayMenu() {
     display.printLine("Enter your choice: ");
 }
 
-void Menu::handleInput() {
+Menu::Action Menu::handleInput() {
     int choice;
-    std::cin >> choice;
+    while (!(std::cin >> choice) || choice < 1 || choice > 5) {
+        std::cout << "Invalid choice. Please try again." << std::endl;
+        std::cin.clear();  // Clear the error flag
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(),
+                        '\n');  // Ignore the rest of the line
+    }
 
     switch (choice) {
         case 1:
-            startGame();
-            break;
+            return Menu::Action::StartGame;
         case 2:
-            selectPlayers();
-            break;
+            return Menu::Action::SelectPlayers;
         case 3:
-            loadGame();
-            break;
+            return Menu::Action::LoadGame;
         case 4:
-            saveGame();
-            break;
+            return Menu::Action::SaveGame;
         case 5:
-            exitGame();
-            break;
+            return Menu::Action::ExitGame;
         default:
             std::cout << "Invalid choice. Please try again." << std::endl;
-            break;
+            return Menu::Action::Invalid;
     }
 }
 
-void Menu::startGame() {
-    // Start the game
-    game.start();
-}
-
-void Menu::selectPlayers() {
-    // Select the number of players
-    // Implement the logic to select players
-}
-
-void Menu::loadGame() {
-    // Load the game state
-    // Implement the logic to load the game
-}
-
-void Menu::saveGame() {
-    // Save the game state
-    // Implement the logic to save the game
-}
-
-void Menu::exitGame() {
-    // Exit the game
-    // Implement the logic to exit the game
+void Menu::handleMenuAction(Menu::Action action) {
+    switch (action) {
+        case Menu::Action::StartGame:
+            game.handleInput(Game::InputType::None,
+                             0);  // No specific input required
+            break;
+        case Menu::Action::SelectPlayers:
+            game.handleInput(Game::InputType::PlayerMovement,
+                             0);  // Implement player selection logic
+            break;
+        case Menu::Action::LoadGame:
+            game.handleInput(Game::InputType::None,
+                             0);  // No specific input required
+            break;
+        case Menu::Action::SaveGame:
+            game.handleInput(Game::InputType::None,
+                             0);  // No specific input required
+            break;
+        case Menu::Action::ExitGame:
+            game.handleInput(Game::InputType::None,
+                             0);  // No specific input required
+            break;
+        default:
+            // Handle invalid action
+            break;
+    }
 }

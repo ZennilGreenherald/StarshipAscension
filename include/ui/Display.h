@@ -9,12 +9,11 @@ class Game;  // Forward declaration
 
 class Display {
 public:
-  // Public methods to interact with the display
   void show();
-  void render(const Game::GameState& gameState);
-  void clearScreen();  // Add declaration
-  void printLine(const std::string& text);  // Assuming GameState is a struct/class in Game.h
-  // ... other methods for display functionality ...
+    typedef GameState GameStateType;
+    void render(const GameState& gameState);
+    void clearScreen();
+    void printLine(const std::string& text);
 
 private:
   // Private members for display implementation details

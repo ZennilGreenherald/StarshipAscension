@@ -91,6 +91,7 @@ add_executable(starship
     src/ui/PlayingField.cpp
     src/utils/Serializer.cpp
     src/utils/Vector2D.cpp
+    src/main.cpp
 )
 
 # Enable testing

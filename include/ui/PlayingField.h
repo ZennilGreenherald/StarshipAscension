@@ -6,6 +6,7 @@
 #include <array>
 #include <cstdlib>
 #include <vector>
+#include <cstdint>
 
 #include "../../include/game_logic/GameObj.h"
 #include "../../include/game_logic/Spaceship.h"

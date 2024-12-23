@@ -2,7 +2,7 @@
 
 #include "../../include/data_models/Planet.h"
 #include "../../include/utils/Vector2D.h"
-
+#include "../../include/ui/PlayingField.h"
 Player::Player(std::string name, const Vector2D& position) {}
 
 Player::~Player() {

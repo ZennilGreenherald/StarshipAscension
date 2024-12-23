@@ -4,6 +4,7 @@
 
 #include "../../include/game_logic/Engine.h"
 #include "../../include/game_logic/Movement.h"
+#include "../../include/ui/PlayingField.h"
 #include "../../include/utils/Vector2D.h"
 
 // Constructor for Navigation

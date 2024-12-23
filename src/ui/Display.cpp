@@ -9,7 +9,7 @@ void Display::show() {
     std::cout << "Welcome to the Game!" << std::endl;
 }
 
-void Display::render(const Game::GameState& gameState) {
+void Display::render(const GameState& gameState) {
     // Implement logic to render the game state on the display (using gameState)
     // This could involve displaying game objects, scores, etc.
     // (Example using standard output)

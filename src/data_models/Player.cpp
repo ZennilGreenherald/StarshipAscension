@@ -4,6 +4,7 @@
 #include <string>  // Include string for std::string
 #include <vector>  // Include vector for std::vector
 
+#include "../../include/ui/PlayingField.h"
 #include "../../include/utils/Vector2D.h"
 
 std::string Player::getName() const { return m_name; }

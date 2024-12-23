@@ -1,9 +1,12 @@
 #ifndef SPACESHIP_H
 #define SPACESHIP_H
 
+#include "../../include/game_logic/Spaceship.h"
+
 #include "../../include/data_models/Position.h"
 #include "../../include/game_logic/Engine.h"
 #include "../../include/game_logic/Movement.h"
+#include "../../include/ui/PlayingField.h"
 #include "../../include/utils/Vector2D.h"
 
 class Spaceship {
