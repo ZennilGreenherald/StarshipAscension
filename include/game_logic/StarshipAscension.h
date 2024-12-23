@@ -2,6 +2,7 @@
 #define STARSHIP_ASCENSION_H
 
 #include <string>
+#include <cstdint>
 #include "../../include/game_logic/Station.h"
 #include "../../include/game_logic/Weapons.h"
 

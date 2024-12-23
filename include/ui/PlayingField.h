@@ -12,16 +12,16 @@
 #include "../../include/game_logic/Spaceship.h"
 #include "../../include/utils/Vector2D.h"
 
-uint32_t PLAYING_FIELD_HEIGHT = 50;
-uint32_t PLAYING_FIELD_WIDTH = 100;
+static constexpr int HEIGHT = 50;
+static constexpr int WIDTH = 100;
 
-const char PLAYING_FIELD_BORDER = '#';
-const char PLAYING_FIELD_EMPTY = ' ';
-const char PLAYING_FIELD_SHIP = 'S';
-const char PLAYING_FIELD_PLANET = 'P';
-const char PLAYING_FIELD_STARBASE = 'B';
-const char PLAYING_FIELD_MOON = 'M';
-const char PLAYING_FIELD_ENEMY_SHIP = 'E';
+static constexpr PLAYING_FIELD_BORDER = '#';
+static constexpr PLAYING_FIELD_EMPTY = ' ';
+static constexpr PLAYING_FIELD_SHIP = 'S';
+static constexpr PLAYING_FIELD_PLANET = 'P';
+static constexpr PLAYING_FIELD_STARBASE = 'B';
+static constexpr PLAYING_FIELD_MOON = 'M';
+static constexpr PLAYING_FIELD_ENEMY_SHIP = 'E';
 
 class PlayingField {
   private:

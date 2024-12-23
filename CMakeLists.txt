@@ -40,59 +40,9 @@ elseif(CMAKE_SYSTEM_NAME MATCHES "UNIX")
     # set build targets for macOS
 endif()
 
-
-# Add the main executable
-add_executable(starship
-    include/data_models/Health.h
-    include/data_models/Inventory.h
-    include/data_models/Moon.h
-    include/data_models/Navigation.h
-    include/data_models/Planet.h
-    include/data_models/Player.h
-    include/data_models/Position.h
-    include/data_models/Score.h
-    include/data_models/Shields.h
-    include/game_logic/Engine.h
-    include/game_logic/Game.h
-    include/game_logic/Movement.h
-    include/game_logic/Missions.h
-    include/game_logic/Player.h
-    include/game_logic/ShieldsManager.h
-    include/game_logic/Spaceship.h
-    include/game_logic/Starbase.h
-    include/game_logic/StarshipAscension.h
-    include/game_logic/WeaponsManager.h
-    include/ui/Display.h
-    include/ui/Menu.h
-    include/ui/PlayingField.h
-    include/utils/Serializer.h
-    include/utils/Vector2D.h
-    src/data_models/Health.cpp
-    src/data_models/Inventory.cpp
-    src/data_models/Moon.cpp
-    src/data_models/Navigation.cpp
-    src/data_models/Planet.cpp
-    src/data_models/Player.cpp
-    src/data_models/Position.cpp
-    src/data_models/Score.cpp
-    src/data_models/Shields.cpp
-    src/game_logic/Engine.cpp
-    src/game_logic/Game.cpp
-    src/game_logic/Movement.cpp
-    src/game_logic/Missions.cpp
-    src/game_logic/Player.cpp
-    src/game_logic/ShieldsManager.cpp
-    src/game_logic/Spaceship.cpp
-    src/game_logic/Starbase.cpp
-    src/game_logic/StarshipAscension.cpp
-    src/game_logic/WeaponsManager.cpp
-    src/ui/Display.cpp
-    src/ui/Menu.cpp
-    src/ui/PlayingField.cpp
-    src/utils/Serializer.cpp
-    src/utils/Vector2D.cpp
-    src/main.cpp
-)
+file(GLOB_RECURSE HDRS "include/*.h")
+file(GLOB_RECURSE SRCS "src/*.cpp")
+add_executable(starship ${SRCS} ${HDRS})
 
 # Enable testing
 enable_testing()

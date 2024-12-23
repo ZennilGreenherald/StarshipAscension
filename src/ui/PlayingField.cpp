@@ -33,12 +33,24 @@ void PlayingField::initializeField(int width, int height) {
     }
 }
 
+static PlayingField* getInstance() {
+    if (!instance) {
+        instance = new PlayingField();
+    }
+    return instance;
+}
+
+bool isWithinBounds(const Vector2D& position) const {
+    return position.x >= 0 && position.x < PLAYING_FIELD_WIDTH &&
+           position.y >= 0 && position.y < PLAYING_FIELD_HEIGHT;
+}
+
 void PlayingField::display() const {
     std::string fieldString;
 
     // Convert the 2D field vector to a string
-    for (const auto &row : field) {
-        for (const auto &cell : row) {
+    for (const auto& row : field) {
+        for (const auto& cell : row) {
             fieldString += cell;
         }
         fieldString += "\n";

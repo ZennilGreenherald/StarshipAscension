@@ -3,36 +3,28 @@
 
 #include "../../include/data_models/Shields.h"  // Include the Shields class for shield functionality
 #include "../../include/utils/Vector2D.h"  // Include the Vector2D class for position and velocity
+#include "../../include/game_logic/Spaceship.h"
+#include "../../include/data_models/Position.h"
+#include "../../include/game_logic/Engine.h"
+#include "../../include/game_logic/Movement.h"
+#include "../../include/ui/PlayingField.h"
+#include "../../include/game_logic/Spaceship.h"
+#include "../../include/ui/PlayingField.h"
 
 class Spaceship {
-  public:
-    // Constructor
-    Spaceship(const Vector2D& initialPosition, const Vector2D& initialVelocity,
-              int initialHealth);
+public:
+    Spaceship();   // Constructor
+    ~Spaceship();  // Destructor
 
-    // Getters and setters for position, velocity, and health
-    Vector2D getPosition() const;
-    void setPosition(const Vector2D& newPosition);
-    Vector2D getVelocity() const;
-    void setVelocity(const Vector2D& newVelocity);
-    int getHealth() const;
-    void setHealth(int newHealth);
+    void move(Vector2D direction);
+    void updatePosition();
 
-    // Methods for spaceship actions, such as moving and firing weapons
-    void move();
-    void fireWeapon();
+private:
+    Position position;
+    Engine engine;
+    Movement movement;
 
-    // Shield methods
-    void raiseShields();
-    void lowerShields();
-    bool areShieldsUp() const;
-    int getShieldHealth() const;
-
-  private:
-    Vector2D position;
-    Vector2D velocity;
-    int health;
-    Shields shields;  // Instance of the Shields class
+    bool isValidNewPosition(const Vector2D& newPosition);
 };
 
 #endif  // SPACESHIP_H

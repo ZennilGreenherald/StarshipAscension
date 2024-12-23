@@ -1,6 +1,3 @@
-#ifndef SPACESHIP_H
-#define SPACESHIP_H
-
 #include "../../include/game_logic/Spaceship.h"
 
 #include "../../include/data_models/Position.h"
@@ -9,18 +6,29 @@
 #include "../../include/ui/PlayingField.h"
 #include "../../include/utils/Vector2D.h"
 
-class Spaceship {
-  public:
-    Spaceship();   // Constructor
-    ~Spaceship();  // Destructor
+Spaceship::Spaceship() : position(), engine(), movement() {}
 
-    void move(Vector2D direction);
-    void updatePosition();
+Spaceship::~Spaceship() {}
 
-  private:
-    Position position;
-    Engine engine;
-    Movement movement;
-};
+void Spaceship::move(Vector2D direction) {
+    if (!isValidNewPosition(position + direction)) {
+        return;  // Invalid move, do nothing
+    }
 
-#endif
+    position += direction;
+}
+
+bool Spaceship::isValidNewPosition(const Vector2D& newPosition) {
+    const PlayingField* field = PlayingField::getInstance();
+    if (!field || !field->isWithinBounds(newPosition)) {
+        return false;
+    }
+
+    // Additional checks could be added here, e.g., collision detection
+    return true;
+}
+
+void Spaceship::updatePosition() {
+    Vector2D direction = movement.getDirection();
+    move(direction);
+}
