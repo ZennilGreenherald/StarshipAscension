@@ -1,6 +1,8 @@
 #ifndef CONSTANTS_H
 #define CONSTANTS_H
 
+#include <cstdint>
+
 constexpr uint32_t PLAYING_FIELD_HEIGHT = 50;
 constexpr uint32_t PLAYING_FIELD_WIDTH = 100;
 
@@ -12,4 +14,4 @@ const char PLAYING_FIELD_STARBASE = 'B';
 const char PLAYING_FIELD_MOON = 'M';
 const char PLAYING_FIELD_ENEMY_SHIP = 'E';
 
-#endif // CONSTANTS_H
+#endif  // CONSTANTS_H

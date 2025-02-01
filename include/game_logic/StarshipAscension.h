@@ -1,15 +1,16 @@
 #ifndef STARSHIP_ASCENSION_H
 #define STARSHIP_ASCENSION_H
 
-#include <string>
 #include <cstdint>
+#include <string>
+
 #include "../../include/game_logic/Station.h"
 #include "../../include/game_logic/Weapons.h"
 
 class StarshipAscension {
-public:
+  public:
     StarshipAscension(std::string name, std::string captain,
-                    std::string firstOfficer);
+                      std::string firstOfficer);
 
     void setX(const uint32_t x);
     uint32_t getX() const;
@@ -42,7 +43,8 @@ public:
     void updateViewscreens();
     void updateSickbayStatus();
     void updateTransporterStatus();
-private:
+
+  private:
     std::string name;
     std::string captain;
     std::string firstOfficer;
@@ -53,15 +55,15 @@ private:
     int health;
     int ammo;
     int fuel;
-    int shields;                 // Added shields
+    int shields;  // Added shields
     int alertStatus;
-    int engine;                  // Added engine status
-    int weapon;                  // Added weapon status
+    int engine;  // Added engine status
+    int weapon;  // Added weapon status
 
     uint32_t m_x;
     uint32_t m_y;
 
-public:
+  public:
     int maxAmmo;
     int maxFuel;
 };

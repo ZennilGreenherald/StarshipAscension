@@ -6,6 +6,7 @@
 #include <string>
 
 #include "../../include/ui/Display.h"
+#include "../../include/ui/PlayingField.h"
 
 // Constants for the terminal size
 constexpr int TERMINAL_WIDTH = 207;
@@ -46,6 +47,9 @@ bool isWithinBounds(const Vector2D& position) const {
 }
 
 void PlayingField::display() const {
+    GameObj* PlayingField::getObject(const Vector2D& pos) const {
+        return nullptr;
+    }
     std::string fieldString;
 
     // Convert the 2D field vector to a string

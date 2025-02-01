@@ -11,7 +11,7 @@ struct GameState {
 };
 
 class Game {
-public:
+  public:
     enum class InputType {
         None,
         MenuSelection,
@@ -21,7 +21,7 @@ public:
 
     struct InputData {
         InputType type;
-        int value; // For numeric inputs
+        int value;  // For numeric inputs
         // Add other relevant data as needed
     };
 
@@ -31,7 +31,7 @@ public:
     void update();
     void start();
 
-private:
+  private:
     GameState gameState;
     GameState currentState;
     std::vector<InputData> inputHistory;

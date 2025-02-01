@@ -8,16 +8,16 @@
 class Game;  // Forward declaration
 
 class Display {
-public:
-  void show();
+  public:
+    void show();
     typedef GameState GameStateType;
     void render(const GameState& gameState);
     void clearScreen();
     void printLine(const std::string& text);
 
-private:
-  // Private members for display implementation details
-  // ... (optional) ...
+  private:
+    // Private members for display implementation details
+    // ... (optional) ...
 };
 
-#endif // DISPLAY_H
+#endif  // DISPLAY_H

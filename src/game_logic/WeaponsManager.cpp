@@ -3,6 +3,7 @@
 #include <string>
 
 #include "../../include/game_logic/Weapons.h"
+#include "../../include/game_logic/WeaponsManager.h"
 
 Weapon::Weapon(std::string name, int damage, int level)
     : name_{name}, damage_{damage}, level_{level} {}
@@ -38,3 +39,7 @@ Weapon* WeaponsManager::findWeapon(std::string name) {
 }
 
 std::vector<Weapon*> WeaponsManager::getAllWeapons() const { return weapons_; }
+
+void WeaponsManager::updateWeapons(StarshipAscension& spaceship) {}
+
+void WeaponsManager::dock(Station* station) {}

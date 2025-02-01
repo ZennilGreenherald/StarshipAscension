@@ -12,6 +12,8 @@ class Docking {
     Docking();   // Constructor
     ~Docking();  // Destructor
 
+void dockAt(Shuttlecraft & shuttle, Shuttlebay & shuttlebay);
+
     void dockAt(StarshipAscension& starship, Station& station);
 
   private:

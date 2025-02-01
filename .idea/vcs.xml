@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<vcs-config>
+    <version-control>
+        <mapping vcs="Git" directory="$PROJECT_DIR$" />
+    </version-control>
+    <ignored-files>
+        <file name=".idea/*" />
+        <file name="*.iml" />
+        <file name="*.log" />
+    </ignored-files>
+</vcs-config>

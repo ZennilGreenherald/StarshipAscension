@@ -7,6 +7,8 @@
 Planet::Planet(const std::string& name, double distanceFrom, double gravity)
     : m_name(name), m_distanceFrom(distanceFrom), m_gravity(gravity) {}
 
+Planet::~Planet() {}
+
 // Getters
 std::string Planet::getName() const { return m_name; }
 double Planet::getSize() const { return size; }
@@ -47,38 +49,29 @@ void Planet::setHabitabilityIndex(double habitabilityIndex) {
 
 // Other methods
 bool Planet::isHabitable() const {
-    // Example logic: return true if habitabilityIndex is above a certain
-    // threshold
     return habitabilityIndex > 0.5;  // Replace with your actual logic
 }
 bool Planet::isInHabitableZone() const {
-    // Example logic: return true if distanceFrom is within a certain range
     return m_distanceFrom >= 100.0 &&
            m_distanceFrom <= 200.0;  // Replace with your actual logic
 }
 
 bool Planet::hasResourcesAvailable() const {
-    // Example logic: return true if the planet has resources
     return resourceCount > 0;  // Replace with your actual logic
 }
 
 bool Planet::hasBeenVisited() const {
-    // Example logic: return true if the planet has been visited
     return visited;  // Replace with your actual logic
 }
 bool Planet::hasBeenDiscovered() const {
-    // Example logic: return true if the planet has been discovered
     return discovered;  // Replace with your actual logic
 }
 std::string Planet::getAtmosphereComposition() const {
-    // Example logic: return a string describing the atmosphere composition
     return atmosphereComposition;  // Replace with your actual logic
 }
 double Planet::getTemperatureVariation() const {
-    // Example logic: return the temperature variation
     return temperatureVariation;  // Replace with your actual logic
 }
 double Planet::getDistanceFromPlayer() const {
-    // Example logic: return the distance from the player
     return distanceFromPlayer;  // Replace with your actual logic
 }

@@ -1,20 +1,21 @@
 #ifndef MENU_H
 #define MENU_H
 
-#include <string>
 #include <limits>
-#include "../../include/ui/Display.h"
+#include <string>
+
 #include "../../include/game_logic/Game.h"
+#include "../../include/ui/Display.h"
 
 class Menu {
-public:
+  public:
     enum class Action {
-      StartGame,
-      SelectPlayers,
-      LoadGame,
-      SaveGame,
-      ExitGame,
-      Invalid
+        StartGame,
+        SelectPlayers,
+        LoadGame,
+        SaveGame,
+        ExitGame,
+        Invalid
     };
 
     Menu(Display& display, Game& game);
@@ -24,7 +25,7 @@ public:
     Menu::Action handleInput();
     void handleMenuAction(Action action);
 
-private:
+  private:
     Display& display;
     Game& game;
 
@@ -36,4 +37,4 @@ private:
     // void exitGame();
 };
 
-#endif // MENU_H
+#endif  // MENU_H
