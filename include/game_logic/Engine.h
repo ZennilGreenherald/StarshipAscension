@@ -3,11 +3,9 @@
 
 class Engine {
   public:
-    // Constructor
     Engine(int thrust, int fuelConsumptionRate, int maxFuelLevel, int initialFuelLevel = 100);
     ~Engine();
 
-    // Methods
     void start();
     void stop();
     void accelerate();
@@ -15,12 +13,10 @@ class Engine {
     int calculateFuelUsage();
     bool isOperational() const;
 
-    // Getters
     int getThrust() const;
     int getFuelConsumptionRate() const;
     int getCurrentFuelLevel() const;
 
-    // Setters
     void setThrust(int thrust);
     void setFuelConsumptionRate(int fuelConsumptionRate);
     void setCurrentFuelLevel(int currentFuelLevel);
@@ -30,7 +26,7 @@ class Engine {
     int m_fuelConsumptionRate;
     int m_maxFuelLevel;
     bool m_isRunning;
-    int m_currentFuelLevel;  // Declare the missing member variable
+    int m_currentFuelLevel;
 };
 
 #endif  // ENGINE_H
