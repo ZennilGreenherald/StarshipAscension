@@ -1,13 +1,13 @@
+
 #ifndef GAME_H
 #define GAME_H
 
 #include <vector>
 
 struct GameState {
-    // Define GameState members here (e.g., enums, variables)
     bool isGameRunning;
     int currentScore;
-    // Add other state variables as needed
+    // Add additional game state variables as necessary
 };
 
 class Game {
@@ -22,7 +22,6 @@ class Game {
     struct InputData {
         InputType type;
         int value;  // For numeric inputs
-        // Add other relevant data as needed
     };
 
     Game();
@@ -32,13 +31,11 @@ class Game {
     void start();
 
   private:
-    GameState gameState;
-    GameState currentState;
+    GameState gameState;  // Primary game state
     std::vector<InputData> inputHistory;
 
-    // Helper methods for handling different types of input
     void handleMenuSelection(int choice);
     void handlePlayerMovement(int direction);
 };
 
-#endif
+#endif  // GAME_H
