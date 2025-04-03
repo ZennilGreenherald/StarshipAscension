@@ -57,33 +57,3 @@ void Inventory::useItem(const std::string& itemName) {
         std::cout << "Item " << itemName << " is not usable or does not exist in inventory." << std::endl;
     }
 }
-
-// Main.cpp
-#include "../../include/data_models/Inventory.h"
-
-int main() {
-    Inventory myInventory;
-
-    // Example items
-    Item weapon("Phaser", 1, Item::ItemType::Weapon, 5, true);
-    Item consumable("Medkit", 3, Item::ItemType::Consumable, 2, true);
-    Item shipPart("Warp Core", 1, Item::ItemType::ShipPart, 50);
-
-    // Adding items to inventory
-    myInventory.addItem(weapon);
-    myInventory.addItem(consumable);
-    myInventory.addItem(shipPart);
-
-    // Listing all items
-    myInventory.listItems();
-
-    // Using an item
-    myInventory.useItem("Medkit");
-    myInventory.listItems();
-
-    // Removing items
-    myInventory.removeItem("Phaser", 1);
-    myInventory.listItems();
-
-    return 0;
-}
