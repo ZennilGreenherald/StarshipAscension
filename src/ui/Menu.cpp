@@ -1,8 +1,9 @@
-#include "../../include/ui/Menu.h"
-
+#include "../includes/Menu.h"
+#include "../includes/Display.h"
+#include "../includes/Game.h"
 #include <iostream>
 #include <limits>
-#include <stdexcept>
+#include <string>
 
 Menu::Menu(Display& displayRef, Game& gameRef)
     : display(displayRef), game(gameRef) {}
@@ -10,65 +11,67 @@ Menu::Menu(Display& displayRef, Game& gameRef)
 Menu::~Menu() {}
 
 void Menu::displayMenu() {
+    // Display the main menu options
     display.clearScreen();
-    display.printLine("1. Start Game");
-    display.printLine("2. Select Players");
-    display.printLine("3. Load Game");
-    display.printLine("4. Save Game");
-    display.printLine("5. Exit Game");
-    display.printLine("Enter your choice: ");
+    display.displayText("===== Main Menu =====");
+    display.displayText("1. Start Game");
+    display.displayText("2. Select Players");
+    display.displayText("3. Load Game");
+    display.displayText("4. Save Game");
+    display.displayText("5. Exit Game");
+    display.displayText("====================");
+    display.displayText("Enter your choice: ");
 }
 
 Menu::Action Menu::handleInput() {
+    // Handle user input for menu selection
     int choice;
-    while (!(std::cin >> choice) || choice < 1 || choice > 5) {
-        std::cout << "Invalid choice. Please try again." << std::endl;
-        std::cin.clear();  // Clear the error flag
-        std::cin.ignore(std::numeric_limits<std::streamsize>::max(),
-                        '\n');  // Ignore the rest of the line
+    std::cin >> choice;
+
+    // Clear input buffer if it's invalid
+    if (std::cin.fail()) {
+        std::cin.clear();
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        return Action::Invalid;
     }
 
     switch (choice) {
         case 1:
-            return Menu::Action::StartGame;
+            return Action::StartGame;
         case 2:
-            return Menu::Action::SelectPlayers;
+            return Action::SelectPlayers;
         case 3:
-            return Menu::Action::LoadGame;
+            return Action::LoadGame;
         case 4:
-            return Menu::Action::SaveGame;
+            return Action::SaveGame;
         case 5:
-            return Menu::Action::ExitGame;
+            return Action::ExitGame;
         default:
-            std::cout << "Invalid choice. Please try again." << std::endl;
-            return Menu::Action::Invalid;
+            return Action::Invalid;
     }
 }
 
-void Menu::handleMenuAction(Menu::Action action) {
+void Menu::handleMenuAction(Action action) {
+    // Perform the selected menu action
     switch (action) {
-        case Menu::Action::StartGame:
-            game.handleInput(Game::InputType::None,
-                             0);  // No specific input required
+        case Action::StartGame:
+            game.startNewGame();
             break;
-        case Menu::Action::SelectPlayers:
-            game.handleInput(Game::InputType::PlayerMovement,
-                             0);  // Implement player selection logic
+        case Action::SelectPlayers:
+            game.selectPlayers();
             break;
-        case Menu::Action::LoadGame:
-            game.handleInput(Game::InputType::None,
-                             0);  // No specific input required
+        case Action::LoadGame:
+            game.loadGame();
             break;
-        case Menu::Action::SaveGame:
-            game.handleInput(Game::InputType::None,
-                             0);  // No specific input required
+        case Action::SaveGame:
+            game.saveGame();
             break;
-        case Menu::Action::ExitGame:
-            game.handleInput(Game::InputType::None,
-                             0);  // No specific input required
+        case Action::ExitGame:
+            display.displayText("Exiting the game... Goodbye!");
             break;
+        case Action::Invalid:
         default:
-            // Handle invalid action
+            display.displayText("Invalid choice, please try again.");
             break;
     }
 }
