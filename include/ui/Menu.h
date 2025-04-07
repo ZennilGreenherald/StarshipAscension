@@ -17,7 +17,7 @@ class Menu {
         Invalid
     };
 
-    Menu(Display& display, Game& game);
+    Menu(Display& displayRef, Game& gameRef);
     ~Menu();
 
     void displayMenu();
