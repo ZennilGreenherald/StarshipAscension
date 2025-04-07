@@ -7,6 +7,7 @@
 		"editor.formatOnSave": true
 	},
 	"files.associations": {
+		".fantomasignore": "ignore",
 		"*.ndjson": "jsonl",
 		"*.dbclient-js": "javascript",
 		"*.html": "html",
@@ -69,7 +70,22 @@
 		"sstream": "cpp",
 		"streambuf": "cpp",
 		"thread": "cpp",
-		"typeinfo": "cpp"
+		"typeinfo": "cpp",
+		"bit": "cpp",
+		"compare": "cpp",
+		"concepts": "cpp",
+		"ios": "cpp",
+		"xfacet": "cpp",
+		"xiosbase": "cpp",
+		"xlocale": "cpp",
+		"xlocinfo": "cpp",
+		"xlocnum": "cpp",
+		"xmemory": "cpp",
+		"xstddef": "cpp",
+		"xstring": "cpp",
+		"xtr1common": "cpp",
+		"xtree": "cpp",
+		"xutility": "cpp"
 	},
 	"workbench.editorAssociations": {
 		"*.c": "default",

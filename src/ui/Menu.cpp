@@ -1,9 +1,11 @@
 #include "../includes/Menu.h"
-#include "../includes/Display.h"
-#include "../includes/Game.h"
+
 #include <iostream>
 #include <limits>
 #include <string>
+
+#include "../includes/Display.h"
+#include "../includes/Game.h"
 
 Menu::Menu(Display& displayRef, Game& gameRef)
     : display(displayRef), game(gameRef) {}
