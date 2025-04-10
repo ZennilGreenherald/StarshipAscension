@@ -1,5 +1,0 @@
--std=c14
--std=c++17
--Wall
--O2
--I/path/to/include

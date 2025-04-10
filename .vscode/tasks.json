@@ -1,37 +1,23 @@
 {
-	// See https://go.microsoft.com/fwlink/?LinkId=733558
-	// for the documentation about the tasks.json format
-	"version": "2.0.0",
-	"tasks": [
-		{
-			"label": "build",
-			"type": "shell",
-			"command": "g++",
-			"args": [
-				"-g",
-				"-f",
-				"-Wall",
-				"-Werror",
-				"-Wextra",
-				"-pedantic",
-				"-o3",
-			],
-			"group": {
-				"kind": "build",
-				"isDefault": true
-			}
-		},
-		{
-			"label": "debug",
-			"type": "shell",
-			"command": "gdb",
-			"args": [
-				""
-			],
-			"group": {
-				"kind": "test",
-				"isDefault": true
-			}
-		}
-	]
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Build (Linux)",
+            "type": "shell",
+            "command": "bash",
+            "args": ["${workspaceFolder}/build.sh"],
+            "group": "build",
+            "problemMatcher": ["$gcc"],
+            "detail": "Build project with build.sh"
+        },
+        {
+            "label": "Build (Windows)",
+            "type": "shell",
+            "command": "C:/msys64/mingw64/bin/make",
+            "args": ["-f", "Makefile"],
+            "group": "build",
+            "problemMatcher": ["$gcc"],
+            "detail": "Build project with Makefile"
+        }
+    ]
 }
