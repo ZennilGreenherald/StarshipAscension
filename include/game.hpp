@@ -16,11 +16,13 @@ private:
     void processPlayerInput();
     void updateGameState();
     void render();
-    bool isRunning;
+    void stopGame();
+    bool getIsRunning() const; // Updated getter method
 
     // Example game-specific attributes
     std::string playerName;
     int playerPosition;
+    bool isRunning; // Fixed: Declared correctly as a member variable
 };
 
 #endif // GAME_HPP
