@@ -12,17 +12,19 @@ public:
     void run();
 
 private:
-    void displayWelcomeMessage();
+    void displayWelcomeScreen(); // Welcome screen method
+    void clearScreen();          // Screen clearing method
+    void displayMainMenu();      // Main menu method
     void processPlayerInput();
     void updateGameState();
     void render();
     void stopGame();
-    bool getIsRunning() const; // Updated getter method
+    bool getIsRunning() const;
 
-    // Example game-specific attributes
+    // Attributes for the game
     std::string playerName;
     int playerPosition;
-    bool isRunning; // Fixed: Declared correctly as a member variable
+    bool isRunning;
 };
 
 #endif // GAME_HPP

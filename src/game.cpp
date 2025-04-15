@@ -1,5 +1,6 @@
 #include "game.hpp"
 #include <algorithm>
+#include <cstdlib> // For system()
 
 // Constructor
 Game::Game()
@@ -24,24 +25,73 @@ bool Game::getIsRunning() const
     return isRunning;
 }
 
-// Main game loop
-void Game::run()
+// Clear the screen
+void Game::clearScreen()
 {
-    displayWelcomeMessage();
-    while (getIsRunning()) // Use the getter method consistently
+#ifdef _WIN32
+    system("cls"); // Windows
+#else
+    system("clear"); // Unix/Linux/Mac
+#endif
+}
+
+// Display the welcome screen
+void Game::displayWelcomeScreen()
+{
+    std::cout << "=====================================" << std::endl;
+    std::cout << "          StarshipAscension          " << std::endl;
+    std::cout << "=====================================" << std::endl;
+    std::cout << "A galaxy of adventure awaits you, Captain!" << std::endl;
+    std::cout << "Prepare to explore the stars and achieve ascension." << std::endl;
+    std::cout << "\nPress Enter to continue..." << std::endl;
+    std::cin.get(); // Wait for the user to press Enter
+    clearScreen();  // Clear the screen after input
+}
+
+// Display the main menu
+void Game::displayMainMenu()
+{
+    std::cout << "=====================================" << std::endl;
+    std::cout << "               Main Menu              " << std::endl;
+    std::cout << "=====================================" << std::endl;
+    std::cout << "1. Start New Game" << std::endl;
+    std::cout << "2. Load Saved Game" << std::endl;
+    std::cout << "3. Exit" << std::endl;
+    std::cout << "\nSelect an option: ";
+    int choice;
+    std::cin >> choice;
+
+    // Handle menu choices
+    switch (choice)
     {
-        processPlayerInput(); // Added: Call to process player input
-        updateGameState();    // Added: Update game state as needed
-        render();
+    case 1:
+        std::cout << "\nStarting a new game...\n";
+        break;
+    case 2:
+        std::cout << "\nLoading saved game...\n";
+        break;
+    case 3:
+        std::cout << "\nExiting. Goodbye!\n";
+        stopGame();
+        break;
+    default:
+        std::cout << "\nInvalid choice. Returning to menu...\n";
+        displayMainMenu(); // Recursive call for invalid input
     }
 }
 
-// Display a welcome message
-void Game::displayWelcomeMessage()
+// Main game loop
+void Game::run()
 {
-    std::cout << "Welcome to the Space Adventure Game!" << std::endl;
-    std::cout << "Prepare to embark on your journey, Captain " << playerName << "!" << std::endl
-              << "\n";
+    displayWelcomeScreen(); // Display welcome screen
+    displayMainMenu();      // Display the menu
+
+    while (getIsRunning())
+    {
+        processPlayerInput();
+        updateGameState();
+        render();
+    }
 }
 
 // Process player input
@@ -62,7 +112,7 @@ void Game::processPlayerInput()
     }
     else if (command == "quit")
     {
-        stopGame(); // Updated: Use stopGame to encapsulate logic
+        stopGame();
     }
     else
     {
@@ -73,11 +123,10 @@ void Game::processPlayerInput()
 // Update the game's state (placeholder logic)
 void Game::updateGameState()
 {
-    // Example logic: Check if player has reached a certain position
     if (playerPosition >= 10)
     {
         std::cout << "Congratulations, Captain " << playerName << "! You've completed your mission." << std::endl;
-        stopGame(); // Stop the game if a goal is achieved
+        stopGame();
     }
     else
     {
