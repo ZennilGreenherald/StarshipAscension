@@ -56,8 +56,12 @@ void Game::displayMainMenu()
     std::cout << "=====================================" << std::endl;
     std::cout << "1. Start New Game" << std::endl;
     std::cout << "2. Load Saved Game" << std::endl;
-    std::cout << "3. Exit" << std::endl;
+    std::cout << "3. Help" << std::endl;
+    std::cout << "4. Setup Game" << std::endl;
+    std::cout << "5. View Credits" << std::endl;
+    std::cout << "6. Exit" << std::endl;
     std::cout << "\nSelect an option: ";
+
     int choice;
     std::cin >> choice;
 
@@ -71,20 +75,90 @@ void Game::displayMainMenu()
         std::cout << "\nLoading saved game...\n";
         break;
     case 3:
+        displayHelpMenu();
+        break;
+    case 4:
+        displaySetupMenu();
+        break;
+    case 5:
+        displayCredits();
+        break;
+    case 6:
         std::cout << "\nExiting. Goodbye!\n";
         stopGame();
         break;
     default:
         std::cout << "\nInvalid choice. Returning to menu...\n";
-        displayMainMenu(); // Recursive call for invalid input
+        displayMainMenu();
     }
+}
+
+// Display Help Menu
+void Game::displayHelpMenu()
+{
+    clearScreen();
+    std::cout << "=====================================" << std::endl;
+    std::cout << "               Help Menu              " << std::endl;
+    std::cout << "=====================================" << std::endl;
+    std::cout << "Welcome to StarshipAscension!" << std::endl;
+    std::cout << "Here are some tips to help you get started:\n";
+    std::cout << "- Use 'move' to explore the galaxy." << std::endl;
+    std::cout << "- Use 'quit' to end the game." << std::endl;
+    std::cout << "- Complete missions to gain points and advance." << std::endl;
+    std::cout << "\nPress Enter to return to the Main Menu." << std::endl;
+    std::cin.ignore();
+    std::cin.get();
+    clearScreen();
+    displayMainMenu();
+}
+
+// Display Setup Menu
+void Game::displaySetupMenu()
+{
+    clearScreen();
+    std::cout << "=====================================" << std::endl;
+    std::cout << "            Setup Game Menu           " << std::endl;
+    std::cout << "=====================================" << std::endl;
+    std::cout << "Configure your game settings here.\n";
+
+    std::cout << "Enter the number of players: ";
+    int numPlayers;
+    std::cin >> numPlayers;
+
+    std::cout << "Enter your ship's name: ";
+    std::string shipName;
+    std::cin.ignore();
+    std::getline(std::cin, shipName);
+
+    std::cout << "\nConfiguration complete!\n";
+    std::cout << "Players: " << numPlayers << "\nShip Name: " << shipName << std::endl;
+    std::cout << "\nPress Enter to return to the Main Menu." << std::endl;
+    std::cin.get();
+    clearScreen();
+    displayMainMenu();
+}
+
+// Display Credits
+void Game::displayCredits()
+{
+    clearScreen();
+    std::cout << "=====================================" << std::endl;
+    std::cout << "               Credits                " << std::endl;
+    std::cout << "=====================================" << std::endl;
+    std::cout << "StarshipAscension was created by [Your Name]!" << std::endl;
+    std::cout << "Special thanks to our interstellar community!\n";
+    std::cout << "\nPress Enter to return to the Main Menu." << std::endl;
+    std::cin.ignore();
+    std::cin.get();
+    clearScreen();
+    displayMainMenu();
 }
 
 // Main game loop
 void Game::run()
 {
-    displayWelcomeScreen(); // Display welcome screen
-    displayMainMenu();      // Display the menu
+    displayWelcomeScreen();
+    displayMainMenu();
 
     while (getIsRunning())
     {
@@ -101,7 +175,6 @@ void Game::processPlayerInput()
     std::string command;
     std::cin >> command;
 
-    // Convert command to lowercase for case-insensitive comparison
     std::transform(command.begin(), command.end(), command.begin(),
                    [](unsigned char c)
                    { return std::tolower(c); });
@@ -120,7 +193,7 @@ void Game::processPlayerInput()
     }
 }
 
-// Update the game's state (placeholder logic)
+// Update the game's state
 void Game::updateGameState()
 {
     if (playerPosition >= 10)
@@ -134,7 +207,7 @@ void Game::updateGameState()
     }
 }
 
-// Render the game (text-based output)
+// Render the game
 void Game::render()
 {
     std::cout << "=============================" << std::endl;

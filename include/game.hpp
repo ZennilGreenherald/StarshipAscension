@@ -12,16 +12,19 @@ public:
     void run();
 
 private:
-    void displayWelcomeScreen(); // Welcome screen method
-    void clearScreen();          // Screen clearing method
-    void displayMainMenu();      // Main menu method
+    void displayWelcomeScreen();
+    void clearScreen();
+    void displayMainMenu();
+    void displayHelpMenu();  // Help menu option
+    void displaySetupMenu(); // Setup menu option
+    void displayCredits();   // View credits option
     void processPlayerInput();
     void updateGameState();
     void render();
     void stopGame();
     bool getIsRunning() const;
 
-    // Attributes for the game
+    // Game attributes
     std::string playerName;
     int playerPosition;
     bool isRunning;
