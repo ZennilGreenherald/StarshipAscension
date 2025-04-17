@@ -3,6 +3,7 @@
 #include <cstdlib> // For system()
 #include <fstream>
 #include <sstream>
+#include <string>
 // #include <nlohmann/json.hpp>
 
 // Constructor
