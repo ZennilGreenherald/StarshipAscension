@@ -4,6 +4,7 @@
 #include <fstream>
 #include <sstream>
 #include <string>
+#include <iostream>
 // #include <nlohmann/json.hpp>
 
 // Constructor
@@ -52,47 +53,121 @@ void Game::displayWelcomeScreen()
     clearScreen();  // Clear the screen after input
 }
 
-// Display the main menu
 void Game::displayMainMenu()
 {
     std::cout << "=====================================" << std::endl;
-    std::cout << "               Main Menu              " << std::endl;
+    std::cout << "             Main Menu               " << std::endl;
     std::cout << "=====================================" << std::endl;
     std::cout << "1. Start New Game" << std::endl;
-    std::cout << "2. Load Saved Game" << std::endl;
-    std::cout << "3. Help" << std::endl;
-    std::cout << "4. Setup Game" << std::endl;
-    std::cout << "5. View Credits" << std::endl;
-    std::cout << "6. Exit" << std::endl;
-    std::cout << "\nSelect an option: ";
+    std::cout << "2. Continue Game" << std::endl;
+    std::cout << "3. Load Saved Game" << std::endl;
+    std::cout << "4. Captain's Log" << std::endl;
+    std::cout << "5. Mission Briefing" << std::endl;
+    std::cout << "6. Ship Systems Overview" << std::endl;
+    std::cout << "7. Help" << std::endl;
+    std::cout << "8. Setup Game" << std::endl;
+    std::cout << "9. Credits" << std::endl;
+    std::cout << "10. Exit" << std::endl;
+    std::cout << std::endl << "Select an option: ";
 
     int choice;
     std::cin >> choice;
 
-    // Handle menu choices
     switch (choice)
     {
     case 1:
         std::cout << "\nStarting a new game...\n";
         break;
     case 2:
-        std::cout << "\nLoading saved game...\n";
+        std::cout << "\nContinuing game...\n";
         break;
     case 3:
-        displayHelpMenu();
+    {
+        std::cout << "\nLoading saved game...\n";
+        std::cout << "Choose a format to load your game:\n";
+        std::cout << "1. Plain Text (.txt)\n";
+        std::cout << "2. JSON (.json)\n";
+        std::cout << "3. XML (.xml)\n";
+        std::cout << "4. Binary (.dat)\n";
+        std::cout << "Enter your choice: ";
+        int loadChoice;
+        std::cin >> loadChoice;
+
+        std::cout << "Enter the name of the saved game file (with extension): ";
+        std::string fileName;
+        std::cin.ignore();
+        std::getline(std::cin, fileName);
+
+        switch (loadChoice)
+        {
+        case 1:
+            loadFromPlainText(fileName);
+            break;
+        // case 2:
+        //     loadFromJSON(fileName);
+        //     break;
+        case 3:
+            loadFromXML(fileName);
+            break;
+        case 4:
+            loadFromBinary(fileName);
+            break;
+        default:
+            std::cout << "Invalid choice. Returning to menu...\n";
+            return;
+        }
+
+        std::cout << "Game loaded successfully from " << fileName << "!\n";
+        std::cout << "\nPress Enter to return to the Main Menu.";
+        std::cin.get();
+        std::cin.get(); // Required due to getline after cin
+        clearScreen();
+        displayMainMenu();
         break;
+    }
     case 4:
-        displaySetupMenu();
+        std::cout << "\nDisplaying captain's log...\n";
+        std::cout << "[TODO: Implement Captain's Log]\n";
+        std::cout << "\nPress Enter to return to the Main Menu.";
+        std::cin.ignore();
+        std::cin.get();
+        clearScreen();
+        displayMainMenu();
         break;
     case 5:
-        displayCredits();
+        std::cout << "\nDisplaying mission briefing...\n";
+        std::cout << "[TODO: Implement Mission Briefing]\n";
+        std::cout << "\nPress Enter to return to the Main Menu.";
+        std::cin.ignore();
+        std::cin.get();
+        clearScreen();
+        displayMainMenu();
         break;
     case 6:
+        std::cout << "\nDisplaying ship systems overview...\n";
+        std::cout << "[TODO: Implement Ship Systems Overview]\n";
+        std::cout << "\nPress Enter to return to the Main Menu.";
+        std::cin.ignore();
+        std::cin.get();
+        clearScreen();
+        displayMainMenu();
+        break;
+    case 7:
+        displayHelpMenu();
+        break;
+    case 8:
+        displaySetupMenu();
+        break;
+    case 9:
+        displayCredits();
+        break;
+    case 10:
         std::cout << "\nExiting. Goodbye!\n";
         stopGame();
         break;
     default:
         std::cout << "\nInvalid choice. Returning to menu...\n";
+        clearScreen();
         displayMainMenu();
     }
 }
