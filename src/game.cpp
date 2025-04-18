@@ -1,6 +1,8 @@
 #include "game.hpp"
 #include <algorithm>
-#include <cstdlib> // For system()
+#include <array>
+#include <bitset>
+#include <cstdlib>
 #include <fstream>
 #include <sstream>
 #include <string>
@@ -12,15 +14,15 @@
 #include <utility>
 #include <stdexcept>
 #include <cstring>
-#include <cctype> // For std::tolower
-#include <limits> // For std::numeric_limits
+#include <cctype>
+#include <limits>
 #include <ctime>
 #include <chrono>
 #include <thread>
 #include <cmath>
-#include <cstdio> // For std::remove
+#include <cstdio>
 #include <cassert>
-#include <memory> // For std::unique_ptr
+#include <memory>
 #include <functional>
 #include <type_traits>
 #include <initializer_list>
@@ -29,11 +31,13 @@
 #include <stdexcept>
 #include <utility>
 #include <filesystem>
+
 // #include <nlohmann/json.hpp>
 
 // Constructor
 Game::Game()
     : playerName("Captain"),
+      shipName("Enterprise"),
       playerPosition(0),
       isRunning(true)
 {
@@ -176,6 +180,7 @@ void Game::displayMainMenu()
         std::cin.ignore();
         std::cin.get();
         clearScreen();
+        displayShipSystemsOverview();
         displayMainMenu();
         break;
     case 7:
@@ -244,6 +249,57 @@ void Game::displaySetupMenu()
     std::cin.get();
     clearScreen();
     displayMainMenu();
+}
+
+void Game::displayShipSystemsOverview()
+{
+    clearScreen(); // Clear the screen for better visibility
+    std::cout << "=====================================" << std::endl;
+    std::cout << "         Ship Systems Overview        " << std::endl;
+    std::cout << "=====================================" << std::endl;
+
+    // General Ship Info
+    std::cout << "Ship Name: " << shipName << std::endl; // Dynamically update ship name
+    std::cout << "Captain:   " << playerName << std::endl; // Display captain's name
+    std::cout << "Crew Size: " << 50 << std::endl; // Placeholder for crew size
+    std::cout << "=====================================" << std::endl;
+
+    // Ship Systems Status
+    std::cout << "Power Core:  Online (85% capacity)" << std::endl; // Example data
+    std::cout << "Engines:     Operational (Warp Speed: 3.5)" << std::endl;
+    std::cout << "Shields:     Active (Integrity: 72%)" << std::endl;
+    std::cout << "Weapons:     Armed (Photon Torpedoes: 8 remaining)" << std::endl;
+    std::cout << "Sensors:     Calibrated (Range: 20,000 km)" << std::endl;
+    std::cout << "Life Support: Nominal (Oxygen: 95%)" << std::endl;
+    std::cout << "=====================================" << std::endl;
+
+    // Mission Objectives
+    std::cout << "Mission Objectives:" << std::endl;
+    std::cout << "- Explore the Alpha Centauri System" << std::endl; // Placeholder mission
+    std::cout << "- Deliver supplies to Station Delta" << std::endl;
+    std::cout << "- Respond to distress signal near Proxima Centauri" << std::endl;
+    std::cout << "=====================================" << std::endl;
+
+    // Cargo Bay Inventory
+    std::cout << "Cargo Bay:" << std::endl;
+    std::cout << "- Medical Supplies: 20 crates" << std::endl;
+    std::cout << "- Food Rations:     15 crates" << std::endl;
+    std::cout << "- Exotic Minerals:  5 crates" << std::endl;
+    std::cout << "=====================================" << std::endl;
+
+    // Ship's Log
+    std::cout << "Ship's Log:" << std::endl;
+    std::cout << "- Last docked: Starbase 23" << std::endl; // Placeholder log
+    std::cout << "- Current Location: Sector 7G" << std::endl;
+    std::cout << "- Distress signals received: 1" << std::endl;
+    std::cout << "=====================================" << std::endl;
+
+    // Return to Main Menu
+    std::cout << "Press Enter to return to the Main Menu..." << std::endl;
+    std::cin.ignore();
+    std::cin.get();
+    clearScreen();
+    displayMainMenu(); // Navigate back to the main menu
 }
 
 // Display Credits

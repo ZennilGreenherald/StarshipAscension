@@ -11,6 +11,7 @@ public:
     ~Game();
     void run();
     void listSaveFiles();
+    void displayShipSystemsOverview();
 
 private:
     void displayWelcomeScreen();
@@ -37,6 +38,7 @@ private:
 
     // Game attributes
     std::string playerName;
+    std::string shipName;
     int playerPosition;
     bool isRunning;
 };
