@@ -5,6 +5,29 @@
 #include <sstream>
 #include <string>
 #include <iostream>
+#include <ostream>
+#include <iomanip>
+#include <vector>
+#include <map>
+#include <utility>
+#include <stdexcept>
+#include <cstring>
+#include <cctype> // For std::tolower
+#include <limits> // For std::numeric_limits
+#include <ctime>
+#include <chrono>
+#include <thread>
+#include <cmath>
+#include <cstdio> // For std::remove
+#include <cassert>
+#include <memory> // For std::unique_ptr
+#include <functional>
+#include <type_traits>
+#include <initializer_list>
+#include <iterator>
+#include <exception>
+#include <stdexcept>
+#include <utility>
 // #include <nlohmann/json.hpp>
 
 // Constructor
@@ -46,6 +69,7 @@ void Game::displayWelcomeScreen()
     std::cout << "=====================================" << std::endl;
     std::cout << "          StarshipAscension          " << std::endl;
     std::cout << "=====================================" << std::endl;
+    std::cout << "Welcome aboard, Captain " << playerName << "!\n";
     std::cout << "A galaxy of adventure awaits you, Captain!" << std::endl;
     std::cout << "Prepare to explore the stars and achieve ascension." << std::endl;
     std::cout << "\nPress Enter to continue..." << std::endl;
@@ -206,11 +230,14 @@ void Game::displaySetupMenu()
 
     std::cout << "Enter your ship's name: ";
     std::string shipName;
-    std::cin.ignore();
+    std::cin.ignore(); // Clear buffer before getline
     std::getline(std::cin, shipName);
 
+    std::cout << "Enter your name, Captain: ";
+    std::getline(std::cin, playerName); // Store the player name
+
     std::cout << "\nConfiguration complete!\n";
-    std::cout << "Players: " << numPlayers << "\nShip Name: " << shipName << std::endl;
+    std::cout << "Players: " << numPlayers << "\nShip Name: " << shipName << "\nCaptain: " << playerName << std::endl;
     std::cout << "\nPress Enter to return to the Main Menu." << std::endl;
     std::cin.get();
     clearScreen();
