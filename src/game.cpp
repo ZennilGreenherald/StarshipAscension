@@ -28,6 +28,7 @@
 #include <exception>
 #include <stdexcept>
 #include <utility>
+#include <filesystem>
 // #include <nlohmann/json.hpp>
 
 // Constructor
@@ -105,50 +106,51 @@ void Game::displayMainMenu()
     case 2:
         std::cout << "\nContinuing game...\n";
         break;
-    case 3:
-    {
-        std::cout << "\nLoading saved game...\n";
-        std::cout << "Choose a format to load your game:\n";
-        std::cout << "1. Plain Text (.txt)\n";
-        std::cout << "2. JSON (.json)\n";
-        std::cout << "3. XML (.xml)\n";
-        std::cout << "4. Binary (.dat)\n";
-        std::cout << "Enter your choice: ";
-        int loadChoice;
-        std::cin >> loadChoice;
-
-        std::cout << "Enter the name of the saved game file (with extension): ";
-        std::string fileName;
-        std::cin.ignore();
-        std::getline(std::cin, fileName);
-
-        switch (loadChoice)
-        {
-        case 1:
-            loadFromPlainText(fileName);
-            break;
-        // case 2:
-        //     loadFromJSON(fileName);
-        //     break;
         case 3:
-            loadFromXML(fileName);
+        {
+            std::cout << "\nLoading saved game...\n";
+            std::cout << "Choose a format to load your game:\n";
+            std::cout << "1. Plain Text (.txt)\n";
+            std::cout << "2. JSON (.json)\n";
+            std::cout << "3. XML (.xml)\n";
+            std::cout << "4. Binary (.dat)\n";
+            std::cout << "Enter your choice: ";
+            int loadChoice;
+            std::cin >> loadChoice;
+        
+            std::cout << "Here are the available save files:\n";
+            listSaveFiles(); // Display available save files
+        
+            std::cout << "Enter the name of the saved game file (with extension): ";
+            std::string fileName;
+            std::cin.ignore();
+            std::getline(std::cin, fileName);
+        
+            switch (loadChoice)
+            {
+            case 1:
+                loadFromPlainText(fileName);
+                break;
+            // case 2:
+            //     loadFromJSON(fileName);
+            //     break;
+            case 3:
+                loadFromXML(fileName);
+                break;
+            case 4:
+                loadFromBinary(fileName);
+                break;
+            default:
+                std::cout << "Invalid choice. Returning to menu...\n";
+                return;
+            }
+        
+            std::cout << "\nPress Enter to return to the Main Menu.";
+            std::cin.get();
+            clearScreen();
+            displayMainMenu();
             break;
-        case 4:
-            loadFromBinary(fileName);
-            break;
-        default:
-            std::cout << "Invalid choice. Returning to menu...\n";
-            return;
-        }
-
-        std::cout << "Game loaded successfully from " << fileName << "!\n";
-        std::cout << "\nPress Enter to return to the Main Menu.";
-        std::cin.get();
-        std::cin.get(); // Required due to getline after cin
-        clearScreen();
-        displayMainMenu();
-        break;
-    }
+        }        
     case 4:
         std::cout << "\nDisplaying captain's log...\n";
         std::cout << "[TODO: Implement Captain's Log]\n";
@@ -431,29 +433,27 @@ void Game::processPlayerInput()
     }
 }
 
-void Game::loadFromPlainText(const std::string &fileName)
+void Game::loadFromPlainText(const std::string& fileName)
 {
-    std::ifstream loadFile(fileName);
-    if (!loadFile)
+    std::ifstream file(fileName);
+
+    // Check if file exists and is accessible
+    if (!file.is_open())
     {
         std::cout << "Error: Unable to open file " << fileName << std::endl;
+        std::cout << "Please ensure the file exists and try again.\n";
         return;
     }
 
+    // Example of loading data from the file
     std::string line;
-    while (std::getline(loadFile, line))
+    while (std::getline(file, line))
     {
-        if (line.find("PlayerName: ") != std::string::npos)
-        {
-            playerName = line.substr(line.find(": ") + 2);
-        }
-        else if (line.find("PlayerPosition: ") != std::string::npos)
-        {
-            playerPosition = std::stoi(line.substr(line.find(": ") + 2));
-        }
-        // Add more attributes to parse here
+        std::cout << "Loaded line: " << line << std::endl; // Replace with your parsing logic
     }
-    loadFile.close();
+
+    file.close();
+    std::cout << "Game loaded successfully from " << fileName << "!\n";
 }
 
 // Load from JSON
@@ -520,6 +520,30 @@ void Game::loadFromBinary(const std::string &fileName)
     // Add binary loading for other attributes here
 
     loadFile.close();
+}
+
+void Game::listSaveFiles()
+{
+    std::cout << "Searching for save files...\n";
+    for (const auto& entry : std::filesystem::directory_iterator("."))
+    {
+        if (entry.path().extension() == ".txt")
+        {
+            std::cout << entry.path().filename() << std::endl;
+        }
+        else if (entry.path().extension() == ".json")
+        {
+            std::cout << entry.path().filename() << std::endl;
+        }
+        else if (entry.path().extension() == ".xml")
+        {
+            std::cout << entry.path().filename() << std::endl;
+        }
+        else if (entry.path().extension() == ".dat")
+        {
+            std::cout << entry.path().filename() << std::endl;
+        }
+    }
 }
 
 // Update the game's state

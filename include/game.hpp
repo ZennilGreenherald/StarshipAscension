@@ -10,6 +10,7 @@ public:
     Game();
     ~Game();
     void run();
+    void listSaveFiles();
 
 private:
     void displayWelcomeScreen();
