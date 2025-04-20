@@ -3931,10 +3931,6 @@
     // Controls whether bold text in the terminal will always use the "bright" ANSI color variant.
     "terminal.integrated.drawBoldTextInBrightColors": true,
 
-    // This is now deprecated. Instead use the `terminal.integrated.enableVisualBell` and `accessibility.signals.terminalBell` settings.
-    //
-    "terminal.integrated.enableBell": false,
-
     // Whether to enable file links in terminals. Links can be slow when working on a network drive in particular because each file link is verified against the file system. Changing this will take effect only in new terminals.
     //  - off: Always off.
     //  - on: Always on.
@@ -5085,7 +5081,7 @@
 
     // Plays a signal - sound (audio cue) and/or announcement (alert) - when the terminal bell is ringing.
     "accessibility.signals.terminalBell": {
-      "sound": "auto",
+      "sound": "off",
       "announcement": "auto"
     },
 
