@@ -3,6 +3,7 @@
 
 #include <string>
 #include <iostream>
+#include <filesystem>
 
 class Game
 {
@@ -30,7 +31,7 @@ private:
     void saveAsPlainText(const std::string &fileName); // Save as plain text
     // void saveAsJSON(const std::string &fileName);        // Save as JSON
     void saveAsXML(const std::string &fileName);         // Save as XML
-    void saveAsBinary(const std::string &fileName);      // Save as binary
+    void saveAsBinary(const std::filesystem::path &filePath);      // Save as binary
     void loadFromPlainText(const std::string &fileName); // Load from plain text
     // void loadFromJSON(const std::string &fileName);      // Load from JSON
     void loadFromXML(const std::string &fileName);    // Load from XML

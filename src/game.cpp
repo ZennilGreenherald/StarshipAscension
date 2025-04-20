@@ -442,11 +442,33 @@ void Game::saveAsXML(const std::string &fileName)
     saveFile.close();
 }
 
-void Game::saveAsBinary(const std::string &fileName)
+void Game::saveAsBinary(const std::filesystem::path &filePath)
 {
-    std::ofstream saveFile(fileName, std::ios::binary);
-    saveFile.write(reinterpret_cast<const char *>(&playerPosition), sizeof(playerPosition));
-    saveFile.close();
+    try
+    {
+        // Ensure the parent directory exists
+        if (!std::filesystem::exists(filePath.parent_path()))
+        {
+            std::filesystem::create_directories(filePath.parent_path());
+        }
+
+        // Open file for binary writing
+        std::ofstream saveFile(filePath, std::ios::binary);
+        if (!saveFile)
+        {
+            throw std::ios_base::failure("Failed to open file for saving.");
+        }
+
+        // Write binary data
+        saveFile.write(reinterpret_cast<const char *>(&playerPosition), sizeof(playerPosition));
+        saveFile.close();
+
+        std::cout << "Game saved successfully to: " << filePath << std::endl;
+    }
+    catch (const std::exception &e)
+    {
+        std::cerr << "Error saving game: " << e.what() << std::endl;
+    }
 }
 
 // Main game loop
