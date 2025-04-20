@@ -175,7 +175,6 @@ void Game::displayMainMenu()
         break;
     case 6:
         std::cout << "\nDisplaying ship systems overview...\n";
-        std::cout << "[TODO: Implement Ship Systems Overview]\n";
         std::cout << "\nPress Enter to return to the Main Menu.";
         std::cin.ignore();
         std::cin.get();
@@ -309,7 +308,7 @@ void Game::displayCredits()
     std::cout << "=====================================" << std::endl;
     std::cout << "               Credits                " << std::endl;
     std::cout << "=====================================" << std::endl;
-    std::cout << "StarshipAscension was created by [Your Name]!" << std::endl;
+    std::cout << "StarshipAscension was created by Gregory K. Bowne!" << std::endl;
     std::cout << "Special thanks to our interstellar community!\n";
     std::cout << "\nPress Enter to return to the Main Menu." << std::endl;
     std::cin.ignore();
@@ -467,27 +466,41 @@ void Game::run()
 // Process player input
 void Game::processPlayerInput()
 {
-    std::cout << "Enter your command (move, quit): ";
+    std::cout << "Enter your command (move, quit, menu, scan, help): ";
     std::string command;
     std::cin >> command;
 
+    // Convert command to lowercase for case-insensitive matching
     std::transform(command.begin(), command.end(), command.begin(),
-                   [](unsigned char c)
-                   { return std::tolower(c); });
+                   [](unsigned char c) { return std::tolower(c); });
 
     if (command == "move")
     {
         playerPosition++;
+        std::cout << "You moved to position " << playerPosition << "." << std::endl;
     }
     else if (command == "quit")
     {
         stopGame();
+    }
+    else if (command == "menu")
+    {
+        displayMainMenu();
+    }
+    else if (command == "scan")
+    {
+        std::cout << "Scanning the surrounding area... No threats detected!" << std::endl;
+    }
+    else if (command == "help")
+    {
+        std::cout << "Available commands: move, quit, menu, scan, help." << std::endl;
     }
     else
     {
         std::cout << "Invalid command. Try again!" << std::endl;
     }
 }
+
 
 void Game::loadFromPlainText(const std::string& fileName)
 {
