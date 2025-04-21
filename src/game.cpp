@@ -31,7 +31,7 @@
 #include <stdexcept>
 #include <utility>
 #include <filesystem>
-
+#include <vector>
 // #include <nlohmann/json.hpp>
 
 // Constructor
@@ -202,6 +202,23 @@ void Game::displayMainMenu()
     }
 }
 
+// TODO: Implement scanField function to scan the field
+// void Game::scanField(const std::vector<std::vector<char>> &field, int playerX, int playerY)
+// {
+//     std::cout << "Scanning the surrounding area...\n";
+
+//     for (int x = std::max(0, playerX - 1); x <= std::min((int)field.size() - 1, playerX + 1); ++x)
+//     {
+//         for (int y = std::max(0, playerY - 1); y <= std::min((int)field[x].size() - 1, playerY + 1); ++y)
+//         {
+//             if (field[x][y] != ' ' && !(x == playerX && y == playerY))
+//             {
+//                 std::cout << "Found: " << field[x][y] << " at (" << x << ", " << y << ")\n";
+//             }
+//         }
+//     }
+// }
+
 // Display Help Menu
 void Game::displayHelpMenu()
 {
@@ -301,7 +318,7 @@ void Game::displayShipSystemsOverview()
     displayMainMenu(); // Navigate back to the main menu
 }
 
-// Display Credits
+// Display Creditsp
 void Game::displayCredits()
 {
     clearScreen();
@@ -496,26 +513,28 @@ void Game::processPlayerInput()
     std::transform(command.begin(), command.end(), command.begin(),
                    [](unsigned char c) { return std::tolower(c); });
 
-    if (command == "move")
+    if (command == "move" || command == "")
     {
         playerPosition++;
         std::cout << "You moved to position " << playerPosition << "." << std::endl;
     }
-    else if (command == "quit")
+    else if (command == "quit" || command == "q")
     {
         stopGame();
     }
-    else if (command == "menu")
+    else if (command == "menu" || command == "m")
     {
         displayMainMenu();
     }
-    else if (command == "scan")
+    else if (command == "scan" || command == "s")
     {
-        std::cout << "Scanning the surrounding area... No threats detected!" << std::endl;
+        // TODO: Implement scan functionality
+        // std::cout << "Scanning the surrounding area... No threats detected!" << std::endl;
+        // scanField(playingField, playerX, playerY);
     }
-    else if (command == "help")
+    else if (command == "help" || command == "h")
     {
-        std::cout << "Available commands: move, quit, menu, scan, help." << std::endl;
+        displayHelpMenu();
     }
     else
     {

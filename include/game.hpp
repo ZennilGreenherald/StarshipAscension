@@ -36,12 +36,16 @@ private:
     // void loadFromJSON(const std::string &fileName);      // Load from JSON
     void loadFromXML(const std::string &fileName);    // Load from XML
     void loadFromBinary(const std::string &fileName); // Load from binary
+    // TODO: implement scanField function to scan the field
+    // void scanField(const std::vector<std::vector<char>> &field, int playerX, int playerY);
 
     // Game attributes
+    
     std::string playerName;
     std::string shipName;
     int playerPosition;
     bool isRunning;
+    int crewSize;
 };
 
 #endif // GAME_HPP
