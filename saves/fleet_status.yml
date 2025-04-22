@@ -1,0 +1,7 @@
+fleet:
+  - name: USS Voyager
+    status: docked
+    location: Earth Dock
+  - name: USS Equinox
+    status: patrol
+    location: Sector 7

@@ -1,0 +1,10 @@
+{
+    "player_ship": {
+      "name": "USS Pioneer",
+      "location": { "x": 102.3, "y": -55.2, "z": 8.0 },
+      "hull": 98,
+      "crew": 12
+    },
+    "stardate": "42304.7"
+}
+  

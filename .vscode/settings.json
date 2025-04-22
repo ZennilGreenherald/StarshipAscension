@@ -972,7 +972,7 @@
     //  - keepAll: Word breaks should not be used for Chinese/Japanese/Korean (CJK) text. Non-CJK text behavior is the same as for normal.
     "editor.wordBreak": "normal",
 
-    "editor.wordSegmenterLocales": null,
+    "editor.wordSegmenterLocales": "en",
 
     // Characters that will be used as word separators when doing word related navigations or operations.
     "editor.wordSeparators": "`~!@#$%^&*()-=+[{]}\\|;:'\",.<>/?",
@@ -2808,10 +2808,6 @@
     // When on a JSX tag, try to rename the matching tag instead of renaming the symbol.
     "javascript.preferences.renameMatchingJsxTags": true,
 
-    // The setting 'typescript.preferences.renameShorthandProperties' has been deprecated in favor of 'typescript.preferences.useAliasesForRenames'
-    // Enable/disable introducing aliases for object shorthand properties during renames.
-    "javascript.preferences.renameShorthandProperties": true,
-
     // Enable/disable introducing aliases for object shorthand properties during renames.
     "javascript.preferences.useAliasesForRenames": true,
 
@@ -4231,8 +4227,7 @@
     "terminal.integrated.suggest.windowsExecutableExtensions": {},
 
     // A theme color ID to associate with terminal icons by default.
-    "terminal.integrated.tabs.defaultColor": null,
-
+    "terminal.integrated.tabs.defaultColor": "terminal.ansiBlack",
     // A codicon ID to associate with terminal icons by default.
     "terminal.integrated.tabs.defaultIcon": "terminal",
 
@@ -5620,17 +5615,6 @@
     //  - Below: Open the diff view below the current editor group.
     "merge-conflict.diffViewPosition": "Current",
 
-    // Microsoft Sovereign Cloud
-
-    // The custom configuration for the Sovereign Cloud to use with the Microsoft Sovereign Cloud authentication provider. This along with setting `microsoft-sovereign-cloud.environment` to `custom` is required to use this feature.
-    "microsoft-sovereign-cloud.customEnvironment": {},
-
-    // The Sovereign Cloud to use for authentication. If you select `custom`, you must also set the `microsoft-sovereign-cloud.customEnvironment` setting.
-    //  - ChinaCloud: Azure China
-    //  - USGovernment: Azure US Government
-    //  - custom: A custom Microsoft Sovereign Cloud
-    "microsoft-sovereign-cloud.environment": "",
-
     // The authentication implementation to use for signing in with a Microsoft account.
     //  - msal: Use the Microsoft Authentication Library (MSAL) to sign in with a Microsoft account.
     //  - classic: (deprecated) Use the classic authentication flow to sign in with a Microsoft account.
@@ -5687,10 +5671,6 @@
 
     // Enable running npm scripts contained in a folder from the Explorer context menu.
     "npm.enableRunFromFolder": false,
-
-    // The NPM Script Explorer is now available in 'Views' menu in the Explorer in all folders.
-    // Enable an explorer view for npm scripts when there is no top-level 'package.json' file.
-    "npm.enableScriptExplorer": false,
 
     // Configure glob patterns for folders that should be excluded from automatic script detection.
     "npm.exclude": "",

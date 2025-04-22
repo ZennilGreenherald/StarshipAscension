@@ -90,7 +90,7 @@ void Game::displayMainMenu()
     std::cout << "1. Start New Game" << std::endl;
     std::cout << "2. Continue Game" << std::endl;
     // TODO: Implement save game functionality, renumber the menu options accordingly
-    // std::cout << "3. Save Game" << std::endl;
+    std::cout << "3. Save Game" << std::endl;
     std::cout << "3. Load Saved Game" << std::endl;
     std::cout << "4. Captain's Log" << std::endl;
     std::cout << "5. Mission Briefing" << std::endl;
@@ -99,6 +99,28 @@ void Game::displayMainMenu()
     std::cout << "8. Setup Game" << std::endl;
     std::cout << "9. Credits" << std::endl;
     std::cout << "10. Exit" << std::endl;
+    std::cout << "11. Resume Last Mission." << std::endl;
+    std::cout << "12. Tactical Overview." << std::endl;
+    std::cout << "13. Manage Crew." << std::endl;
+    std::cout << "=====================================" << std::endl;
+    std::cout << "Welcome, Captain " << playerName << "!" << std::endl;
+    std::cout << "Your current position: " << playerPosition << std::endl;
+    std::cout << "Your ship: " << shipName << std::endl;
+    std::cout << "Crew Size: " << crewSize << std::endl;
+    // std::cout << "First Officer: " << firstOfficer << std::endl;
+    // std::cout << "Second Officer: " << secondOfficer << std::endl;
+    // std::cout << "Cheif Security Officer: " << cheifSecurity << std::endl;
+    // std::cout << "Cheif Medical Officer:" << cheifMed << std::endl;
+    // std::cout << "Cheif Engineer: " << cheifEng << std::endl;
+    // std::cout << "Cheif Tactical Officer: " << cheifTac << std::endl;
+    // std::cout << "=====================================" << std::endl;
+    std::cout << "Available Commands:\n";
+    std::cout << "1. Move: Move to a new position." << std::endl;
+    std::cout << "2. Quit: Exit the game." << std::endl;
+    std::cout << "3. Menu: Display the main menu." << std::endl;
+    std::cout << "4. Scan: Scan the surrounding area." << std::endl;
+    std::cout << "5. Help: Display help information." << std::endl;
+    std::cout << "=====================================" << std::endl;
     std::cout << std::endl << "Select an option: ";
 
     int choice;

@@ -40,7 +40,8 @@ private:
     // void scanField(const std::vector<std::vector<char>> &field, int playerX, int playerY);
 
     // Game attributes
-    
+    void setPlayerName(const std::string& name);
+    std::string getPlayerName() const;
     std::string playerName;
     std::string shipName;
     int playerPosition;
