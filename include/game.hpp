@@ -21,6 +21,8 @@ private:
     void displayHelpMenu();  // Help menu option
     void displaySetupMenu(); // Setup menu option
     void displayCredits();   // View credits option
+    void displayCaptainsLog(); // View captain's log option
+    void initializeCaptainsLog(); // Initialize captain's log
     void processPlayerInput();
     void updateGameState();
     void render();
@@ -41,6 +43,7 @@ private:
 
     // Game attributes
     void setPlayerName(const std::string& name);
+    std::vector<std::string> captainsLog;
     std::string getPlayerName() const;
     std::string playerName;
     std::string shipName;

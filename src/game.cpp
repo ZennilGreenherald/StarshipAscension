@@ -32,6 +32,8 @@
 #include <utility>
 #include <filesystem>
 #include <vector>
+#include <chrono>
+#include <thread>
 // #include <nlohmann/json.hpp>
 
 // Constructor
@@ -82,6 +84,26 @@ void Game::displayWelcomeScreen()
     clearScreen();  // Clear the screen after input
 }
 
+void initializeStep(const std::string &step)
+{
+    std::cout << "Initializing " << step << "..." << std::flush;
+    std::this_thread::sleep_for(std::chrono::milliseconds(500)); // Simulate processing delay
+    std::cout << " Done!" << std::endl;
+}
+
+void renderProgressBar(int progress, int total)
+{
+    int barWidth = 50;
+    int filledWidth = (progress * barWidth) / total;
+
+    std::cout << "[";
+    for (int i = 0; i < filledWidth; ++i)
+        std::cout << "=";
+    for (int i = filledWidth; i < barWidth; ++i)
+        std::cout << " ";
+    std::cout << "] " << (progress * 100) / total << "%\r" << std::flush;
+}
+
 void Game::displayMainMenu()
 {
     std::cout << "=====================================" << std::endl;
@@ -99,9 +121,9 @@ void Game::displayMainMenu()
     std::cout << "8. Setup Game" << std::endl;
     std::cout << "9. Credits" << std::endl;
     std::cout << "10. Exit" << std::endl;
-    std::cout << "11. Resume Last Mission." << std::endl;
-    std::cout << "12. Tactical Overview." << std::endl;
-    std::cout << "13. Manage Crew." << std::endl;
+    std::cout << "11. Resume Last Mission" << std::endl;
+    std::cout << "12. Tactical Overview" << std::endl;
+    std::cout << "13. Manage Crew" << std::endl;
     std::cout << "=====================================" << std::endl;
     std::cout << "Welcome, Captain " << playerName << "!" << std::endl;
     std::cout << "Your current position: " << playerPosition << std::endl;
@@ -319,6 +341,12 @@ void Game::displayMainMenu()
         std::cout << "\nExiting. Goodbye!\n";
         stopGame();
         break;
+    case 11:
+        break;
+    case 12:
+        break;
+    case 13:
+        break;
     default:
         std::cout << "\nInvalid choice. Returning to menu...\n";
         clearScreen();
@@ -350,6 +378,30 @@ void Game::displayMainMenu()
 // void Game::saveCaptainsLog();
 // void Game::loadCaptainsLog();
 // void Game::deleteCaptainsLog();
+
+void Game::displayCaptainsLog()
+{
+    clearScreen(); // Optional: Clear the screen for better readability
+    std::cout << "=====================================\n";
+    std::cout << "          Captain's Log              \n";
+    std::cout << "=====================================\n";
+
+    if (captainsLog.empty())
+    {
+        std::cout << "The Captain's Log is empty. No entries recorded yet.\n";
+    }
+    else
+    {
+        for (size_t i = 0; i < captainsLog.size(); ++i)
+        {
+            std::cout << i + 1 << ". " << captainsLog[i] << std::endl;
+        }
+    }
+
+    std::cout << "\nPress Enter to return to the Main Menu.";
+    std::cin.ignore();
+    std::cin.get();
+}
 
 // Display Help Menu
 void Game::displayHelpMenu()
@@ -409,6 +461,16 @@ void Game::displayShipSystemsOverview()
     // General Ship Info
     std::cout << "Ship Name: " << shipName << std::endl; // Dynamically update ship name
     std::cout << "Captain:   " << playerName << std::endl; // Display captain's name
+    std::cout << "First Officer: " << firstOfficer << std::endl; // Placeholder for first officer
+    std::cout << "Second Officer: " << secondOfficer << std::endl; // Placeholder for second officer
+    std::cout << "Cheif Security Officer: " << cheifSecurity << std::endl; // Placeholder for chief security officer
+    std::cout << "Cheif Medical Officer: " << cheifMed << std::endl; // Placeholder for chief medical officer
+    std::cout << "Cheif Engineer: " << cheifEng << std::endl; // Placeholder for chief engineer
+    std::cout << "Cheif Tactical Officer: " << cheifTac << std::endl; // Placeholder for chief tactical officer
+    std::cout << "Current Location: " << currentLocation << std::endl; // Placeholder for current location
+    std::cout << "Current Position: " << playerPosition << std::endl; // Placeholder for current position
+    std::cout << "Ship Status:  Online" << std::endl; // Placeholder for ship status
+    std::cout << "Mission Status: In Progress" << std::endl; // Placeholder for mission status
     std::cout << "Crew Size: " << crewSize << std::endl; // Placeholder for crew size
     std::cout << "=====================================" << std::endl;
 
