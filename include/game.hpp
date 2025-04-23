@@ -44,7 +44,15 @@ private:
     std::string getPlayerName() const;
     std::string playerName;
     std::string shipName;
+    std::string chiefEng;
+    std::string chiefTac;
+    std::string chifSecurity;
+    std::string firstOfficer;
+    std::string secondOfficer;
+    std::string chiefMed;
     int playerPosition;
+    int shieldStrength;
+    bool sheieldStrength;
     bool isRunning;
     int crewSize;
 };

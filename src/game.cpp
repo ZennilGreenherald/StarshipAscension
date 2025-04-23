@@ -107,13 +107,13 @@ void Game::displayMainMenu()
     std::cout << "Your current position: " << playerPosition << std::endl;
     std::cout << "Your ship: " << shipName << std::endl;
     std::cout << "Crew Size: " << crewSize << std::endl;
-    // std::cout << "First Officer: " << firstOfficer << std::endl;
-    // std::cout << "Second Officer: " << secondOfficer << std::endl;
-    // std::cout << "Cheif Security Officer: " << cheifSecurity << std::endl;
-    // std::cout << "Cheif Medical Officer:" << cheifMed << std::endl;
-    // std::cout << "Cheif Engineer: " << cheifEng << std::endl;
-    // std::cout << "Cheif Tactical Officer: " << cheifTac << std::endl;
-    // std::cout << "=====================================" << std::endl;
+    std::cout << "First Officer: " << firstOfficer << std::endl;
+    std::cout << "Second Officer: " << secondOfficer << std::endl;
+    std::cout << "Cheif Security Officer: " << cheifSecurity << std::endl;
+    std::cout << "Cheif Medical Officer:" << cheifMed << std::endl;
+    std::cout << "Cheif Engineer: " << cheifEng << std::endl;
+    std::cout << "Cheif Tactical Officer: " << cheifTac << std::endl;
+    std::cout << "=====================================" << std::endl;
     std::cout << "Available Commands:\n";
     std::cout << "1. Move: Move to a new position." << std::endl;
     std::cout << "2. Quit: Exit the game." << std::endl;
@@ -409,13 +409,14 @@ void Game::displayShipSystemsOverview()
     // General Ship Info
     std::cout << "Ship Name: " << shipName << std::endl; // Dynamically update ship name
     std::cout << "Captain:   " << playerName << std::endl; // Display captain's name
-    std::cout << "Crew Size: " << 50 << std::endl; // Placeholder for crew size
+    std::cout << "Crew Size: " << crewSize << std::endl; // Placeholder for crew size
     std::cout << "=====================================" << std::endl;
 
     // Ship Systems Status
     std::cout << "Power Core:  Online (85% capacity)" << std::endl; // Example data
     std::cout << "Engines:     Operational (Warp Speed: 3.5)" << std::endl;
-    std::cout << "Shields:     Active (Integrity: 72%)" << std::endl;
+    std::cout << "Shields Status: " << shieldStatus << std::endl;
+    std::cout << "Sheilds Strength: " << shieldStrength << std::endl;
     std::cout << "Weapons:     Armed (Photon Torpedoes: 8 remaining)" << std::endl;
     std::cout << "Sensors:     Calibrated (Range: 20,000 km)" << std::endl;
     std::cout << "Life Support: Nominal (Oxygen: 95%)" << std::endl;
@@ -438,7 +439,7 @@ void Game::displayShipSystemsOverview()
     // Ship's Log
     std::cout << "Ship's Log:" << std::endl;
     std::cout << "- Last docked: Starbase 23" << std::endl; // Placeholder log
-    std::cout << "- Current Location: Sector 7G" << std::endl;
+    std::cout << "- Current Location: " << currentLocation << std::endl;
     std::cout << "- Distress signals received: 1" << std::endl;
     std::cout << "=====================================" << std::endl;
 
