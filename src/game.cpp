@@ -417,6 +417,7 @@ void Game::displayShipSystemsOverview()
     std::cout << "Engines:     Operational (Warp Speed: 3.5)" << std::endl;
     std::cout << "Shields Status: " << shieldStatus << std::endl;
     std::cout << "Sheilds Strength: " << shieldStrength << std::endl;
+    std::cout << "Hull Integrity: " << hullIntegrity << std::endl; // Example data
     std::cout << "Weapons:     Armed (Photon Torpedoes: 8 remaining)" << std::endl;
     std::cout << "Sensors:     Calibrated (Range: 20,000 km)" << std::endl;
     std::cout << "Life Support: Nominal (Oxygen: 95%)" << std::endl;
