@@ -665,6 +665,19 @@ void Game::manageCrew()
     }
 }
 
+void Game::addCrewMember()
+{
+    clearScreen();
+    std::cout << "=====================================" << std::endl;
+    std::cout << "          Add Crew Member             " << std::endl;
+    std::cout << "=====================================" << std::endl;
+    std::cout << "[TODO: Implement Crew Member Addition]\n";
+    std::cout << "\nPress Enter to return to Manage Crew Menu.";
+    std::cin.ignore();
+    std::cin.get();
+    manageCrew(); // Return to the manage crew menu
+}
+
 void Game::assignRoles()
 {
     clearScreen();
@@ -942,30 +955,6 @@ void Game::loadFromBinary(const std::string &fileName)
     // Add binary loading for other attributes here
 
     loadFile.close();
-}
-
-void Game::listSaveFiles()
-{
-    std::cout << "Searching for save files...\n";
-    for (const auto& entry : std::filesystem::directory_iterator("."))
-    {
-        if (entry.path().extension() == ".txt")
-        {
-            std::cout << entry.path().filename() << std::endl;
-        }
-        else if (entry.path().extension() == ".json")
-        {
-            std::cout << entry.path().filename() << std::endl;
-        }
-        else if (entry.path().extension() == ".xml")
-        {
-            std::cout << entry.path().filename() << std::endl;
-        }
-        else if (entry.path().extension() == ".dat")
-        {
-            std::cout << entry.path().filename() << std::endl;
-        }
-    }
 }
 
 // Update the game's state
