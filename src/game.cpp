@@ -305,6 +305,8 @@ void Game::displayMainMenu()
     case 12:
         break;
     case 13:
+        clearScreen();
+        manageCrew();
         break;
     default:
         std::cout << "\nInvalid choice. Returning to menu...\n";
@@ -428,7 +430,9 @@ void Game::displaySetupMenu()
     if (manageCrewChoice == "yes" || manageCrewChoice == "y")
     {
         std::cout << "You can manage your crew in the Manage Crew Menu.\n";
-    }
+        manageCrew();
+        clearScreen();
+    } else if (manageCrewChoice == "no" || manageCrewChoice == "n") 
     {
         std::cout << "You can manage your crew later in the game.\n";
         clearScreen();
