@@ -23,7 +23,9 @@ private:
     void displaySetupMenu(); // Setup menu option
     void displayCredits();   // View credits option
     void displayCaptainsLog(); // View captain's log option
+    void addToCaptainsLog(const std::string &entry); // Add entry to captain's log
     void initializeCaptainsLog(); // Initialize captain's log
+    void initializeStep(const std::string &step); // Initialize game step
     void processPlayerInput();
     void updateGameState();
     void render();
@@ -46,6 +48,7 @@ private:
     void setPlayerName(const std::string& name);
     std::vector<std::string> captainsLog;
     std::string getPlayerName() const;
+    std::string playerInput;
     std::string playerName;
     std::string shipName;
     std::string cheifEng;

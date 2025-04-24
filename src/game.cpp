@@ -91,6 +91,26 @@ void initializeStep(const std::string &step)
     std::cout << " Done!" << std::endl;
 }
 
+std::string sanitizeInput(const std::string &input)
+{
+    std::string sanitized = input;
+    std::transform(sanitized.begin(), sanitized.end(), sanitized.begin(),
+                   [](unsigned char c) { return std::tolower(c); });
+    sanitized.erase(std::remove_if(sanitized.begin(), sanitized.end(), ::isspace), sanitized.end());
+    return sanitized;
+}
+
+void updateGameState(const std::string &playerInput)
+{
+    std::string command = sanitizeInput(playerInput);
+}
+
+void Game::addToCaptainsLog(const std::string &entry)
+{
+    captainsLog.push_back(entry);
+    std::cout << "Entry added to Captain's Log: " << entry << std::endl;
+}
+
 void renderProgressBar(int progress, int total)
 {
     int barWidth = 50;
@@ -215,96 +235,35 @@ void Game::displayMainMenu()
             displayMainMenu();
             break;
         }        
-    case 4:
-        std::cout << "\nDisplaying captain's log...\n";
-        // std::cout << "Captain's Log:\n";
-        // std::cout << "=====================\n";
-        // std::cout << "Captain's Name: " << playerName << "\n";
-        // std::cout << "Ship Name: " << shipName << "\n";
-        // std::cout << "Current Position: " << playerPosition << "\n";
-        // std::cout << "Mission Status: In Progress\n";
-        // std::cout << "Last Entry: Exploring the Alpha Centauri System.\n";
-        // std::cout << "=====================\n";
-        // std::cout << "Captain's Log Entries:\n";
-        // std::cout << "1. Entered the Alpha Centauri System.\n";
-        // std::cout << "2. Encountered a hostile ship.\n";
-        // std::cout << "3. Engaged in combat.\n";
-        // std::cout << "4. Successfully evaded enemy fire.\n";
-        // std::cout << "5. Received a distress signal from a nearby planet.\n";
-        // std::cout << "6. Investigating the source of the signal.\n";
-        // std::cout << "7. Found a derelict ship.\n";
-        // std::cout << "8. Boarding the ship to investigate.\n";
-        // std::cout << "9. Found valuable resources.\n";
-        // std::cout << "10. Preparing to leave the system.\n";
-        // std::cout << "=====================\n";
-        // std::cout << "Captain's Log Summary:\n";
-        // std::cout << "Total Entries: 10\n";
-        // std::cout << "Total Missions Completed: 2\n";
-        // std::cout << "Total Resources Collected: 50 units\n";
-        // std::cout << "Total Hostile Encounters: 3\n";
-        // std::cout << "Total Crew Members: 50\n";
-        // std::cout << "Total Ship Damage: 20%\n";
-        // std::cout << "Total Repairs Needed: 5\n";
-        // std::cout << "Total Time Spent: 10 hours\n";
-        // std::cout << "Total Distance Traveled: 100 light-years\n";
-        // std::cout << "Total Fuel Used: 50 units\n";
-        // std::cout << "Total Supplies Used: 20 units\n";
-        // std::cout << "Total Medical Supplies Used: 5 units\n";
-        // std::cout << "Total Food Supplies Used: 10 units\n";
-        // std::cout << "Total Water Supplies Used: 5 units\n";
-        // std::cout << "Total Power Used: 20 units\n";
-        // std::cout << "Total Energy Used: 10 units\n";
-        // std::cout << "Total Shields Used: 5 units\n";
-        // std::cout << "Total Weapons Used: 10 units\n";
-        // std::cout << "Total Ammunition Used: 5 units\n";
-        // std::cout << "Total Repairs Made: 5\n";
-        // std::cout << "Total Upgrades Made: 2\n";
-        // std::cout << "Total New Technologies Discovered: 1\n";
-        // std::cout << "Total New Species Discovered: 1\n";
-        // std::cout << "Total New Planets Discovered: 1\n";
-        // std::cout << "Total New Star Systems Discovered: 1\n";
-        // std::cout << "Total New Civilizations Discovered: 1\n";
-        // std::cout << "Total New Resources Discovered: 1\n";
-        // std::cout << "Total New Technologies Developed: 1\n";
-        // std::cout << "Total New Weapons Developed: 1\n";
-        // std::cout << "Total New Shields Developed: 1\n";
-        // std::cout << "Total New Engines Developed: 1\n";
-        // std::cout << "Total New Power Sources Developed: 1\n";
-        // std::cout << "Total New Life Forms Discovered: 1\n";
-        // std::cout << "Total New Civilizations Contacted: 1\n";
-        // std::cout << "Total New Civilizations Allied: 1\n";
-        // std::cout << "Total New Civilizations Hostile: 1\n";
-        // std::cout << "Total New Civilizations Neutral: 1\n";
-        // std::cout << "Total New Civilizations Unknown: 1\n";
-        // std::cout << "Total New Civilizations Explored: 1\n"; 
-        // std::cout << "Total New Civilizations Mapped: 1\n";
-        // std::cout << "Total New Civilizations Surveyed: 1\n";
-        // std::cout << "Total New Civilizations Researched: 1\n";
-        // std::cout << "Total New Civilizations Studied: 1\n";
-        // std::cout << "Total New Civilizations Analyzed: 1\n";
-        // std::cout << "Total New Civilizations Cataloged: 1\n";
-        // std::cout << "Total New Civilizations Documented: 1\n";
-        // std::cout << "Total New Civilizations Recorded: 1\n";
-        // std::cout << "Total New Civilizations Archived: 1\n";
-        // std::cout << "Total New Civilizations Preserved: 1\n";
-        // std::cout << "Total New Civilizations Saved: 1\n";
-        // std::cout << "Total New Civilizations Rescued: 1\n";
-        // std::cout << "Total New Civilizations Evacuated: 1\n";
-        // std::cout << "Total New Civilizations Rehabilitated: 1\n";
-        // std::cout << "Total New Civilizations Reintegrated: 1\n";
-        // std::cout << "Total New Civilizations Reunited: 1\n";
-        // std::cout << "Total New Civilizations Reconciled: 1\n";
-        // std::cout << "Total New Civilizations Reformed: 1\n";
-        // std::cout << "Total New Civilizations Rehabilitated: 1\n";
-        // std::cout << "Total New Civilizations Reintegrated: 1\n";
-        std::cout << "[TODO: Implement Captain's Log]\n";
-        std::cout << "\nPress Enter to return to the Main Menu.";
-        std::cin.ignore();
-        std::cin.get();
-        clearScreen();
-        // displayCaptainsLog();
-        displayMainMenu();
-        break;
+        case 4:
+{
+    clearScreen();
+    std::cout << "Initializing Captain's Log...\n";
+
+    int progress = 0;
+    int total = 100;
+
+    for (progress = 0; progress <= total; progress += 10) // Simulate loading in increments
+    {
+        renderProgressBar(progress, total);
+        std::this_thread::sleep_for(std::chrono::milliseconds(200)); // Simulate loading delay
+    }
+    std::cout << std::endl; // Move to a new line after the progress bar completes
+
+    std::cout << "Captain's Log initialized successfully.\n";
+    std::cout << "\nDisplaying Captain's Log...\n";
+    std::cout << "=====================\n";
+
+    // Display mock Captain's Log entries (for testing)
+    std::cout << "[TODO: Implement Captain's Log functionality]\n";
+    std::cout << "\nPress Enter to return to the Main Menu.";
+    std::cin.ignore();
+    std::cin.get();
+    clearScreen();
+    displayMainMenu();
+    break;
+    }
+    
     case 5:
         std::cout << "\nDisplaying mission briefing...\n";
         std::cout << "[TODO: Implement Mission Briefing]\n";
