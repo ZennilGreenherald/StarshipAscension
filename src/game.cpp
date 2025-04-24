@@ -633,6 +633,108 @@ void Game::manageCrew()
     std::cout << "5. View Crew Status\n";
     std::cout << "6. Return to Main Menu\n";
     std::cout << "=====================================" << std::endl;
+
+    int choice;
+    std::cout << "Enter your choice: ";
+    std::cin >> choice;
+
+    switch (choice)
+    {
+    case 1:
+        viewCrewList();
+        break;
+    case 2:
+        assignRoles();
+        break;
+    case 3:
+        dismissCrewMember();
+        break;
+    case 4:
+        addCrewMember();
+        break;
+    case 5:
+        viewCrewStatus();
+        break;
+    case 6:
+        displayMainMenu();
+        break;
+    default:
+        std::cout << "Invalid choice. Returning to Manage Crew Menu...\n";
+        manageCrew();
+        break;
+    }
+}
+
+void Game::assignRoles()
+{
+    clearScreen();
+    std::cout << "=====================================" << std::endl;
+    std::cout << "           Assign Roles               " << std::endl;
+    std::cout << "=====================================" << std::endl;
+    std::cout << "[TODO: Implement Role Assignment]\n";
+    std::cout << "\nPress Enter to return to Manage Crew Menu.";
+    std::cin.ignore();
+    std::cin.get();
+    manageCrew();
+}
+void Game::viewCrewList()
+{
+    clearScreen();
+    std::cout << "=====================================" << std::endl;
+    std::cout << "             Crew List                " << std::endl;
+    std::cout << "=====================================" << std::endl;
+    std::cout << "[TODO: Display Crew List]\n";
+    std::cout << "\nPress Enter to return to Manage Crew Menu.";
+    std::cin.ignore();
+    std::cin.get();
+    manageCrew();
+}
+
+void Game::dismissCrewMember()
+{
+    clearScreen();
+    std::cout << "=====================================" << std::endl;
+    std::cout << "         Dismiss Crew Member          " << std::endl;
+    std::cout << "=====================================" << std::endl;
+    std::cout << "[TODO: Implement Crew Member Dismissal]\n";
+    std::cout << "\nPress Enter to return to Manage Crew Menu.";
+    std::cin.ignore();
+    std::cin.get();
+    manageCrew();
+}
+
+void Game::viewCrewStatus()
+{
+    clearScreen();
+    std::cout << "=====================================" << std::endl;
+    std::cout << "           Crew Status                " << std::endl;
+    std::cout << "=====================================" << std::endl;
+    std::cout << "[TODO: Display Crew Status]\n";
+    std::cout << "\nPress Enter to return to Manage Crew Menu.";
+    std::cin.ignore();
+    std::cin.get();
+    manageCrew();
+}
+
+
+void Game::listSaveFiles()
+{
+    std::cout << "Available save files:\n";
+    std::filesystem::path saveDir = "saves"; // Directory where save files are stored
+    if (std::filesystem::exists(saveDir))
+    {
+        for (const auto &entry : std::filesystem::directory_iterator(saveDir))
+        {
+            if (entry.is_regular_file())
+            {
+                std::cout << "- " << entry.path().filename().string() << std::endl;
+            }
+        }
+    }
+    else
+    {
+        std::cout << "No save files found.\n";
+    }
 }
 
 void Game::saveAsPlainText(const std::string &fileName)

@@ -14,6 +14,13 @@ public:
     void run();
     void listSaveFiles();
     void displayShipSystemsOverview();
+    void displayMainMenu();
+    void manageCrew(); // Declaration for the crew management menu
+    void viewCrewList(); // View list of crew members
+    void assignRoles(); // Assign roles to crew members
+    void dismissCrewMember(); // Dismiss a crew member
+    void addCrewMember(); // Add a new crew member
+    void viewCrewStatus(); // View 
 
 private:
     void displayWelcomeScreen();
