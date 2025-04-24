@@ -331,7 +331,6 @@ void Game::displayMainMenu()
 // }
 
 // TODO: Implement captains log functions
-// void Game::displayCaptainsLog();
 // void Game::initializeCaptainsLog()l
 // void Game::createCaptainsLog();
 // void Game::saveCaptainsLog();
@@ -402,11 +401,47 @@ void Game::displaySetupMenu()
     std::cout << "Enter your name, Captain: ";
     std::getline(std::cin, playerName); // Store the player name
 
+    std::cout << "Enter your First Officer's name: ";
+    std::getline(std::cin, firstOfficer); // Store the first officer's name
+
+    std::cout << "Enter your Second Officer's name: ";
+    std::getline(std::cin, secondOfficer); // Store the second officer's name
+
+    std::cout << "Enter your Chief Security Officer's name: ";
+    std::getline(std::cin, cheifSecurity); // Store the chief security officer's name
+
+    std::cout << "Enter your Chief Medical Officer's name: ";
+    std::getline(std::cin, cheifMed); // Store the chief medical officer's name
+
+    std::cout << "Enter your Chief Engineer's name: ";
+    std::getline(std::cin, cheifEng); // Store the chief engineer's name
+
+    std::cout << "Enter your Chief Tactical Officer's name: ";
+    std::getline(std::cin, cheifTac); // Store the chief tactical officer's name
+
+    std::cout << "Enter your Chief Science Officer's name: ";
+    std::getline(std::cin, cheifScience); // Store the chief science officer's name
+
+    std::cout << "Would you like to manage your crew, captain? (yes/no): ";
+    std::string manageCrewChoice;
+    std::getline(std::cin, manageCrewChoice); // Store the crew management choice
+    if (manageCrewChoice == "yes" || manageCrewChoice == "y")
+    {
+        std::cout << "You can manage your crew in the Manage Crew Menu.\n";
+    }
+    {
+        std::cout << "You can manage your crew later in the game.\n";
+        clearScreen();
+    }
+    clearScreen();
     std::cout << "\nConfiguration complete!\n";
     std::cout << "Players: " << numPlayers << "\nShip Name: " << shipName << "\nCaptain: " << playerName << std::endl;
     std::cout << "\nPress Enter to return to the Main Menu." << std::endl;
     std::cin.get();
+    // TODO: Implement saveSetup function to save the setup
+    // saveSetup();
     clearScreen();
+
     displayMainMenu();
 }
 
@@ -578,6 +613,22 @@ void Game::loadGame()
     std::cout << "\nPress Enter to return to the Main Menu.";
     std::cin.get();
     displayMainMenu();
+}
+
+void Game::manageCrew()
+{
+    clearScreen();
+    std::cout << "=====================================" << std::endl;
+    std::cout << "           Manage Crew Menu           " << std::endl;
+    std::cout << "=====================================" << std::endl;
+    std::cout << "Crew Management System\n";
+    std::cout << "1. View Crew List\n";
+    std::cout << "2. Assign Roles\n";
+    std::cout << "3. Dismiss Crew Member\n";
+    std::cout << "4. Add Crew Member\n";
+    std::cout << "5. View Crew Status\n";
+    std::cout << "6. Return to Main Menu\n";
+    std::cout << "=====================================" << std::endl;
 }
 
 void Game::saveAsPlainText(const std::string &fileName)

@@ -28,6 +28,7 @@ private:
     void initializeStep(const std::string &step); // Initialize game step
     void processPlayerInput();
     void updateGameState();
+    void manageCrew();
     void render();
     void stopGame();
     bool getIsRunning() const;
