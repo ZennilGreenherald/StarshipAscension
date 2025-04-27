@@ -339,6 +339,10 @@ class Game(
             |4. Binary (.dat)
             |""".stripMargin).getOrElse(-1)
 
+        println("Saved files:")
+        loaver.listSaveFiles().foreach(f => println(f.getFileName()))
+        println()
+
         val fileName = promptForLine("Enter the name of the saved game file (with extension): ")
 
         choice match
