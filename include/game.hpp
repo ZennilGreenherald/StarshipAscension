@@ -12,13 +12,14 @@ public:
     Game();
     ~Game();
     void run();
+    void stopGame();
     void listSaveFiles();
     void displayShipSystemsOverview();
     void viewCrewList(); // View list of crew members
     void assignRoles(); // Assign roles to crew members
     void dismissCrewMember(); // Dismiss a crew member
     void addCrewMember(); // Add a new crew member
-    void viewCrewStatus(); // View 
+    void viewCrewStatus(); // View
 
 private:
     void displayWelcomeScreen();
@@ -35,7 +36,6 @@ private:
     void updateGameState();
     void manageCrew();
     void render();
-    void stopGame();
     bool getIsRunning() const;
     void saveGame();                                   // Save game method
     void loadGame();                                   // Load game method
