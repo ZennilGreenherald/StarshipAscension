@@ -3,12 +3,8 @@
 #include <string>
 #include <vector>
 #include <fstream>
-#include <filesystem>
-#include <algorithm>
 #include <cctype>
-#include <stdexcept>
-#include <chrono>
-#include <thread>
+#include <algorithm>
 
 // Constructor
 Game::Game()

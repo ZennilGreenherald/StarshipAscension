@@ -3,6 +3,8 @@
 #include <limits>     // (Optional, for clearing cin buffer more safely)
 #include <cstdlib>    // For system() in clearScreen()
 
+#include "crew_manager.hpp"
+
 void Game::manageCrew()
 {
     clearScreen();

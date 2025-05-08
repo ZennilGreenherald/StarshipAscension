@@ -1,10 +1,12 @@
-#include <iostream>       // For std::cout, std::cin, std::endl, std::flush
-#include <string>         // For std::string
-#include <vector>         // For std::vector (if captainsLog is a vector)
-#include <algorithm>      // For std::transform, std::remove_if (if used)
-#include <thread>         // For std::this_thread::sleep_for
-#include <chrono>         // For std::chrono::milliseconds
-#include <cstdlib>        // For system()
+#include <iostream>
+#include <string>
+#include <vector>
+#include <algorithm>
+#include <thread>
+#include <chrono>
+#include <cstdlib>
+
+#include "game_ui.hpp"
 
 void Game::clearScreen()
 {
@@ -55,10 +57,10 @@ void Game::displayMainMenu()
     std::cout << "Crew Size: " << crewSize << std::endl;
     std::cout << "First Officer: " << firstOfficer << std::endl;
     std::cout << "Second Officer: " << secondOfficer << std::endl;
-    std::cout << "Cheif Security Officer: " << cheifSecurity << std::endl;
-    std::cout << "Cheif Medical Officer:" << cheifMed << std::endl;
-    std::cout << "Cheif Engineer: " << cheifEng << std::endl;
-    std::cout << "Cheif Tactical Officer: " << cheifTac << std::endl;
+    std::cout << "Chief Security Officer: " << chiefSecurity << std::endl;
+    std::cout << "Chief Medical Officer:" << chiefMed << std::endl;
+    std::cout << "Chief Engineer: " << chiefEng << std::endl;
+    std::cout << "Chief Tactical Officer: " << chiefTac << std::endl;
     std::cout << "=====================================" << std::endl;
     std::cout << "Available Commands:\n";
     std::cout << "1. Move: Move to a new position." << std::endl;
@@ -84,12 +86,17 @@ void Game::displayMainMenu()
         // std::cout << "Initializing crew...\n";
         // std::cout << "Initializing mission...\n";
         // std::cout << "loading mission..\n";
+        // std::cout << "Initializing ship systems...\n";
+        // std::cout << "Initializing ship inventory...\n";
+        // std::cout << "Initializing ship map...\n";
+        // std::cout << "Initializing ship log...\n";
+        // std::cout << "Initializing ship settings...\n";
         // std::cout << "Initializing systems...\n";
         // std::cout << "Initializing inventory...\n";
         // std::cout << "Initializing map...\n";
         // std::cout << "Initializing log...\n";
         // std::cout << "Initializing settings...\n";
-        // std::cout << "Initializing game...\n";
+
         break;
     case 2:
         std::cout << "\nContinuing game...\n";
@@ -288,19 +295,19 @@ void Game::displaySetupMenu()
     std::getline(std::cin, secondOfficer); // Store the second officer's name
 
     std::cout << "Enter your Chief Security Officer's name: ";
-    std::getline(std::cin, cheifSecurity); // Store the chief security officer's name
+    std::getline(std::cin, chiefSecurity); // Store the chief security officer's name
 
     std::cout << "Enter your Chief Medical Officer's name: ";
-    std::getline(std::cin, cheifMed); // Store the chief medical officer's name
+    std::getline(std::cin, chiefMed); // Store the chief medical officer's name
 
     std::cout << "Enter your Chief Engineer's name: ";
-    std::getline(std::cin, cheifEng); // Store the chief engineer's name
+    std::getline(std::cin, chiefEng); // Store the chief engineer's name
 
     std::cout << "Enter your Chief Tactical Officer's name: ";
-    std::getline(std::cin, cheifTac); // Store the chief tactical officer's name
+    std::getline(std::cin, chiefTac); // Store the chief tactical officer's name
 
     std::cout << "Enter your Chief Science Officer's name: ";
-    std::getline(std::cin, cheifScience); // Store the chief science officer's name
+    std::getline(std::cin, chiefScience); // Store the chief science officer's name
 
     std::cout << "Would you like to manage your crew, captain? (yes/no): ";
     std::string manageCrewChoice;
@@ -339,10 +346,10 @@ void Game::displayShipSystemsOverview()
     std::cout << "Captain:   " << playerName << std::endl; // Display captain's name
     std::cout << "First Officer: " << firstOfficer << std::endl; // Placeholder for first officer
     std::cout << "Second Officer: " << secondOfficer << std::endl; // Placeholder for second officer
-    std::cout << "Cheif Security Officer: " << cheifSecurity << std::endl; // Placeholder for chief security officer
-    std::cout << "Cheif Medical Officer: " << cheifMed << std::endl; // Placeholder for chief medical officer
-    std::cout << "Cheif Engineer: " << cheifEng << std::endl; // Placeholder for chief engineer
-    std::cout << "Cheif Tactical Officer: " << cheifTac << std::endl; // Placeholder for chief tactical officer
+    std::cout << "Chief Security Officer: " << chiefSecurity << std::endl; // Placeholder for chief security officer
+    std::cout << "Chief Medical Officer: " << chiefMed << std::endl; // Placeholder for chief medical officer
+    std::cout << "Chief Engineer: " << chiefEng << std::endl; // Placeholder for chief engineer
+    std::cout << "Chief Tactical Officer: " << chiefTac << std::endl; // Placeholder for chief tactical officer
     std::cout << "Current Location: " << currentLocation << std::endl; // Placeholder for current location
     std::cout << "Current Position: " << playerPosition << std::endl; // Placeholder for current position
     std::cout << "Ship Status:  Online" << std::endl; // Placeholder for ship status

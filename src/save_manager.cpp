@@ -4,6 +4,8 @@
 #include <filesystem>          // For std::filesystem::path, etc. (C++17+)
 #include <sstream>             // Optional: for string parsing, if needed
 #include <cstdlib>             // For system() in clearScreen()
+#include "../include/nlohmann/json.hpp"
+#include "save_manager.hpp"
 
 void Game::saveGame()
 {

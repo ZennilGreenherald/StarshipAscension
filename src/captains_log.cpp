@@ -2,6 +2,7 @@
 #include <string>     // For std::string
 #include <vector>     // For std::vector (used by captainsLog)
 #include <fstream>
+#include "captains_log.hpp"
 
 void Game::addToCaptainsLog(const std::string &entry)
 {
