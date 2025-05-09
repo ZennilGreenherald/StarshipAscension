@@ -1,10 +1,9 @@
 #ifndef CREW_MANAGER_HPP
 #define CREW_MANAGER_HPP
 
-#include "crew_manager.hpp"
 #include "game_ui.hpp"
 
-class Game
+class CrewManager
 {
 public:
     void manageCrew();

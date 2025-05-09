@@ -6,8 +6,9 @@
 #include <cstdlib>             // For system() in clearScreen()
 #include "../include/nlohmann/json.hpp"
 #include "save_manager.hpp"
+#include "game_ui.hpp"
 
-void Game::saveGame()
+void SaveGame::saveGame()
 {
     clearScreen();
     std::cout << "=====================================" << std::endl;
@@ -49,11 +50,11 @@ void Game::saveGame()
     std::cout << "Game saved successfully to " << fileName << "!\n";
     std::cout << "\nPress Enter to return to the Main Menu.";
     std::cin.ignore();
-    std::cin.get();
+    std::cin.get()
     displayMainMenu();
 }
 
-void Game::loadGame()
+void SaveGame::loadGame()
 {
     clearScreen();
     std::cout << "=====================================" << std::endl;
@@ -78,9 +79,9 @@ void Game::loadGame()
     case 1:
         loadFromPlainText(fileName); // Call method for plain text loading
         break;
-    // case 2:
-    //     loadFromJSON(fileName); // Call method for JSON loading
-    //     break;
+    case 2:
+        loadFromJSON(fileName); // Call method for JSON loading
+        break;
     case 3:
         loadFromXML(fileName); // Call method for XML loading
         break;
@@ -98,7 +99,7 @@ void Game::loadGame()
     displayMainMenu();
 }
 
-void Game::listSaveFiles()
+void SaveGame::listSaveFiles()
 {
     std::cout << "Available save files:\n";
     std::filesystem::path saveDir = "saves"; // Directory where save files are stored
@@ -118,7 +119,7 @@ void Game::listSaveFiles()
     }
 }
 
-void Game::saveAsPlainText(const std::string &fileName)
+void SaveGame::saveAsPlainText(const std::string &fileName)
 {
     std::ofstream saveFile(fileName);
     saveFile << "PlayerName: " << playerName << '\n';
@@ -127,7 +128,7 @@ void Game::saveAsPlainText(const std::string &fileName)
     saveFile.close();
 }
 
-void Game::saveAsXML(const std::string &fileName)
+void SaveGame::saveAsXML(const std::string &fileName)
 {
     std::ofstream saveFile(fileName);
     saveFile << "<Game>\n";
@@ -140,7 +141,7 @@ void Game::saveAsXML(const std::string &fileName)
     saveFile.close();
 }
 
-void Game::saveAsBinary(const std::filesystem::path &filePath)
+void SaveGame::saveAsBinary(const std::filesystem::path &filePath)
 {
     try
     {
@@ -169,7 +170,7 @@ void Game::saveAsBinary(const std::filesystem::path &filePath)
     }
 }
 
-void Game::loadFromPlainText(const std::string& fileName)
+void SaveGame::loadFromPlainText(const std::string& fileName)
 {
     std::ifstream file(fileName);
 
@@ -192,7 +193,7 @@ void Game::loadFromPlainText(const std::string& fileName)
     std::cout << "Game loaded successfully from " << fileName << "!\n";
 }
 
-void Game::loadFromXML(const std::string &fileName)
+void SaveGame::loadFromXML(const std::string &fileName)
 {
     std::ifstream loadFile(fileName);
     if (!loadFile)
@@ -221,7 +222,7 @@ void Game::loadFromXML(const std::string &fileName)
     loadFile.close();
 }
 
-void Game::loadFromBinary(const std::string &fileName)
+void SaveGame::loadFromBinary(const std::string &fileName)
 {
     std::ifstream loadFile(fileName, std::ios::binary);
     if (!loadFile)
@@ -236,7 +237,7 @@ void Game::loadFromBinary(const std::string &fileName)
     loadFile.close();
 }
 
-void Game::loadFromJSON(const std::string &fileName)
+void SaveGame::loadFromJSON(const std::string &fileName)
 {
     std::ifstream loadFile(fileName);
     if (!loadFile)
@@ -255,7 +256,7 @@ void Game::loadFromJSON(const std::string &fileName)
     loadFile.close();
 }
 
-void Game::saveAsJSON(const std::string &fileName)
+void SaveGame::saveAsJSON(const std::string &fileName)
 {
     nlohmann::json saveData;
     saveData["PlayerName"] = playerName;

@@ -1,11 +1,12 @@
-#include <iostream>   // For std::cout, std::cin, std::endl, std::flush
-#include <string>     // For std::string
-#include <limits>     // (Optional, for clearing cin buffer more safely)
-#include <cstdlib>    // For system() in clearScreen()
+#include <iostream>
+#include <string>
+#include <limits>
+#include <cstdlib>
 
 #include "crew_manager.hpp"
+#include "game_ui.hpp"
 
-void Game::manageCrew()
+void CrewManager::manageCrew()
 {
     clearScreen();
     std::cout << "=====================================" << std::endl;
@@ -51,7 +52,7 @@ void Game::manageCrew()
     }
 }
 
-void Game::addCrewMember()
+void CrewManager::addCrewMember()
 {
     clearScreen();
     std::cout << "=====================================" << std::endl;
@@ -64,7 +65,7 @@ void Game::addCrewMember()
     manageCrew(); // Return to the manage crew menu
 }
 
-void Game::assignRoles()
+void CrewManager::assignRoles()
 {
     clearScreen();
     std::cout << "=====================================" << std::endl;
@@ -77,7 +78,7 @@ void Game::assignRoles()
     manageCrew();
 }
 
-void Game::viewCrewList()
+void CrewManager::viewCrewList()
 {
     clearScreen();
     std::cout << "=====================================" << std::endl;
@@ -90,7 +91,7 @@ void Game::viewCrewList()
     manageCrew();
 }
 
-void Game::dismissCrewMember()
+void CrewManager::dismissCrewMember()
 {
     clearScreen();
     std::cout << "=====================================" << std::endl;
@@ -103,7 +104,7 @@ void Game::dismissCrewMember()
     manageCrew();
 }
 
-void Game::viewCrewStatus()
+void CrewManager::viewCrewStatus()
 {
     clearScreen();
     std::cout << "=====================================" << std::endl;

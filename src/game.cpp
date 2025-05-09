@@ -1,4 +1,5 @@
 #include "game.hpp"
+#include "input_utils.hpp"
 #include <iostream>
 #include <string>
 #include <vector>

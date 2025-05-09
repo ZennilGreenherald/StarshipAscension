@@ -7,8 +7,10 @@
 #include <cstdlib>
 
 #include "game_ui.hpp"
+#include "crew_manager.hpp"
+#include "save_manager.hpp"
 
-void Game::clearScreen()
+void GameUi::clearScreen()
 {
 #ifdef _WIN32
     system("cls"); // Windows
@@ -17,7 +19,7 @@ void Game::clearScreen()
 #endif
 }
 
-void Game::displayWelcomeScreen()
+void GameUi::displayWelcomeScreen()
 {
     std::cout << "=====================================" << std::endl;
     std::cout << "          StarshipAscension          " << std::endl;
@@ -30,21 +32,21 @@ void Game::displayWelcomeScreen()
     clearScreen();  // Clear the screen after input
 }
 
-void Game::displayMainMenu()
+void GameUi::displayMainMenu()
 {
     std::cout << "=====================================" << std::endl;
     std::cout << "             Main Menu               " << std::endl;
     std::cout << "=====================================" << std::endl;
-    std::cout << "1. Start New Game" << std::endl;
-    std::cout << "2. Continue Game" << std::endl;
-    // TODO: Implement save game functionality, renumber the menu options accordingly
-    std::cout << "3. Save Game" << std::endl;
-    std::cout << "3. Load Saved Game" << std::endl;
+    std::cout << "1. Start New GameUi" << std::endl;
+    std::cout << "2. Continue GameUi" << std::endl;
+    // TODO: Implement save GameUi functionality, renumber the menu options accordingly
+    std::cout << "3. Save GameUi" << std::endl;
+    std::cout << "3. Load Saved GameUi" << std::endl;
     std::cout << "4. Captain's Log" << std::endl;
     std::cout << "5. Mission Briefing" << std::endl;
     std::cout << "6. Ship Systems Overview" << std::endl;
     std::cout << "7. Help" << std::endl;
-    std::cout << "8. Setup Game" << std::endl;
+    std::cout << "8. Setup GameUi" << std::endl;
     std::cout << "9. Credits" << std::endl;
     std::cout << "10. Exit" << std::endl;
     std::cout << "11. Resume Last Mission" << std::endl;
@@ -64,7 +66,7 @@ void Game::displayMainMenu()
     std::cout << "=====================================" << std::endl;
     std::cout << "Available Commands:\n";
     std::cout << "1. Move: Move to a new position." << std::endl;
-    std::cout << "2. Quit: Exit the game." << std::endl;
+    std::cout << "2. Quit: Exit the GameUi." << std::endl;
     std::cout << "3. Menu: Display the main menu." << std::endl;
     std::cout << "4. Scan: Scan the surrounding area." << std::endl;
     std::cout << "5. Help: Display help information." << std::endl;
@@ -77,10 +79,10 @@ void Game::displayMainMenu()
     switch (choice)
     {
     case 1:
-        std::cout << "\nStarting a new game...\n";
-        // TODO: Implement new game functionality
+        std::cout << "\nStarting a new GameUi...\n";
+        // TODO: Implement new GameUi functionality
         // std:cout << "\nLoading playing field...\n";
-        // std::cout << "Initializing game...\n";
+        // std::cout << "Initializing GameUi...\n";
         // std::cout << "Initializing player...\n";
         // std::cout << "Initializing ship...\n";
         // std::cout << "Initializing crew...\n";
@@ -99,12 +101,12 @@ void Game::displayMainMenu()
 
         break;
     case 2:
-        std::cout << "\nContinuing game...\n";
+        std::cout << "\nContinuing GameUi...\n";
         break;
         case 3:
         {
-            std::cout << "\nLoading saved game...\n";
-            std::cout << "Choose a format to load your game:\n";
+            std::cout << "\nLoading saved GameUi...\n";
+            std::cout << "Choose a format to load your GameUi:\n";
             std::cout << "1. Plain Text (.txt)\n";
             std::cout << "2. JSON (.json)\n";
             std::cout << "3. XML (.xml)\n";
@@ -116,7 +118,7 @@ void Game::displayMainMenu()
             std::cout << "Here are the available save files:\n";
             listSaveFiles(); // Display available save files
 
-            std::cout << "Enter the name of the saved game file (with extension): ";
+            std::cout << "Enter the name of the saved GameUi file (with extension): ";
             std::string fileName;
             std::cin.ignore();
             std::getline(std::cin, fileName);
@@ -126,9 +128,9 @@ void Game::displayMainMenu()
             case 1:
                 loadFromPlainText(fileName);
                 break;
-            // case 2:
-            //     loadFromJSON(fileName);
-            //     break;
+            case 2:
+                loadFromJSON(fileName);
+                break;
             case 3:
                 loadFromXML(fileName);
                 break;
@@ -226,7 +228,7 @@ void Game::displayMainMenu()
     }
 }
 
-void Game::displayCaptainsLog()
+void GameUi::displayCaptainsLog()
 {
     clearScreen(); // Optional: Clear the screen for better readability
     std::cout << "=====================================\n";
@@ -250,7 +252,7 @@ void Game::displayCaptainsLog()
     std::cin.get();
 }
 
-void Game::displayHelpMenu()
+void GameUi::displayHelpMenu()
 {
     clearScreen();
     std::cout << "=====================================" << std::endl;
@@ -259,7 +261,7 @@ void Game::displayHelpMenu()
     std::cout << "Welcome to StarshipAscension!" << std::endl;
     std::cout << "Here are some tips to help you get started:\n";
     std::cout << "- Use 'move' to explore the galaxy." << std::endl;
-    std::cout << "- Use 'quit' to end the game." << std::endl;
+    std::cout << "- Use 'quit' to end the GameUi." << std::endl;
     std::cout << "- Complete missions to gain points and advance." << std::endl;
     std::cout << "\nPress Enter to return to the Main Menu." << std::endl;
     std::cin.ignore();
@@ -268,13 +270,13 @@ void Game::displayHelpMenu()
     displayMainMenu();
 }
 
-void Game::displaySetupMenu()
+void GameUi::displaySetupMenu()
 {
     clearScreen();
     std::cout << "=====================================" << std::endl;
-    std::cout << "            Setup Game Menu           " << std::endl;
+    std::cout << "            Setup Game Menu          " << std::endl;
     std::cout << "=====================================" << std::endl;
-    std::cout << "Configure your game settings here.\n";
+    std::cout << "Configure your Game settings here.\n";
 
     std::cout << "Enter the number of players: ";
     int numPlayers;
@@ -319,7 +321,7 @@ void Game::displaySetupMenu()
         clearScreen();
     } else if (manageCrewChoice == "no" || manageCrewChoice == "n")
     {
-        std::cout << "You can manage your crew later in the game.\n";
+        std::cout << "You can manage your crew later in the GameUi.\n";
         clearScreen();
     }
     clearScreen();
@@ -334,7 +336,7 @@ void Game::displaySetupMenu()
     displayMainMenu();
 }
 
-void Game::displayShipSystemsOverview()
+void GameUi::displayShipSystemsOverview()
 {
     clearScreen(); // Clear the screen for better visibility
     std::cout << "=====================================" << std::endl;
@@ -397,7 +399,7 @@ void Game::displayShipSystemsOverview()
     displayMainMenu(); // Navigate back to the main menu
 }
 
-void Game::displayCredits()
+void GameUi::displayCredits()
 {
     clearScreen();
     std::cout << "=====================================" << std::endl;

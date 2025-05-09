@@ -4,14 +4,14 @@
 #include <fstream>
 #include "captains_log.hpp"
 
-void Game::addToCaptainsLog(const std::string &entry)
+void CaptainsLog::addToCaptainsLog(const std::string &entry)
 {
     captainsLog.push_back(entry);
     std::cout << "Entry added to Captain's Log: " << entry << std::endl;
 }
 
 // Initializes the Captain's Log by loading from a file or initializing an empty log
-void Game::initializeCaptainsLog() {
+void CaptainsLog::initializeCaptainsLog() {
     std::ifstream logFile(captainsLogFile);
     if (logFile.is_open()) {
         std::string line;
@@ -26,13 +26,13 @@ void Game::initializeCaptainsLog() {
 }
 
 // Creates a new Captain's Log by clearing the current log (if any)
-void Game::createCaptainsLog() {
+void CaptainsLog::createCaptainsLog() {
     captainsLog.clear();
     std::cout << "Captain's Log has been cleared and is now empty.\n";
 }
 
 // Saves the current Captain's Log to a file
-void Game::saveCaptainsLog() {
+void CaptainsLog::saveCaptainsLog() {
     std::ofstream logFile(captainsLogFile);
     if (logFile.is_open()) {
         for (const auto& entry : captainsLog) {
@@ -46,7 +46,7 @@ void Game::saveCaptainsLog() {
 }
 
 // Loads the Captain's Log from a file
-void Game::loadCaptainsLog() {
+void CaptainsLog::loadCaptainsLog() {
     std::ifstream logFile(captainsLogFile);
     if (logFile.is_open()) {
         captainsLog.clear(); // Clear any existing log entries
@@ -62,7 +62,7 @@ void Game::loadCaptainsLog() {
 }
 
 // Deletes the Captain's Log (removes the log file)
-void Game::deleteCaptainsLog() {
+void CaptainsLog::deleteCaptainsLog() {
     if (std::remove(captainsLogFile.c_str()) == 0) {
         std::cout << "Captain's Log has been deleted.\n";
     } else {

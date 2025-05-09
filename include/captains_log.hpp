@@ -4,7 +4,8 @@
 #include <string>
 #include <vector>
 
-class Game {
+class CaptainsLog
+{
 private:
     std::vector<std::string> captainsLog;  // To hold the Captain's Log entries
     std::string captainsLogFile = "captains_log.txt";  // Default file name for the log

@@ -4,7 +4,7 @@
 #include <string>
 #include <vector>
 
-class Game
+class GameUi
 {
 public:
     // UI & Main Menu

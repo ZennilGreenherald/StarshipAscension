@@ -5,6 +5,8 @@
 #include <thread>         // For std::this_thread::sleep_for
 #include <chrono>         // For std::chrono::milliseconds
 
+#include "input_utils.hpp"
+
 std::string sanitizeInput(const std::string &input)
 {
     std::string sanitized = input;

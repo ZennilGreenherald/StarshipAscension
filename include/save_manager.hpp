@@ -4,7 +4,7 @@
 #include <string>
 #include <filesystem>
 
-class Game {
+class SaveGame {
 private:
     std::string playerName;
     int playerPosition;
