@@ -1,5 +1,6 @@
 #include "game.hpp"
 #include "input_utils.hpp"
+#include "game_ui.hpp"
 #include <iostream>
 #include <string>
 #include <vector>
@@ -57,8 +58,8 @@ void updateGameState(const std::string &playerInput)
 // Main game looo
 void Game::run()
 {
-    displayWelcomeScreen();
-    displayMainMenu();
+    ui.displayWelcomeScreen();
+    ui.displayMainMenu();
 
     while (getIsRunning())
     {
@@ -90,7 +91,7 @@ void Game::processPlayerInput()
     }
     else if (command == "menu" || command == "m")
     {
-        displayMainMenu();
+        ui.displayMainMenu();
     }
     else if (command == "scan" || command == "s")
     {
@@ -100,7 +101,7 @@ void Game::processPlayerInput()
     }
     else if (command == "help" || command == "h")
     {
-        displayHelpMenu();
+        ui.displayHelpMenu();
     }
     else
     {
@@ -131,4 +132,25 @@ void Game::render()
     std::cout << "Player Position: " << playerPosition << std::endl;
     std::cout << "Keep exploring the galaxy, Captain " << playerName << "!" << std::endl;
     std::cout << "=============================" << std::endl;
+}
+
+void setPlayerName(std::string& name)
+{
+    std::cout << "Enter player name: ";
+    std::getline(std::cin, name);
+
+    // Trim whitespace
+    name.erase(0, name.find_first_not_of(" \t\n\r\f\v"));
+    name.erase(name.find_last_not_of(" \t\n\r\f\v") + 1);
+
+    if (name.empty())
+    {
+        name = "Unnamed Player";
+        std::cout << "No name entered. Defaulting to \"" << name << "\".\n";
+    }
+    else if (name.length() > 30)
+    {
+        name = name.substr(0, 30);
+        std::cout << "Name too long. Truncated to: " << name << "\n";
+    }
 }

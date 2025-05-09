@@ -5,6 +5,7 @@
 
 #include "crew_manager.hpp"
 #include "game_ui.hpp"
+#include "save_manager.hpp"
 
 void CrewManager::manageCrew()
 {

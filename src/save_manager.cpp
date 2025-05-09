@@ -50,7 +50,7 @@ void SaveGame::saveGame()
     std::cout << "Game saved successfully to " << fileName << "!\n";
     std::cout << "\nPress Enter to return to the Main Menu.";
     std::cin.ignore();
-    std::cin.get()
+    std::cin.get();
     displayMainMenu();
 }
 

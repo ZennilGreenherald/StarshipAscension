@@ -31,11 +31,11 @@ private:
 
     std::string firstOfficer;
     std::string secondOfficer;
-    std::string cheifSecurity;
-    std::string cheifMed;
-    std::string cheifEng;
-    std::string cheifTac;
-    std::string cheifScience;
+    std::string chiefSecurity;
+    std::string chiefMed;
+    std::string chiefEng;
+    std::string chiefTac;
+    std::string chiefScience;
 
     std::string shieldStatus;
     int shieldStrength = 0;

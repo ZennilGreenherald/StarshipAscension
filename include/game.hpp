@@ -6,6 +6,9 @@
 #include <filesystem>
 #include <vector>
 
+#include "game_ui.hpp"
+#include "input_utils.hpp"
+
 class Game
 {
 public:
@@ -22,13 +25,7 @@ public:
     void viewCrewStatus(); // View
 
 private:
-    void displayWelcomeScreen();
-    void clearScreen();
-    void displayMainMenu();
-    void displayHelpMenu();  // Help menu option
-    void displaySetupMenu(); // Setup menu option
-    void displayCredits();   // View credits option
-    void displayCaptainsLog(); // View captain's log option
+    GameUi ui;
     void addToCaptainsLog(const std::string &entry); // Add entry to captain's log
     void initializeCaptainsLog(); // Initialize captain's log
     void initializeStep(const std::string &step); // Initialize game step
@@ -51,19 +48,19 @@ private:
     // void scanField(const std::vector<std::vector<char>> &field, int playerX, int playerY);
 
     // Game attributes
-    void setPlayerName(const std::string& name);
+    void setPlayerName(std::string& name);
     std::vector<std::string> captainsLog;
     std::string getPlayerName() const;
     std::string playerInput;
     std::string playerName;
     std::string shipName;
-    std::string cheifEng;
-    std::string cheifTac;
-    std::string cheifSecurity;
+    std::string chiefEng;
+    std::string chiefTac;
+    std::string chiefSecurity;
     std::string firstOfficer;
     std::string secondOfficer;
-    std::string cheifMed;
-    std::string cheifScience;
+    std::string chiefMed;
+    std::string chiefScience;
     int currentLocation;
     int playerPosition;
     int shieldStrength;
