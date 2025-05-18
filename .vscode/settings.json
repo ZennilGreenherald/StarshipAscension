@@ -5717,5 +5717,8 @@
     // Simple Browser
 
     // Enable/disable the floating indicator that shows when focused in the simple browser.
-    "simpleBrowser.focusLockIndicator.enabled": true
+    "simpleBrowser.focusLockIndicator.enabled": true,
+
+    "C_Cpp.intelliSenseEngine": "default",
+    "C_Cpp.intelliSenseMemoryLimit": 8192
   }
