@@ -33,7 +33,6 @@ class Game(
     var currentLocation = ""
     var shieldStatus = ""
     var shieldStrength = ""
-    var topLevelMenu = 0
 
     def stop(): Unit = _isRunning = false
     def isRunning(): Boolean = _isRunning
@@ -41,13 +40,8 @@ class Game(
 
     def run(): Unit =
         displayWelcomeScreen()
-
-        while isRunning() do
-            if topLevelMenu == 0 then
-                displayMainMenu()
-            else
-                processPlayerCommand()
-                printGameState()
+        displayMainMenu()
+        println("\nExiting. Goodbye!\n")
 
 
     def displayWelcomeScreen(): Unit =
@@ -67,109 +61,68 @@ class Game(
 
 
     def displayMainMenu(): Unit =
-        val msg = 
-            s"""=====================================
-            |             Main Menu               
-            |=====================================
-            |1. Start New Game
-            |2. Continue Game
-            |3. Save Game
-            |4. Load Saved Game
-            |5. Captain's Log
-            |6. Mission Briefing
-            |7. Ship Systems Overview
-            |8. Help
-            |9. Setup Game
-            |10. Credits
-            |11. Exit
-            |12. Resume Last Mission
-            |13. Tactical Overview
-            |14. Manage Crew
-            |=====================================
-            |Welcome, Captain ${playerName}!
-            |Your current position: $playerPosition
-            |Your ship: $shipName
-            |Crew Size: $crewSize
-            |First Officer: $firstOfficer
-            |Second Officer: $secondOfficer
-            |Chief Security Officer: $chiefSecurity
-            |Chief Medical Officer: $chiefMed
-            |Chief Engineer: $chiefEng
-            |Chief Tactical Officer: $chiefTac
-            |=====================================
-            |
-            |Select an option:""".stripMargin
+        executeMenu(
+            "Main Menu", 
+            Some("Exit"),
+            Array(
+                ("Start New Game", () => processPlayerCommand()),
+                ("Continue Game", () => processPlayerCommand()),
+                ("Save Game", () => saveGame()),
+                ("Load Saved Game", () => loadGame()),
+                ("Captain's Log", 
+                    () => {
+                        clearScreen()
+                        println("Initializing Captain's Log...\n")
 
-        val choice = promptForInt(msg)
-        choice.getOrElse(-1) match
-            case 1 =>
-                println("\nStarting a new game...\n")
-                topLevelMenu = 1
-            case 2 =>
-                println("\nContinuing game...\n")
-                topLevelMenu = 1
+                        val progress = 0
+                        val total = 100
 
-            case 3 => saveGame()
-            case 4 => loadGame()
+                        for
+                            progress <- 0 to total by 10
+                        do
+                            val barWidth = 50
+                            val filledWidth = (progress * barWidth) / total
+                            println(s"[${"=" * filledWidth}${" " * (barWidth - filledWidth)}] ${(progress * 100) / total}%")
+                            Thread.sleep(200)
 
-            case 5 =>
-                clearScreen()
-                println("Initializing Captain's Log...\n")
+                        println()
+                        println("Captain's Log initialized successfully.\n")
+                        displayCaptainsLog()
 
-                val progress = 0
-                val total = 100
-
-                for
-                    progress <- 0 to total by 10
-                do
-                    val barWidth = 50
-                    val filledWidth = (progress * barWidth) / total
-                    println(s"[${"=" * filledWidth}${" " * (barWidth - filledWidth)}] ${(progress * 100) / total}%")
-                    Thread.sleep(200)
-
-                println()
-                println("Captain's Log initialized successfully.\n")
-                displayCaptainsLog()
-
-                // Display mock Captain's Log entries (for testing)
-                promptForLine("""[TODO: Implement Captain's Log functionality]
-                    |
-                    |Press Enter to return to the Main Menu.""".stripMargin)
-
-            case 6 =>
-                promptForLine("""
-                    Displaying mission briefing...
-                    |[TODO: Implement Mission Briefing]
-                    |
-                    |Press Enter to return to the Main Menu.""".stripMargin)
-                clearScreen()
-                // TODO: Implement mission briefing functions
-                // createMissionBriefing();
-                // saveMissionBriefing();
-                // loadMissionBriefing();
-                // displayMissionBriefing();
-
-            case 7 =>
-                clearScreen()
-                displayShipSystemsOverview()
-
-            case 8 => displayHelpMenu()
-            case 9 => displaySetupMenu()
-            case 10 => displayCredits()
-
-            case 11 =>
-                println("\nExiting. Goodbye!\n")
-                stop()
-
-            case 12 => ()
-            case 13 => ()
-
-            case 14 =>
-                clearScreen()
-                manageCrew()
-
-            case _ =>
-                println("\nInvalid choice. Returning to menu...\n")
+                        // Display mock Captain's Log entries (for testing)
+                        promptForLine("""[TODO: Implement Captain's Log functionality]
+                            |
+                            |Press Enter to return to the Main Menu.""".stripMargin)
+                        ()
+                    }
+                ),
+                ("Mission Briefing", 
+                    () => {
+                        promptForLine("""
+                            Displaying mission briefing...
+                            |[TODO: Implement Mission Briefing]
+                            |
+                            |Press Enter to return to the Main Menu.""".stripMargin)
+                        clearScreen()
+                        // TODO: Implement mission briefing functions
+                        // createMissionBriefing();
+                        // saveMissionBriefing();
+                        // loadMissionBriefing();
+                        // displayMissionBriefing();
+                    }
+                ),
+                ("Ship Systems Overview", () => {
+                    clearScreen()
+                    displayShipSystemsOverview()
+                }),
+                ("Help", () => displayHelpMenu()),
+                ("Setup Game", () => displaySetupMenu()),
+                ("Credits", () => displayCredits()),
+                ("Resume Last Mission", () => ()),
+                ("Tactical Overview", () => ()),
+                ("Manage Crew", () => manageCrew())
+            )
+        )
 
 
     def displayCaptainsLog(): Unit =
@@ -385,35 +338,40 @@ class Game(
         promptForLine("\nPress Enter to return to the Main Menu.")
 
 
+    def executeMenu(title: String, returnMsg: Option[String], options: Array[(String, () => Unit)]): Unit =
+        if isRunning() then
+            println()
+            val msg = s"""
+                |=====================================
+                |           $title           
+                |=====================================
+                |${options.zipWithIndex.map{ case ((s, f), i) => s"${i + 1}. $s"}.mkString("\n")}
+                |${returnMsg.foldLeft(""){ case (acc, msg) => s"${options.length + 1}. ${msg}" }}
+                |=====================================
+                |Enter your choice: """.stripMargin
+
+            promptForInt(msg).getOrElse(-1) match
+                case n if returnMsg.isDefined && n == options.length + 1 => ()
+                case n if n >= 1 && n <= options.length =>
+                    options(n - 1)(1)()
+                    executeMenu(title, returnMsg, options)
+                case _ =>
+                    println("Invalid choice.")
+                    executeMenu(title, returnMsg, options)
+
+
     def manageCrew(): Unit =
-        clearScreen()
-        val msg = """
-            |=====================================
-            |           Manage Crew Menu           
-            |=====================================
-            |Crew Management System
-            |1. View Crew List
-            |2. Assign Roles
-            |3. Dismiss Crew Member
-            |4. Add Crew Member
-            |5. View Crew Status
-            |6. Return to Main Menu
-            |=====================================
-            |Enter your choice: """.stripMargin
-
-        val choice = promptForInt(msg).getOrElse(-1)
-        choice match
-            case 1 => viewCrewList()
-            case 2 => assignRoles()
-            case 3 => dismissCrewMember()
-            case 4 => addCrewMember()
-            case 5 => viewCrewStatus()
-            case 6 => ()
-            case _ => 
-                println("Invalid choice.\n")
-
-        if choice != 6 then
-            manageCrew()
+        executeMenu(
+            "Manage Crew Menu", 
+            Some("Return to Main Menu"),
+            Array(
+                ("View Crew List", () => viewCrewList()),
+                ("Assign Roles", () => assignRoles()),
+                ("Dismiss Crew Member", () => dismissCrewMember()),
+                ("Add Crew Member", () => addCrewMember()),
+                ("View Crew Status", () => viewCrewStatus())
+            )
+        )
 
 
     def addCrewMember(): Unit =
@@ -452,20 +410,29 @@ class Game(
 
 
     def processPlayerCommand(): Unit =
-        val command = promptForLine("Enter your command (move, quit, menu, scan, help): ").toLowerCase
+        if isRunning() then
+            println()
+            val command = promptForLine("Enter your command (move, quit, menu, scan, help): ").toLowerCase
 
-        command match
-            case "move" | "" =>
-                playerPosition += 1
-                println(s"You moved to position $playerPosition.")
+            command match
+                case "move" | "" =>
+                    playerPosition += 1
+                    println(s"You moved to position $playerPosition.")
+                    printGameState()
+                    processPlayerCommand()
 
-            case "quit" | "q" => stop()
-            case "menu" | "m" => topLevelMenu = 0
-            case "scan" | "s" =>
-                println("Scanning the surrounding area... No threats detected!")
-                // scanField(playingField, playerX, playerY);
-            case "help" | "h" => displayHelpMenu()
-            case _ => println("Invalid command. Try again!")
+                case "quit" | "q" => stop()
+                case "menu" | "m" => ()
+
+                case "scan" | "s" =>
+                    println("Scanning the surrounding area... No threats detected!")
+                    // scanField(playingField, playerX, playerY);
+                    printGameState()
+                    processPlayerCommand()
+
+                case "help" | "h" => displayHelpMenu()
+
+                case _ => println("Invalid command. Try again!")
 
 
     def printGameState(): Unit =
